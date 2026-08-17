@@ -1,8 +1,11 @@
-<!DOCTYPE html>
-<html>
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
+    /* 1. Tell the browser (and Dark Reader) that this page supports BOTH modes explicitly */
+    :root {
+      color-scheme: light dark;
+    }
+
     body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background-color: #fce5cd; text-align: center; padding: 8px 24px; margin: 0; }
     .card { background: #fce5cd; max-width: 400px; margin: 0 auto; padding: 6px 20px 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
     h2 { color: #000; margin-bottom: 42px; font-size: 30px; }
@@ -11,26 +14,17 @@
     .btn:active { transform: scale(0.98); }
     .preview { background-color: #c5eec5; color: #573a1e; }
     .edit { background-color: #ffa5a5; color: #573a1e; }
+    
+    /* 2. Light mode baselines (Removed !important here so they don't break dark mode) */
     .hub { background-color: #c9daf8; color: #573a1e; }
     .graph { background-color: #d9d2e9; color: #1e293b; margin-top: 115px; }
+    
     .subtext { display: block; font-size: 12px; font-weight: normal; opacity: 0.8; margin-top: 4px; }
+    
+    /* 3. This triggers natively on system dark mode and forces Dark Reader to step back and use your hex codes */
     @media (prefers-color-scheme: dark) {
       .hub { background-color: #1c355e !important; color: #a8c7fa !important; }
       .graph { background-color: #3c245c !important; color: #d7b8f3 !important; }
     }
-    @media (prefers-color-scheme: light) {
-      .hub { background-color: #c9daf8 !important; color: #573a1e !important; }
-      .graph { background-color: #d9d2e9 !important; color: #1e293b !important; }
-    }
   </style>
 </head>
-<body>
-  <div class="card">
-    <h2>View Mode Portal</h2>
-    <a href="https://docs.google.com/spreadsheets/d/1NdnC1kN831FVfcInOmFBfe-PU5tgKjFh3I-uxPdVGJM/preview" class="btn preview">Preview Mode <span class="subtext">(works on most devices)</span></a>
-    <a href="https://docs.google.com/spreadsheets/d/1NdnC1kN831FVfcInOmFBfe-PU5tgKjFh3I-uxPdVGJM/edit?gid=1967667427#gid=1967667427" class="btn edit">Edit Mode <span class="subtext">(annoying banner at top)</span></a>
-    <a href="https://script.google.com/macros/s/AKfycbxhptFuoMFrCWwJ9yFew4Ej1XTjnm6G4X38hz-yccNW30tikf_F0sLIpOuhtZDR45pG/exec" class="btn graph" target="_blank" rel="noopener">Player Ratings Graph</a>
-    <a href="https://ccttcratings.github.io/portalhub/" class="btn hub">Portal Hub<span class="subtext">(hub of redundant portals)</span></a>
-  </div>
-</body>
-</html>
