@@ -1,19 +1,34 @@
-<html>
+html<html>
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
+    /* ----------------------------------------------------
+       THE FIX: Intercept Dark Reader's specific runtime engine 
+       ---------------------------------------------------- */
+    html[data-darkreader-scheme="dark"] .hub {
+      background-color: #132646 !important;
+      color: #a8c7fa !important;
+    }
+    html[data-darkreader-scheme="dark"] .graph {
+      background-color: #2d1a4d !important;
+      color: #d7b8f3 !important;
+    }
+
+    /* Core Application Layout */
     body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background-color: #fce5cd; text-align: center; padding: 8px 24px; margin: 0; }
     .card { background: #fce5cd; max-width: 400px; margin: 0 auto; padding: 6px 20px 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
     h2 { color: #000; margin-bottom: 42px; font-size: 30px; }
     p { color: #e07474; font-size: 16px; margin-bottom: 30px; }
     .btn { display: block; text-decoration: none; padding: 14px; margin: 12px 0; border: 2px solid #000; border-radius: 8px; font-weight: bold; font-size: 20px; transition: transform 0.1s; }
     .btn:active { transform: scale(0.98); }
+    
     .preview { background-color: #c5eec5; color: #573a1e; }
     .edit { background-color: #ffa5a5; color: #573a1e; }
     
-    /* Light Mode standard definitions */
+    /* Light Mode Declarations */
     .hub { background-color: #c9daf8; color: #573a1e; }
     .graph { background-color: #d9d2e9; color: #1e293b; margin-top: 115px; }
+    
     .subtext { display: block; font-size: 12px; font-weight: normal; opacity: 0.8; margin-top: 4px; }
   </style>
 </head>
@@ -22,26 +37,8 @@
     <h2>View Mode Portal</h2>
     <a href="https://google.com" class="btn preview">Preview Mode <span class="subtext">(works on most devices)</span></a>
     <a href="https://google.com" class="btn edit">Edit Mode <span class="subtext">(annoying banner at top)</span></a>
-    
-    <!-- Player Ratings Graph (Purple Button with Direct Dark Reader Blockers) -->
-    <a href="https://google.com" 
-       class="btn graph" 
-       target="_blank" 
-       rel="noopener"
-       data-darkreader-inline-bgcolor
-       data-darkreader-inline-color
-       style="--darkreader-inline-bgcolor: #2d1a4d !important; --darkreader-inline-color: #d7b8f3 !important;">
-       Player Ratings Graph
-    </a>
-    
-    <!-- Portal Hub (Blue Button with Direct Dark Reader Blockers) -->
-    <a href="https://github.io" 
-       class="btn hub"
-       data-darkreader-inline-bgcolor
-       data-darkreader-inline-color
-       style="--darkreader-inline-bgcolor: #132646 !important; --darkreader-inline-color: #a8c7fa !important;">
-       Portal Hub<span class="subtext">(hub of redundant portals)</span>
-    </a>
+    <a href="https://google.com" class="btn graph" target="_blank" rel="noopener">Player Ratings Graph</a>
+    <a href="https://github.io" class="btn hub">Portal Hub<span class="subtext">(hub of redundant portals)</span></a>
   </div>
 </body>
 </html>
