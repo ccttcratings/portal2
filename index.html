@@ -1,30 +1,53 @@
+<html>
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    /* 1. Tell the browser (and Dark Reader) that this page supports BOTH modes explicitly */
+    /* 1. Define custom variables so Dark Reader has specific colors to target */
     :root {
-      color-scheme: light dark;
+      --hub-bg: #c9daf8;
+      --hub-text: #573a1e;
+      --graph-bg: #d9d2e9;
+      --graph-text: #1e293b;
     }
 
+    /* 2. When Dark Reader is active, it adds a data-darkreader-scheme attribute automatically. 
+          We use this to force our Sheets dark colors! */
+    [data-darkreader-scheme="dark"], 
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --hub-bg: #1c355e !important;
+        --hub-text: #a8c7fa !important;
+        --graph-bg: #3c245c !important;
+        --graph-text: #d7b8f3 !important;
+      }
+    }
+
+    /* Core Styles Layout */
     body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background-color: #fce5cd; text-align: center; padding: 8px 24px; margin: 0; }
     .card { background: #fce5cd; max-width: 400px; margin: 0 auto; padding: 6px 20px 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
     h2 { color: #000; margin-bottom: 42px; font-size: 30px; }
     p { color: #e07474; font-size: 16px; margin-bottom: 30px; }
+    
     .btn { display: block; text-decoration: none; padding: 14px; margin: 12px 0; border: 2px solid #000; border-radius: 8px; font-weight: bold; font-size: 20px; transition: transform 0.1s; }
     .btn:active { transform: scale(0.98); }
+    
     .preview { background-color: #c5eec5; color: #573a1e; }
     .edit { background-color: #ffa5a5; color: #573a1e; }
     
-    /* 2. Light mode baselines (Removed !important here so they don't break dark mode) */
-    .hub { background-color: #c9daf8; color: #573a1e; }
-    .graph { background-color: #d9d2e9; color: #1e293b; margin-top: 115px; }
+    /* 3. Bind the color variables directly to the buttons */
+    .hub { background-color: var(--hub-bg); color: var(--hub-text); }
+    .graph { background-color: var(--graph-bg); color: var(--graph-text); margin-top: 115px; }
     
     .subtext { display: block; font-size: 12px; font-weight: normal; opacity: 0.8; margin-top: 4px; }
-    
-    /* 3. This triggers natively on system dark mode and forces Dark Reader to step back and use your hex codes */
-    @media (prefers-color-scheme: dark) {
-      .hub { background-color: #1c355e !important; color: #a8c7fa !important; }
-      .graph { background-color: #3c245c !important; color: #d7b8f3 !important; }
-    }
   </style>
 </head>
+<body>
+  <div class="card">
+    <h2>View Mode Portal</h2>
+    <a href="https://google.com" class="btn preview">Preview Mode <span class="subtext">(works on most devices)</span></a>
+    <a href="https://google.com" class="btn edit">Edit Mode <span class="subtext">(annoying banner at top)</span></a>
+    <a href="https://google.com" class="btn graph" target="_blank" rel="noopener">Player Ratings Graph</a>
+    <a href="https://github.io" class="btn hub">Portal Hub<span class="subtext">(hub of redundant portals)</span></a>
+  </div>
+</body>
+</html>
