@@ -4,15 +4,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     /* ----------------------------------------------------
-       THE FIX: Universal dark-mode coverage
-       prefers-color-scheme handles native system dark mode on
-       any browser/device; the Dark Reader attribute rule is kept
-       as a fallback so the desktop Dark Reader look is identical.
+       THE FIX: Intercept Dark Reader's specific runtime engine 
+       NOTE: not using prefers-color-scheme — it follows the OS
+       theme (which can be dark while nothing darkens the page),
+       while this attribute only appears when Dark Reader is
+       actually rendering the page dark.
        ---------------------------------------------------- */
-    @media (prefers-color-scheme: dark) {
-      .hub { background-color: #132646 !important; color: #a8c7fa !important; }
-      .graph { background-color: #2d1a4d !important; color: #d7b8f3 !important; }
-    }
     html[data-darkreader-scheme="dark"] .hub {
       background-color: #132646 !important;
       color: #a8c7fa !important;
