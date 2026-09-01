@@ -11,12 +11,12 @@
        actually rendering the page dark.
        ---------------------------------------------------- */
     html[data-darkreader-scheme="dark"] .hub {
-      background-color: #132646 !important;
-      color: #a8c7fa !important;
+      background: linear-gradient(180deg, #4080d0 0%, #1850a0 50%, #0840a0 100%) !important;
+      color: #fff !important;
     }
     html[data-darkreader-scheme="dark"] .graph {
-      background-color: #2d1a4d !important;
-      color: #d7b8f3 !important;
+      background: linear-gradient(180deg, #8050c0 0%, #5028a0 50%, #3a1878 100%) !important;
+      color: #fff !important;
     }
 
     /* Core Application Layout */
@@ -24,17 +24,19 @@
     .card { background: #fce5cd; max-width: 400px; margin: 0 auto; padding: 6px 20px 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
     h2 { color: #000; margin-bottom: 42px; font-size: 30px; }
     p { color: #e07474; font-size: 16px; margin-bottom: 30px; }
-    .btn { display: block; text-decoration: none; padding: 14px; margin: 12px 0; border: 2px solid #000; border-radius: 8px; font-weight: bold; font-size: 20px; transition: transform 0.1s; }
-    .btn:active { transform: scale(0.98); }
-    
-    .preview { background-color: #c5eec5; color: #573a1e; }
-    .edit { background-color: #ffa5a5; color: #573a1e; }
-    
-    /* Light Mode Declarations */
-    .hub { background-color: #c9daf8; color: #573a1e; }
-    .graph { background-color: #d9d2e9; color: #1e293b; margin-top: 115px; }
-    .graphnew { background-color: #d5a6bd; color: #1e293b; margin-top: 0; }
-    
+
+    /* Glass Button Base */
+    .btn { position: relative; display: block; text-decoration: none; padding: 14px; margin: 12px 0; border-radius: 12px; font-weight: bold; font-size: 20px; color: #fff; overflow: hidden; text-shadow: 0 1px 2px rgba(0,0,0,.35); box-shadow: 0 2px 4px rgba(0,0,0,.15), inset 0 -2px 4px rgba(0,0,0,.25), inset 0 0 0 3px rgba(255,255,255,.15), inset 0 0 0 4px rgba(0,0,0,.2); transition: transform 0.1s; }
+    .btn::before { content: ''; position: absolute; top: 3px; left: 8%; right: 8%; height: 44%; background: linear-gradient(180deg, rgba(255,255,255,.5) 0%, rgba(255,255,255,.12) 100%); border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%; pointer-events: none; }
+    .btn:active { transform: translateY(2px); }
+
+    /* Glass Colors */
+    .preview { background: linear-gradient(180deg, #50c850 0%, #289828 50%, #188018 100%); }
+    .edit { background: linear-gradient(180deg, #e85050 0%, #b82020 50%, #981818 100%); }
+    .hub { background: linear-gradient(180deg, #5090e0 0%, #2060b0 50%, #1050a0 100%); }
+    .graph { background: linear-gradient(180deg, #9060d0 0%, #6030a0 50%, #4a2088 100%); margin-top: 115px; }
+    .graphnew { background: linear-gradient(180deg, #e060a0 0%, #b03070 50%, #902060 100%); margin-top: 0; }
+
     .subtext { display: block; font-size: 12px; font-weight: normal; opacity: 0.8; margin-top: 4px; }
   </style>
 </head>
@@ -44,7 +46,7 @@
     <a href="https://docs.google.com/spreadsheets/d/1NdnC1kN831FVfcInOmFBfe-PU5tgKjFh3I-uxPdVGJM/preview" class="btn preview">Preview Mode <span class="subtext">(works on most devices)</span></a>
     <a href="https://docs.google.com/spreadsheets/d/1NdnC1kN831FVfcInOmFBfe-PU5tgKjFh3I-uxPdVGJM/edit?gid=1967667427#gid=1967667427" class="btn edit">Edit Mode <span class="subtext">(annoying banner at top)</span></a>
     <a href="https://script.google.com/macros/s/AKfycbyh4XByirwdUrd4OArgiWHokySt_rgBS1gJMtLRyLJOeLZVHAQDFrQXQXbthd_TxHbx/exec" class="btn graph" target="_blank" rel="noopener">Old Player Ratings Graph</a>
-        <a href="https://ccttcratings.github.io/graph/" class="btn graphnew" target="_blank" rel="noopener">New Player Ratings Graph</a>
+    <a href="https://ccttcratings.github.io/graph/" class="btn graphnew" target="_blank" rel="noopener">New Player Ratings Graph</a>
     <a href="https://ccttcratings.github.io/portalhub/" class="btn hub">Portal Hub<span class="subtext">(hub of redundant portals)</span></a>
   </div>
 </body>
