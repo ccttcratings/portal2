@@ -3,13 +3,7 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    /* ----------------------------------------------------
-       THE FIX: Intercept Dark Reader's specific runtime engine 
-       NOTE: not using prefers-color-scheme — it follows the OS
-       theme (which can be dark while nothing darkens the page),
-       while this attribute only appears when Dark Reader is
-       actually rendering the page dark.
-       ---------------------------------------------------- */
+
     html[data-darkreader-scheme="dark"] .hub {
       background: linear-gradient(180deg, #4080d0 0%, #1850a0 50%, #0840a0 100%) !important;
       color: #fff !important;
