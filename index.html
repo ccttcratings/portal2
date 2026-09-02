@@ -51,9 +51,17 @@
     .graphnew { background: linear-gradient(180deg, #e060a0 0%, #b03070 40%, #902060 100%); --dark: #701850; margin-top: 80px; }
 
     .subtext { display: block; font-size: 12px; font-weight: normal; opacity: 0.8; margin-top: 4px; }
+
+    /* Neon overrides — odd days */
+    html.neon .preview { background: linear-gradient(180deg, #00ff00 0%, #00cc00 40%, #009900 100%); --dark: #006600; }
+    html.neon .edit { background: linear-gradient(180deg, #ff0000 0%, #cc0000 40%, #990000 100%); --dark: #660000; }
+    html.neon .hub { background: linear-gradient(180deg, #22eeff 0%, #00ccdd 40%, #00aabb 100%); --dark: #008899; }
+    html.neon .graph { background: linear-gradient(180deg, #bf00ff 0%, #9900dd 40%, #7700bb 100%); --dark: #550099; }
+    html.neon .graphnew { background: linear-gradient(180deg, #ff33dd 0%, #dd11bb 40%, #bb0099 100%); --dark: #880077; }
   </style>
 </head>
 <body>
+  <script>if (new Date().getDate() % 2) document.documentElement.classList.add('neon');</script>
   <div class="card">
     <h2>View Mode Portal</h2>
     <a href="https://docs.google.com/spreadsheets/d/1NdnC1kN831FVfcInOmFBfe-PU5tgKjFh3I-uxPdVGJM/preview" class="btn preview">Preview Mode <span class="subtext">(works on most devices)</span></a>
