@@ -4,7 +4,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script>var p=new URLSearchParams(location.search);if(p.has('neon')||(!p.has('normal')&&new Date().getDate()%2)){document.documentElement.classList.add('neon');document.documentElement.setAttribute('data-darkreader-scheme','dark')}</script>
   <style>
-
     html[data-darkreader-scheme="dark"] .hub {
       background: linear-gradient(180deg, #4080d0 0%, #1850a0 50%, #0840a0 100%) !important;
       color: #fff !important;
@@ -14,20 +13,18 @@
       color: #fff !important;
     }
 
-    /* Core Application Layout */
-    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background-color: #fce5cd; text-align: center; padding: 8px 24px; margin: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background-color: #fce5cd; text-align: center; padding: 8px 24px; margin: 0; overflow: hidden; }
     .card { background: #fce5cd; max-width: 400px; margin: 0 auto; padding: 6px 20px 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
     h2 { color: #000; margin-bottom: 42px; font-size: 30px; }
     p { color: #e07474; font-size: 16px; margin-bottom: 30px; }
 
-    /* Glass Button Base - glossy gel + perspective angle */
     .btn {
       position: relative; display: block; text-decoration: none;
       padding: 14px; margin: 20px 0; border-radius: 12px;
       font-weight: bold; font-size: 20px; color: #000;
       transform: perspective(500px) rotateY(-12deg);
       box-shadow: 2px 0 0 4px rgba(0,0,0,.2), 0 6px 0 var(--dark), 0 10px 16px rgba(0,0,0,.35);
-      overflow: hidden; border: none;
+      overflow: hidden; border: none; cursor: pointer;
       transition: transform 0.4s ease, box-shadow 0.4s ease;
     }
     .btn::after {
@@ -44,41 +41,387 @@
     .btn:hover { transform: perspective(500px) rotateY(0deg); box-shadow: 0 0 0 4px rgba(0,0,0,.1), 0 2px 0 var(--dark), 0 4px 10px rgba(0,0,0,.25); }
     .btn:active { transform: perspective(500px) rotateY(0deg) translateY(2px); box-shadow: 0 0 0 4px rgba(0,0,0,.1), 0 0 0 var(--dark), 0 2px 6px rgba(0,0,0,.2); }
 
-    /* Glass Colors */
     .preview { background: linear-gradient(180deg, #6abf6e 0%, #3a9e3e 40%, #288028 100%); --dark: #1c6a1c; }
+    .copy-purple { background: linear-gradient(180deg, #a048a0 0%, #883088 40%, #682068 100%); --dark: #501850; }
     .edit { background: linear-gradient(180deg, #e87070 0%, #c84040 40%, #a02020 100%); --dark: #801818; }
     .hub { background: linear-gradient(180deg, #3ba8d6 0%, #1a7daa 40%, #0e5f80 100%); --dark: #0a4a60; }
     .graph { background: linear-gradient(180deg, #a048a0 0%, #883088 40%, #682068 100%); --dark: #501850; padding: 18px 14px; }
     .graphnew { background: linear-gradient(180deg, #e060a0 0%, #b03070 40%, #902060 100%); --dark: #701850; margin-top: 80px; padding: 18px 14px; }
-
     .subtext { display: block; font-size: 12px; font-weight: normal; opacity: 0.8; margin-top: 4px; }
 
-    /* Neon overrides — odd days */
     html.neon .preview { background: linear-gradient(180deg, #00ff00 0%, #00cc00 40%, #009900 100%); --dark: #006600; }
+    html.neon .copy-purple { background: linear-gradient(180deg, #bf00ff 0%, #9900dd 40%, #7700bb 100%); --dark: #550099; }
     html.neon .edit { background: linear-gradient(180deg, #ff0000 0%, #cc0000 40%, #990000 100%); --dark: #660000; }
     html.neon .hub { background: linear-gradient(180deg, #0bcade 0%, #09a3b5 40%, #077c9c 100%); --dark: #055f7d; }
     html.neon .graph { background: linear-gradient(180deg, #bf00ff 0%, #9900dd 40%, #7700bb 100%); --dark: #550099; }
     html.neon .graphnew { background: linear-gradient(180deg, #ff33dd 0%, #dd11bb 40%, #bb0099 100%); --dark: #880077; }
-    html.neon .btn::after {
-      background: linear-gradient(180deg, rgba(255,255,255,.8) 0%, rgba(255,255,255,.15) 100%) !important;
-    }
-    html.neon .preview::after {
-      background: linear-gradient(180deg, rgba(255,255,255,.9) 0%, rgba(255,255,255,.2) 100%) !important;
-    }
+    html.neon .btn::after { background: linear-gradient(180deg, rgba(255,255,255,.8) 0%, rgba(255,255,255,.15) 100%) !important; }
+    html.neon .preview::after { background: linear-gradient(180deg, rgba(255,255,255,.9) 0%, rgba(255,255,255,.2) 100%) !important; }
     html.neon body { background: #4e2a05; color-scheme: dark; }
     html.neon .card { background: #4e2a05; }
     html.neon h2 { color: #fff; }
     html.neon p { color: #ffb3b3; }
+
+    /* === SCENE === */
+    #scene{position:fixed;top:0;left:0;width:100vw;height:100vh;display:none;z-index:999}
+    #viewport{position:absolute;top:0;left:0;width:100%;height:100%;overflow:hidden;background:linear-gradient(180deg,#4A7A49,#5B8C5A 60%,#6B9C6A)}
+    html.neon #viewport{background:linear-gradient(180deg,#1a1005,#2a1a0a 60%,#3a2a1a)}
+
+    .table{position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:200%;height:55%;background:#1565C0;clip-path:polygon(38% 0%,62% 0%,100% 100%,0% 100%);z-index:0}
+    html.neon .table{background:#0a2a0a}
+    .table-center{position:absolute;top:0;bottom:0;left:50%;width:2px;background:#fff;opacity:.3;transform:translateX(-50%)}
+    html.neon .table-center{background:#0f0}
+
+    .net{position:absolute;bottom:55%;left:50%;transform:translateX(-50%);width:45%;height:3px;background:#fff;z-index:2}
+    .net::before{content:'';position:absolute;top:3px;left:0;right:0;height:14px;background:repeating-linear-gradient(90deg,transparent,transparent 5px,rgba(255,255,255,.5) 5px,rgba(255,255,255,.5) 6px),repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(255,255,255,.4) 3px,rgba(255,255,255,.4) 4px)}
+    html.neon .net{background:#0f0}
+
+    .chinaman{position:absolute;bottom:55%;left:50%;transform:translateX(-50%);z-index:3;width:400px;clip-path:inset(0 0 70px 0)}
+    .chinaman.knocked{clip-path:none;z-index:8}
+    .chin-head{width:108px;height:108px;background:#FFCC80;border-radius:50%;margin:0 auto;position:relative}
+    .chin-head::before{content:'😑';font-size:66px;position:absolute;top:15px;left:18px}
+    html.neon .chin-head{background:#ff33dd}
+    .chin-body{width:90px;height:132px;background:#FFD54F;border-radius:12px;margin:0 auto;position:relative}
+    html.neon .chin-body{background:#bf00ff}
+    .chin-arm-l{position:absolute;top:8px;right:90px;width:110px;height:18px;background:#FFCC80;border-radius:8px;transform-origin:right center}
+    .chin-arm-r{position:absolute;top:8px;left:90px;width:110px;height:18px;background:#FFCC80;border-radius:8px;transform-origin:left center}
+    html.neon .chin-arm-l,html.neon .chin-arm-r{background:#ff33dd}
+    .chin-hand{position:absolute;top:2px;width:14px;height:14px;background:#FFCC80;border-radius:50%}
+    .chin-hand.l{left:-6px}
+    .chin-hand.r{right:-6px}
+    html.neon .chin-hand{background:#ff33dd}
+    .chin-paddle{position:absolute;top:-14px;left:-52px;width:48px;height:40px;background:linear-gradient(135deg,#D32F2F,#B71C1C);border-radius:6px;border:2px solid #8B0000}
+    .chin-paddle::after{content:'';position:absolute;top:50%;right:-16px;width:18px;height:7px;background:#8B4513;border-radius:2px;transform:translateY(-50%)}
+    .chin-legs{display:flex;gap:10px;justify-content:center}
+    .chin-leg{width:22px;height:60px;background:#1565C0;border-radius:0 0 6px 6px}
+    html.neon .chin-leg{background:#0bcade}
+    .chin-shoe{width:40px;height:18px;background:#333;border-radius:6px 12px 6px 6px;margin-top:-2px}
+    .chin-shoe.l{margin-left:-8px}
+    .chin-shoe.r{margin-right:-8px}
+    .fly-shoe{position:absolute;width:44px;height:20px;background:#333;border-radius:6px 12px 6px 6px;z-index:9;opacity:0}
+
+    #ball{position:absolute;z-index:5;border-radius:50%;overflow:hidden;background:radial-gradient(circle at 35% 35%,#fce5cd,#f0d4b0 40%,#e0c090);box-shadow:inset -4px -4px 12px rgba(0,0,0,.3),inset 3px 3px 6px rgba(255,255,255,.3)}
+    html.neon #ball{background:radial-gradient(circle at 35% 35%,#4e2a05,#3a1e04 40%,#2a1503);box-shadow:inset -4px -4px 12px rgba(0,0,0,.5),inset 3px 3px 6px rgba(0,255,0,.1)}
+    #ball-card{position:absolute;top:0;left:0;width:100%;height:100%;background:#fce5cd;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:6px 20px 30px;transform-origin:center center}
+    html.neon #ball-card{background:#4e2a05}
+    #ball-card h2{color:#000;margin-bottom:42px;font-size:30px}
+    html.neon #ball-card h2{color:#fff}
+    #ball-card .btn{pointer-events:none;margin:8px 0;width:80%}
+    #ball-track{position:absolute;top:0;left:10%;width:80%;height:100%;overflow:hidden;display:none}
+    #ball-inner{position:absolute;left:0;width:100%;display:flex;flex-direction:column;align-items:center;gap:1px}
+    .ball-btn{width:100%;padding:2px 1px;border-radius:2px;font-weight:bold;text-align:center;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex-shrink:0}
+    .ball-btn.gb{background:linear-gradient(180deg,#6abf6e,#3a9e3e)}
+    .ball-btn.pb{background:linear-gradient(180deg,#a048a0,#682068)}
+    .ball-btn.rb{background:linear-gradient(180deg,#e87070,#a02020)}
+    .ball-btn.bb{background:linear-gradient(180deg,#3ba8d6,#0e5f80)}
+    html.neon .ball-btn.gb{background:linear-gradient(180deg,#00ff00,#008800)}
+    html.neon .ball-btn.pb{background:linear-gradient(180deg,#bf00ff,#660088)}
+    html.neon .ball-btn.rb{background:linear-gradient(180deg,#ff0000,#880000)}
+    html.neon .ball-btn.bb{background:linear-gradient(180deg,#0bcade,#065566)}
+
+    #ball-shadow{position:absolute;border-radius:50%;background:rgba(0,0,0,.3);z-index:1;opacity:0}
+    .status{position:absolute;top:8px;left:8px;font-size:11px;color:#fff;background:rgba(0,0,0,.6);padding:3px 8px;border-radius:4px;z-index:20}
+
+    #copy-toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,.8);color:#0f0;padding:8px 20px;border-radius:8px;font-size:14px;z-index:1001;display:none}
   </style>
 </head>
 <body>
   <div class="card">
     <h2>View Mode Portal</h2>
     <a href="https://docs.google.com/spreadsheets/d/1NdnC1kN831FVfcInOmFBfe-PU5tgKjFh3I-uxPdVGJM/preview" class="btn preview">Preview Mode <span class="subtext">(works on most devices)</span></a>
+    <a class="btn copy-purple" onclick="copyAndAnimate('preview')">Copy Preview Mode URL</a>
     <a href="https://docs.google.com/spreadsheets/d/1NdnC1kN831FVfcInOmFBfe-PU5tgKjFh3I-uxPdVGJM/edit?gid=1967667427#gid=1967667427" class="btn edit">Edit Mode <span class="subtext">(annoying banner at top)</span></a>
+    <a class="btn copy-purple" onclick="copyAndAnimate('edit')">Copy Edit Mode URL</a>
     <a href="https://ccttcratings.github.io/graph/" class="btn graphnew" target="_blank" rel="noopener">Player Ratings Graph</a>
     <a href="https://script.google.com/macros/s/AKfycbyh4XByirwdUrd4OArgiWHokySt_rgBS1gJMtLRyLJOeLZVHAQDFrQXQXbthd_TxHbx/exec" class="btn graph" target="_blank" rel="noopener">Old Player Ratings Graph</a>
     <a href="https://ccttcratings.github.io/portalhub/" class="btn hub">Portal Hub of Portals<span class="subtext">(hub of redundant portals)</span></a>
   </div>
+
+  <div id="scene">
+    <div id="viewport">
+      <div class="status" id="status"></div>
+      <div class="table"><div class="table-center"></div></div>
+      <div class="net"></div>
+      <div class="chinaman" id="chinaman">
+        <div class="chin-head"></div>
+        <div class="chin-body">
+          <div class="chin-arm-l" id="armL"><div class="chin-hand l"></div><div class="chin-paddle"></div></div>
+          <div class="chin-arm-r" id="armR"><div class="chin-hand r"></div></div>
+        </div>
+        <div class="chin-legs">
+          <div><div class="chin-leg"></div><div class="chin-shoe l" id="shoeL"></div></div>
+          <div><div class="chin-leg"></div><div class="chin-shoe r" id="shoeR"></div></div>
+        </div>
+      </div>
+      <div class="fly-shoe" id="fly1"></div>
+      <div class="fly-shoe" id="fly2"></div>
+      <div id="ball-shadow"></div>
+    </div>
+    <div id="ball">
+      <div id="ball-card">
+        <h2>View Mode Portal</h2>
+        <div class="btn preview">Preview Mode <span class="subtext">(works on most devices)</span></div>
+        <div class="btn copy-purple">Copy Preview Mode URL</div>
+        <div class="btn edit">Edit Mode <span class="subtext">(annoying banner at top)</span></div>
+        <div class="btn copy-purple">Copy Edit Mode URL</div>
+        <div class="btn hub">Portal Hub of Portals<span class="subtext">(hub of redundant portals)</span></div>
+      </div>
+      <div id="ball-track"><div id="ball-inner"></div></div>
+    </div>
+  </div>
+
+  <div id="copy-toast"></div>
+
+<script>
+// === SOUNDS ===
+var audioCtx=null;
+function ensureAudio(){
+  if(!audioCtx)audioCtx=new(window.AudioContext||window.webkitAudioContext)();
+  if(audioCtx.state==='suspended')audioCtx.resume();
+}
+function playTone(freq,dur,vol,decay){
+  ensureAudio();
+  var o=audioCtx.createOscillator(),g=audioCtx.createGain();
+  o.connect(g);g.connect(audioCtx.destination);
+  o.frequency.value=freq;o.type='sine';
+  g.gain.setValueAtTime(vol||.3,audioCtx.currentTime);
+  g.gain.exponentialRampToValueAtTime(.001,audioCtx.currentTime+dur);
+  o.start();o.stop(audioCtx.currentTime+dur);
+}
+function popSound(){playTone(800,.05,.3)}
+function bounceSound(){playTone(300,.12,.4)}
+function hitSound(){playTone(150,.2,.5)}
+function knockSound(){playTone(100,.3,.6)}
+function returnSound(){playTone(600,.08,.3)}
+
+// === COPY URL ===
+var PREVIEW_URL='https://docs.google.com/spreadsheets/d/1NdnC1kN831FVfcInOmFBfe-PU5tgKjFh3I-uxPdVGJM/preview';
+var EDIT_URL='https://docs.google.com/spreadsheets/d/1NdnC1kN831FVfcInOmFBfe-PU5tgKjFh3I-uxPdVGJM/edit?gid=1967667427#gid=1967667427';
+var toastEl=document.getElementById('copy-toast');
+function showToast(msg){
+  toastEl.textContent=msg;toastEl.style.display='block';
+  setTimeout(function(){toastEl.style.display='none'},1500);
+}
+function copyAndAnimate(mode){
+  popSound();
+  var url=mode==='preview'?PREVIEW_URL:EDIT_URL;
+  navigator.clipboard.writeText(url).then(function(){
+    showToast('URL copied!');
+  }).catch(function(){
+    showToast('Copy failed');
+  });
+  if(mode==='preview')previewAnim();else editAnim();
+}
+
+// === ANIMATION ===
+var scene=document.getElementById('scene');
+var ballEl=document.getElementById('ball');
+var ballCard=document.getElementById('ball-card');
+var ballTrack=document.getElementById('ball-track');
+var ballInner=document.getElementById('ball-inner');
+var shadow=document.getElementById('ball-shadow');
+var chinaman=document.getElementById('chinaman');
+var armL=document.getElementById('armL');
+var shoeL=document.getElementById('shoeL');
+var shoeR=document.getElementById('shoeR');
+var fly1=document.getElementById('fly1');
+var fly2=document.getElementById('fly2');
+var statusEl=document.getElementById('status');
+var animating=false;
+var btnOffset=0;
+var BALL_D=70;
+
+function setStatus(s){statusEl.textContent=s}
+function wait(ms){return new Promise(function(r){setTimeout(r,ms)})}
+
+function vpW(){return window.innerWidth}
+function vpH(){return window.innerHeight}
+
+function resetAll(){
+  ballEl.style.transition='none';
+  ballEl.style.width='0px';ballEl.style.height='0px';
+  ballEl.style.left='-999px';ballEl.style.top='-999px';
+  ballCard.style.display='';ballCard.style.transform='scale(1)';
+  ballTrack.style.display='none';ballInner.innerHTML='';
+  chinaman.style.transition='none';
+  chinaman.style.bottom='55%';
+  chinaman.style.transform='translateX(-50%) rotate(0deg)';
+  chinaman.classList.remove('knocked');
+  armL.style.transition='none';armL.style.transform='rotate(0deg)';
+  fly1.style.opacity='0';fly1.style.transform='none';
+  fly2.style.opacity='0';fly2.style.transform='none';
+  shoeL.style.opacity='1';shoeR.style.opacity='1';
+  shadow.style.opacity='0';btnOffset=0;
+}
+
+function setBall(x,y,d,scroll){
+  ballEl.style.width=d+'px';ballEl.style.height=d+'px';
+  ballEl.style.left=(x-d/2)+'px';ballEl.style.top=(y-d/2)+'px';
+  ballCard.style.transform='scale('+(d/vpW())+')';
+  btnOffset+=scroll;
+  var trackH=d;ballInner.style.height=(trackH*2)+'px';
+  var w=((btnOffset%trackH)+trackH)%trackH;
+  ballInner.style.transform='translateY('+(-w)+'px)';
+  var fs=Math.max(2,Math.round((d/vpW())*14));
+  var btns=ballInner.querySelectorAll('.ball-btn');
+  for(var i=0;i<btns.length;i++){
+    btns[i].style.fontSize=fs+'px';
+    btns[i].style.padding=Math.max(1,Math.round((d/vpW())*5))+'px '+Math.max(1,Math.round((d/vpW())*3))+'px';
+  }
+  var ss=Math.max(.1,(d/vpW())*.6);
+  shadow.style.width=(d*ss)+'px';shadow.style.height=(d*ss*.25)+'px';
+  shadow.style.left=(x-d*ss/2)+'px';shadow.style.top=(vpH()-30-d*ss*.25)+'px';
+  shadow.style.opacity=Math.min(.35,(d/vpW())*.5);
+}
+
+function showBall(){
+  ballEl.style.borderRadius='50%';
+  ballCard.style.display='none';ballTrack.style.display='';
+  ballInner.innerHTML='<div class="ball-btn gb">Preview Mode</div><div class="ball-btn pb">Copy Preview URL</div><div class="ball-btn rb">Edit Mode</div><div class="ball-btn pb">Copy Edit URL</div><div class="ball-btn bb">Portal Hub</div>';
+  btnOffset=0;
+}
+
+// far edge = top of table = bottom:55% from bottom = vpH()*.45 from top
+function farEdgeY(){return vpH()*.45}
+function nearEdgeY(){return vpH()*.85}
+
+// ===== PREVIEW: Topspin =====
+async function previewAnim(){
+  if(animating)return;animating=true;
+  document.querySelector('.card').style.display='none';
+  scene.style.display='block';resetAll();
+  setStatus('Topspin serve!');await wait(300);
+
+  var W=vpW(),H=vpH();
+  var feY=farEdgeY(),neY=nearEdgeY();
+
+  // Shrink + travel to far side
+  var steps=55;
+  for(var i=0;i<=steps;i++){
+    var t=i/steps,e=1-Math.pow(1-t,3);
+    var d=W-e*(W-BALL_D);
+    var x=W/2+e*20;
+    var baseY=neY+(feY-neY)*e;
+    var arcH=Math.sin(t*Math.PI)*H*.15;
+    setBall(x,baseY-arcH,d,2.5);
+    await wait(16);
+  }
+  bounceSound();
+
+  // Bounce far side
+  for(var i=0;i<=12;i++){
+    var t=i/12;
+    setBall(W/2+20+t*8,feY-8-Math.sin(t*Math.PI)*10,BALL_D,2);
+    await wait(14);
+  }
+
+  setStatus('HIT!');
+  armL.style.transition='transform .12s ease-out';armL.style.transform='rotate(30deg)';
+  await wait(120);
+  chinaman.classList.add('knocked');
+  hitSound();
+
+  var cR=chinaman.getBoundingClientRect(),vR=scene.getBoundingClientRect();
+  fly1.style.left=(cR.left-vR.left+5)+'px';fly1.style.top=(cR.bottom-vR.top-20)+'px';
+  fly2.style.left=(cR.left-vR.left+cR.width-49)+'px';fly2.style.top=(cR.bottom-vR.top-20)+'px';
+  fly1.style.opacity='1';fly2.style.opacity='1';shoeL.style.opacity='0';shoeR.style.opacity='0';
+
+  for(var i=0;i<=30;i++){
+    var t=i/30,e=1-Math.pow(1-t,3);
+    chinaman.style.bottom='calc(55%+'+e*80+'px)';
+    chinaman.style.transform='translateX(-50%) rotate('+(e*400)+'deg)';
+    fly1.style.left=(parseFloat(fly1.style.left)-5-t*40)+'px';
+    fly1.style.top=(parseFloat(fly1.style.top)-8-t*30)+'px';
+    fly1.style.transform='rotate('+(t*800)+'deg)';
+    fly2.style.left=(parseFloat(fly2.style.left)+5+t*35)+'px';
+    fly2.style.top=(parseFloat(fly2.style.top)-6-t*35)+'px';
+    fly2.style.transform='rotate('+(-t*600)+'deg)';
+    await wait(14);
+  }
+  knockSound();
+
+  for(var i=0;i<15;i++){setBall(W/2+28,feY-5+i*3,BALL_D,1);await wait(14)}
+
+  setStatus('KNOCKOUT!');await wait(800);
+  setStatus('URL copied!');await wait(500);
+
+  resetAll();scene.style.display='none';
+  document.querySelector('.card').style.display='';animating=false;
+}
+
+// ===== EDIT: Bottomspin =====
+async function editAnim(){
+  if(animating)return;animating=true;
+  document.querySelector('.card').style.display='none';
+  scene.style.display='block';resetAll();
+  setStatus('Bottomspin serve!');await wait(300);
+
+  var W=vpW(),H=vpH();
+  var feY=farEdgeY(),neY=nearEdgeY();
+
+  // Shrink + travel to far side
+  var steps=55;
+  for(var i=0;i<=steps;i++){
+    var t=i/steps,e=1-Math.pow(1-t,3);
+    var d=W-e*(W-BALL_D);
+    var x=W/2-e*20;
+    var baseY=neY+(feY-neY)*e;
+    var arcH=Math.sin(t*Math.PI)*H*.12;
+    setBall(x,baseY-arcH,d,-2.5);
+    await wait(16);
+  }
+  bounceSound();
+
+  // Bounce far side
+  for(var i=0;i<=12;i++){
+    var t=i/12;
+    setBall(W/2-20+t*8,feY-8-Math.sin(t*Math.PI)*10,BALL_D,-2);
+    await wait(14);
+  }
+
+  setStatus('Chinaman returns!');
+  armL.style.transition='transform .15s ease-out';armL.style.transform='rotate(35deg)';
+  await wait(150);
+  hitSound();
+
+  // Ball back to near side
+  setStatus('Back across...');
+  var retSteps=50;
+  for(var i=0;i<=retSteps;i++){
+    var t=i/retSteps,e=t*t;
+    var x=W/2-12+e*12;
+    var baseY=feY+(neY-feY)*e;
+    var arcH=Math.sin(t*Math.PI)*H*.1;
+    setBall(x,baseY-arcH,BALL_D,-1.5);
+    await wait(14);
+  }
+  bounceSound();
+
+  setStatus('Bounce near side!');
+  for(var i=0;i<=10;i++){
+    var t=i/10;
+    setBall(W/2,neY-8-Math.sin(t*Math.PI)*12,BALL_D,-1);
+    await wait(14);
+  }
+
+  // Grow back to screen
+  setStatus('Back on screen...');
+  for(var i=0;i<=45;i++){
+    var t=i/45,e=t*t;
+    var d=BALL_D+e*(W-BALL_D);
+    var y=neY-e*(neY-H/2);
+    setBall(W/2,y,d,0);
+    await wait(14);
+  }
+  returnSound();
+
+  await wait(400);
+  resetAll();scene.style.display='none';
+  document.querySelector('.card').style.display='';animating=false;
+}
+
+resetAll();
+document.addEventListener('click',function(){ensureAudio()},{once:true});
+</script>
 </body>
 </html>
