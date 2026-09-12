@@ -20,8 +20,8 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      inkscape:zoom="12.828125"
-     inkscape:cx="33.208283"
-     inkscape:cy="13.291108"
+     inkscape:cx="32"
+     inkscape:cy="25.763703"
      inkscape:window-width="1920"
      inkscape:window-height="1001"
      inkscape:window-x="-7"
@@ -127,8 +127,7 @@
      stroke-width="1.5"
      id="polyline2" />
   <g
-     id="g18"
-     sodipodi:insensitive="true">
+     id="g18">
     <path
        d="m 14.52687,45.669966 a 22,22 0 1 1 21,8"
        fill="none"
@@ -137,45 +136,64 @@
        stroke-linecap="round"
        id="path4"
        style="stroke:url(#linearGradient16)" />
-    <path
+    <rect
+       style="fill:#7ed3fa;stroke-width:1.8704;stroke-opacity:0.972549;fill-opacity:1"
        id="rect18"
-       style="fill:#7ed3fa;stroke-width:1.8704;stroke-opacity:0.972549"
-       transform="matrix(0.99174033,-0.12826188,-0.35242638,0.93583954,0,0)"
-       d="m 30.523382,52.716412 h 3.041515 v 8.556417 h -3.041515 z" />
-    <path
+       width="3.0415146"
+       height="8.5564175"
+       x="30.523382"
+       y="52.716412"
+       transform="matrix(0.99174033,-0.12826188,-0.35242638,0.93583954,0,0)" />
+    <rect
+       style="fill:#7dd3fa;fill-opacity:1;stroke-width:1.8704;stroke-opacity:0.972549"
        id="rect18-5"
-       style="fill:#7dd3fa;stroke-width:1.8704;stroke-opacity:0.972549"
-       transform="matrix(0.68471152,-0.7288142,-0.96498004,-0.26232331,0,0)"
-       d="m -44.855812,-54.89959 h 3.041515 v 8.556418 h -3.041515 z" />
-    <path
+       width="3.0415146"
+       height="8.5564175"
+       x="-44.855812"
+       y="-54.89959"
+       transform="matrix(0.68471152,-0.7288142,-0.96498004,-0.26232331,0,0)" />
+    <polygon
+       class="head"
+       points="29,16 29,4 42,10 "
+       fill="url(#grad)"
        id="polygon4"
        style="fill:url(#linearGradient17)"
-       class="head"
-       transform="rotate(-175.11186,33.018807,31.801995)"
-       d="M 29,16 V 4 l 13,6 z" />
-    <path
+       transform="rotate(-175.11186,33.018807,31.801995)" />
+    <rect
+       style="fill:#7ed3fa;stroke-width:1.8704;stroke-opacity:0.972549;fill-opacity:1"
        id="rect18-9"
-       style="fill:#7ed3fa;stroke-width:1.8704;stroke-opacity:0.972549"
-       transform="matrix(0.99978479,0.02074537,-0.48776319,0.87297599,0,0)"
-       d="m 32.222553,46.667255 h 3.041515 v 8.556418 h -3.041515 z" />
-    <path
+       width="3.0415146"
+       height="8.5564175"
+       x="32.222553"
+       y="46.667255"
+       transform="matrix(0.99978479,0.02074537,-0.48776319,0.87297599,0,0)" />
+    <rect
+       style="fill:#7fd3fa;fill-opacity:1;stroke-width:1.8704;stroke-opacity:0.972549"
        id="rect18-9-2"
-       style="fill:#7fd3fa;stroke-width:1.8704;stroke-opacity:0.972549"
-       transform="matrix(-0.61724696,0.78676947,0.9844713,0.17554558,0,0)"
-       d="m 40.178394,39.524345 h 3.041515 v 8.556418 h -3.041515 z" />
-    <path
+       width="3.0415146"
+       height="8.5564175"
+       x="40.178394"
+       y="39.524345"
+       transform="matrix(-0.61724696,0.78676947,0.9844713,0.17554558,0,0)" />
+    <rect
+       style="fill:#7fd3fa;stroke-width:1.8704;stroke-opacity:0.972549;fill-opacity:1"
        id="rect18-9-8"
-       style="fill:#7fd3fa;stroke-width:1.8704;stroke-opacity:0.972549"
-       inkscape:transform-center-x="-0.02259357"
-       inkscape:transform-center-y="1.8079826"
+       width="3.0415146"
+       height="8.5564175"
+       x="28.514702"
+       y="41.434216"
        transform="matrix(0.99868733,0.05122117,-0.51415516,0.85769719,0,0)"
-       d="m 28.514702,41.434216 h 3.041514 v 8.556417 h -3.041515 z" />
-    <path
+       inkscape:transform-center-x="-0.02259357"
+       inkscape:transform-center-y="1.8079826" />
+    <rect
+       style="fill:#7dd3fa;fill-opacity:1;stroke-width:1.8704;stroke-opacity:0.972549"
        id="rect18-9-8-1"
-       style="fill:#7dd3fa;stroke-width:1.8704;stroke-opacity:0.972549"
-       inkscape:transform-center-x="1.3538398"
-       inkscape:transform-center-y="-1.198515"
+       width="3.0415146"
+       height="8.5564175"
+       x="-38.988953"
+       y="-43.733479"
        transform="matrix(0.61381284,-0.78945158,-0.98522687,-0.17125422,0,0)"
-       d="m -38.988953,-43.733479 h 3.041515 v 8.556418 h -3.041515 z" />
+       inkscape:transform-center-x="1.3538398"
+       inkscape:transform-center-y="-1.198515" />
   </g>
 </svg>
