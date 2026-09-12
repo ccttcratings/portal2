@@ -24,7 +24,8 @@
     #ptr .arrow { fill: none; stroke: url(#grad); stroke-width: 6; stroke-linecap: round; stroke-linejoin: round; }
     #ptr .face { fill: none; stroke: #e05050; stroke-width: 2; stroke-linecap: round; }
     #ptr .eye { fill: #e05050; }
-    #ptr .ring { transform-origin: 32px 32px; }
+    #ptr .ring { transform-origin: 32px 32px; transform-box: fill-box; transform-origin: center; }
+#ptr .ring .tail { transform: none !important; }
     #ptr .head, #ptr .tail { transition: opacity 0.15s; }
     #ptr.spin .head, #ptr.spin .tail { opacity: 0; }
     #ptr.spin svg { animation: ptrSpin 0.7s linear infinite; }
