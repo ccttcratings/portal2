@@ -28,7 +28,7 @@
       touch-action: none;
     }
 
-    /* PTR HYBRID SPINNER — BOX 64×64, SVG 40×40 */
+    /* PTR HYBRID SPINNER — BOX 64×64, SVG 48×48, PNG 64×64 */
     #ptr {
       position: fixed;
       top: 0;
@@ -42,24 +42,24 @@
       background: transparent;
     }
 
-    /* SVG now 40×40, centered inside 64×64 */
+    /* SVG 48×48, centered */
     #ptr-svg {
       position: absolute;
-      width: 40px;
-      height: 40px;
-      top: 12px;   /* (64 - 40) / 2 */
-      left: 12px;
+      width: 48px;
+      height: 48px;
+      top: 8px;
+      left: 8px;
       z-index: 1;
     }
 
-    /* Prevent SVG from leaking color changes */
+    /* prevent SVG from leaking colors */
     #ptr-svg, #ptr-svg * {
       color: inherit !important;
       fill: inherit !important;
       stroke: inherit !important;
     }
 
-    /* PNG overlay stays full 64×64 */
+    /* PNG overlay 64×64 */
     #ptr-png {
       position: absolute;
       width: 64px;
@@ -72,6 +72,12 @@
       transform-origin: 32px 32px;
     }
 
+    /* swipe: hide SVG, show spinning PNG */
+    #ptr.swiping #ptr-svg {
+      opacity: 0;
+    }
+
+    /* release: spin SVG, hide PNG */
     #ptr.spin #ptr-svg {
       animation: ptrSpin 0.7s linear infinite;
     }
@@ -242,15 +248,17 @@
           ptr.style.marginTop=(dist-60)+'px';
           ptr.style.opacity=pct;
 
+          // swipe: show PNG, spin it, hide SVG
+          ptr.classList.add('swiping');
           ptrPng.style.opacity=pct;
           ptrPng.style.transform='rotate('+(Math.min(dist*3,360))+'deg)';
           ptrSvg.style.transform='';
 
-          ptr.className='';
           return;
         }
 
         drag.ptrActive=false;
+        ptr.classList.remove('swiping');
         ptr.className='';
         ptr.style.marginTop='';
         ptr.style.opacity='';
@@ -268,8 +276,11 @@
         if(!drag.active) return;
         drag.active=false;
 
+        ptr.classList.remove('swiping');
+
         if(drag.ptrActive){
           if(parseFloat(ptr.style.opacity)>=1){
+            // release: hide PNG, spin SVG
             ptrPng.style.opacity=0;
             ptrPng.style.transform='';
             ptrSvg.style.transform='';
