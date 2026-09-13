@@ -35,7 +35,7 @@ body {
   background:transparent;
 }
 
-/* SVG full box */
+/* FULL SVG */
 #ptr-svg {
   position:absolute;
   width:64px;
@@ -46,26 +46,7 @@ body {
   color-scheme:inherit !important;
 }
 
-/* hide only arrow group during swipe */
-#ptr.swiping #ptr-svg g#g18 {
-  opacity:0;
-}
-
-/* prevent SVG color leaks, including inline attrs */
-#ptr-svg, #ptr-svg * {
-  color:inherit !important;
-  fill:inherit !important;
-  stroke:inherit !important;
-}
-#ptr-svg [fill],
-#ptr-svg [stroke],
-#ptr-svg [style] {
-  fill:inherit !important;
-  stroke:inherit !important;
-  color:inherit !important;
-}
-
-/* PNG arrow 62×62 centered */
+/* PNG arrow 62×62 */
 #ptr-png {
   position:absolute;
   width:62px;
@@ -78,8 +59,13 @@ body {
   transform-origin:31px 31px;
 }
 
-/* spin arrow group on release — CORRECTED SELECTOR */
-#ptr.spin #ptr-svg g#g18 {
+/* SWIPE: PNG spins */
+#ptr.swiping #ptr-png {
+  opacity:1;
+}
+
+/* RELEASE: FULL SVG spins */
+#ptr.spin #ptr-svg {
   animation:ptrSpin .7s linear infinite;
 }
 
@@ -90,6 +76,20 @@ body {
 @keyframes ptrSpin {
   from { transform:rotate(0deg); }
   to   { transform:rotate(360deg); }
+}
+
+/* Prevent SVG color leaks */
+#ptr-svg, #ptr-svg * {
+  color:inherit !important;
+  fill:inherit !important;
+  stroke:inherit !important;
+}
+#ptr-svg [fill],
+#ptr-svg [stroke],
+#ptr-svg [style] {
+  fill:inherit !important;
+  stroke:inherit !important;
+  color:inherit !important;
 }
 
 .card {
@@ -153,7 +153,7 @@ p  { color:#e07474; font-size:16px; margin-bottom:30px; }
 
 .subtext { display:block; font-size:12px; opacity:.8; margin-top:4px; }
 
-/* NEON MODE OVERRIDES */
+/* NEON MODE */
 html.neon body     { background:#4e2a05; color-scheme:dark; }
 html.neon .card    { background:#4e2a05; }
 html.neon h2       { color:#fff; }
