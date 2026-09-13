@@ -3,7 +3,7 @@
    viewBox="0 0 64 64"
    version="1.1"
    id="svg14"
-   sodipodi:docname="Ingun Spinner.svg"
+   sodipodi:docname="Ingun backupr - Copy - Copy.svg"
    inkscape:version="1.4.2 (f4327f4, 2025-05-13)"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
@@ -19,9 +19,9 @@
      inkscape:pageopacity="0.0"
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
-     inkscape:zoom="12.828125"
-     inkscape:cx="15.74665"
-     inkscape:cy="7.0548112"
+     inkscape:zoom="4.5354271"
+     inkscape:cx="79.375105"
+     inkscape:cy="27.89153"
      inkscape:window-width="1920"
      inkscape:window-height="1001"
      inkscape:window-x="-7"
@@ -66,82 +66,140 @@
        gradientTransform="scale(1.040833,0.96076892)"
        gradientUnits="userSpaceOnUse" />
   </defs>
-  <circle
-     cx="32"
-     cy="32"
-     r="30"
+  <ellipse
+     cx="24.130867"
+     cy="39.63921"
      fill="#1a1a1a"
-     id="circle2" />
+     id="circle2"
+     style="stroke-width:1"
+     rx="24.122515"
+     ry="24.12945" />
   <rect
-     x="16.155909"
-     y="17.868454"
-     width="32"
-     height="5"
-     rx="1"
+     x="12.294997"
+     y="28.726431"
+     width="24.060152"
+     height="3.7587235"
+     rx="0.75187975"
      fill="#5a3a1a"
-     id="rect2" />
+     id="rect2"
+     style="stroke-width:0.999999" />
   <line
-     x1="23"
-     y1="29"
-     x2="28"
-     y2="31"
+     x1="17.440922"
+     y1="37.094501"
+     x2="21.200327"
+     y2="38.597988"
      stroke="#e05050"
      stroke-width="2"
      stroke-linecap="round"
      id="line2" />
   <line
-     x1="36"
-     y1="31"
-     x2="41"
-     y2="29"
+     x1="27.215366"
+     y1="38.597988"
+     x2="30.974756"
+     y2="37.094501"
      stroke="#e05050"
      stroke-width="2"
      stroke-linecap="round"
      id="line3" />
   <path
-     d="m 39,42.451188 q -7,-5 -14,0"
+     d="m 29.471001,47.206366 q -5.263156,-3.758722 -10.526312,0"
      fill="none"
      stroke="#e05050"
      stroke-width="2"
      stroke-linecap="round"
      id="path3" />
   <polygon
-     points="28,10 38,-4 56,-14 48,0 36,14 30,22 22,22 "
+     points="30,22 22,22 28,10 38,-4 56,-14 48,0 36,14 "
      fill="#2d8a2d"
      stroke="#1a6a1a"
-     stroke-width="0.5"
+     stroke-width="0.621734"
      id="polygon3"
-     transform="translate(14.499391,-2.1047503)" />
+     transform="matrix(0.80408381,0,0,0.80431501,10.05891,12.208251)" />
   <line
-     x1="40.760937"
-     y1="18.181396"
-     x2="60.638577"
-     y2="-6.7782302"
+     x1="31.175398"
+     y1="28.5247"
+     x2="47.158691"
+     y2="8.4492989"
      stroke="#1a6a1a"
-     stroke-width="0.8"
+     stroke-width="0.800001"
      id="line4" />
   <polyline
      points="18,22 21,19 24,22 27,19 30,22 33,19 36,22 39,19 42,22 45,19 48,22"
      fill="none"
      stroke="#e05050"
-     stroke-width="1.5"
-     id="polyline2" />
+     stroke-width="1.99517"
+     id="polyline2"
+     transform="matrix(0.75187973,0,0,0.7517447,0.14769161,15.293914)" />
   <g
      id="g18"
-     sodipodi:insensitive="true">
+     transform="matrix(0.80408381,0,0,0.80431501,-1.5998159,13.901134)"
+     style="stroke-width:1.24347">
     <path
        d="m 14.52687,45.669966 a 22,22 0 1 1 21,8"
        fill="none"
        stroke="url(#grad)"
-       stroke-width="6"
+       stroke-width="7.46083"
        stroke-linecap="round"
        id="path4"
        style="stroke:url(#linearGradient16)" />
-    <path
-       id="polygon4"
-       style="fill:url(#linearGradient17)"
+    <rect
+       style="fill:#7ed3fa;fill-opacity:1;stroke-width:2.32579;stroke-opacity:0.972549"
+       id="rect18"
+       width="3.0415146"
+       height="8.5564175"
+       x="30.523382"
+       y="52.716412"
+       transform="matrix(0.99174033,-0.12826188,-0.35242638,0.93583954,0,0)" />
+    <rect
+       style="fill:#7dd3fa;fill-opacity:1;stroke-width:2.32579;stroke-opacity:0.972549"
+       id="rect18-5"
+       width="3.0415146"
+       height="8.5564175"
+       x="-44.855812"
+       y="-54.89959"
+       transform="matrix(0.68471152,-0.7288142,-0.96498004,-0.26232331,0,0)" />
+    <polygon
        class="head"
-       transform="rotate(-175.11186,33.018807,31.801995)"
-       d="M 29,16 V 4 l 13,6 z" />
+       points="29,16 29,4 42,10 "
+       fill="url(#grad)"
+       id="polygon4"
+       style="fill:url(#linearGradient17);stroke-width:1.24347"
+       transform="rotate(-175.11186,33.018807,31.801995)" />
+    <rect
+       style="fill:#7ed3fa;fill-opacity:1;stroke-width:2.32579;stroke-opacity:0.972549"
+       id="rect18-9"
+       width="3.0415146"
+       height="8.5564175"
+       x="32.222553"
+       y="46.667255"
+       transform="matrix(0.99978479,0.02074537,-0.48776319,0.87297599,0,0)" />
+    <rect
+       style="fill:#7fd3fa;fill-opacity:1;stroke-width:2.32579;stroke-opacity:0.972549"
+       id="rect18-9-2"
+       width="3.0415146"
+       height="8.5564175"
+       x="40.178394"
+       y="39.524345"
+       transform="matrix(-0.61724696,0.78676947,0.9844713,0.17554558,0,0)" />
+    <rect
+       style="fill:#7fd3fa;fill-opacity:1;stroke-width:2.32579;stroke-opacity:0.972549"
+       id="rect18-9-8"
+       width="3.0415146"
+       height="8.5564175"
+       x="28.514702"
+       y="41.434216"
+       transform="matrix(0.99868733,0.05122117,-0.51415516,0.85769719,0,0)"
+       inkscape:transform-center-x="-0.02259357"
+       inkscape:transform-center-y="1.8079826" />
+    <rect
+       style="fill:#7dd3fa;fill-opacity:1;stroke-width:2.32579;stroke-opacity:0.972549"
+       id="rect18-9-8-1"
+       width="3.0415146"
+       height="8.5564175"
+       x="-38.988953"
+       y="-43.733479"
+       transform="matrix(0.61381284,-0.78945158,-0.98522687,-0.17125422,0,0)"
+       inkscape:transform-center-x="1.3538398"
+       inkscape:transform-center-y="-1.198515" />
   </g>
 </svg>
