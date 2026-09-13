@@ -47,7 +47,7 @@ body {
 }
 
 /* hide only arrow group during swipe */
-#ptr.swiping #ptr-svg #g18 {
+#ptr.swiping #ptr-svg g#g18 {
   opacity:0;
 }
 
@@ -78,10 +78,11 @@ body {
   transform-origin:31px 31px;
 }
 
-/* spin arrow group on release */
-#ptr.spin #ptr-svg #g18 {
+/* spin arrow group on release — CORRECTED SELECTOR */
+#ptr.spin #ptr-svg g#g18 {
   animation:ptrSpin .7s linear infinite;
 }
+
 #ptr.spin #ptr-png {
   opacity:0;
 }
