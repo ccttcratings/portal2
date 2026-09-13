@@ -21,7 +21,7 @@ body {
   touch-action:none;
 }
 
-/* PTR BOX 64×64 */
+/* PTR BOX */
 #ptr {
   position:fixed;
   top:0;
@@ -35,7 +35,7 @@ body {
   background:transparent;
 }
 
-/* SVG stays full size, arrow group inside is scaled */
+/* SVG stays full size */
 #ptr-svg {
   position:absolute;
   width:64px;
@@ -45,33 +45,39 @@ body {
   z-index:1;
 }
 
-/* Hide ONLY the arrow group during swipe */
-#ptr.swiping #ptr-svg #g18 {
+/* hide only arrow group */
+#ptr.swiping #ptr-svg g#g18 {
   opacity:0;
 }
 
-/* Prevent SVG color leaks */
+/* prevent color leaks */
 #ptr-svg, #ptr-svg * {
   color:inherit!important;
   fill:inherit!important;
   stroke:inherit!important;
 }
 
-/* PNG arrow 56×56 centered */
+#ptr-svg [fill],
+#ptr-svg [stroke] {
+  fill:inherit!important;
+  stroke:inherit!important;
+}
+
+/* PNG arrow 60×60 */
 #ptr-png {
   position:absolute;
-  width:56px;
-  height:56px;
-  top:4px;
-  left:4px;
+  width:60px;
+  height:60px;
+  top:2px;
+  left:2px;
   z-index:2;
   opacity:0;
   pointer-events:none;
-  transform-origin:28px 28px;
+  transform-origin:30px 30px;
 }
 
-/* Release spin */
-#ptr.spin #ptr-svg #g18 {
+/* spin arrow group */
+#ptr.spin #ptr-svg g#g18 {
   animation:ptrSpin .7s linear infinite;
 }
 
