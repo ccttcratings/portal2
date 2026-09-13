@@ -2,6 +2,7 @@
 <html>
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <script>
     var p = new URLSearchParams(location.search);
     if (p.has('neon') || (!p.has('normal') && new Date().getDate() % 2)) {
@@ -9,421 +10,328 @@
       document.documentElement.setAttribute('data-darkreader-scheme', 'dark');
     }
   </script>
+
   <style>
+    /* Dark mode overrides */
     html[data-darkreader-scheme="dark"] .hub {
-      background: linear-gradient(180deg, #4080d0 0%, #1850a0 50%, #0840a0 100%) !important;
-      color: #fff !important;
+      background: linear-gradient(180deg,#4080d0,#1850a0,#0840a0)!important;
+      color:#fff!important;
     }
     html[data-darkreader-scheme="dark"] .graph {
-      background: linear-gradient(180deg, #8050c0 0%, #5028a0 50%, #3a1878 100%) !important;
-      color: #fff !important;
+      background: linear-gradient(180deg,#8050c0,#5028a0,#3a1878)!important;
+      color:#fff!important;
     }
 
-    /* Core Application Layout */
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      background-color: #fce5cd;
-      text-align: center;
-      padding: 8px 24px;
-      margin: 0;
-      touch-action: none;
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+      background:#fce5cd;
+      text-align:center;
+      padding:8px 24px;
+      margin:0;
+      touch-action:none;
     }
 
-    /* PTR (Pull to Refresh) Hybrid Spinner */
+    /* PTR HYBRID SPINNER — BIG BOX, SMALL SVG, PNG OVERLAY */
     #ptr {
-      position: fixed;
-      top: 0;
-      left: 50%;
-      width: 160px;
-      height: 160px;
-      margin-left: -80px;
-      margin-top: -140px;
-      z-index: 9999;
-      pointer-events: none;
-      background: transparent;
-      border: none;
+      position:fixed;
+      top:0;
+      left:50%;
+      width:200px;
+      height:200px;
+      margin-left:-100px;
+      margin-top:-200px;
+      z-index:9999;
+      pointer-events:none;
+      background:transparent;
+      border:none;
     }
 
-    /* SVG stays 64x64, centered in 160x160 box */
+    /* SVG DETACHED FROM BOX SIZE — NATURAL SIZE */
     #ptr-svg {
-      position: absolute;
-      width: 64px;
-      height: 64px;
-      top: 48px;
-      left: 48px;
-      z-index: 1;
+      position:absolute;
+      top:0;
+      left:0;
+      width:auto;
+      height:auto;
+      max-width:none;
+      max-height:none;
+      z-index:1;
     }
 
-    /* PNG arrow overlays SVG, same size, appears during swipe */
+    /* PNG ARROW — FIXED SIZE, CENTERED, OVERLAY */
     #ptr-png {
-      position: absolute;
-      width: 64px;
-      height: 64px;
-      top: 48px;
-      left: 48px;
-      z-index: 2;
-      opacity: 0;
-      pointer-events: none;
-      transform-origin: 32px 32px;
+      position:absolute;
+      width:64px;
+      height:64px;
+      top:68px;   /* centers inside 200px box */
+      left:68px;
+      z-index:2;
+      opacity:0;
+      pointer-events:none;
+      transform-origin:32px 32px;
     }
 
     /* Stage 2: spin ONLY the SVG */
     #ptr.spin #ptr-svg {
-      animation: ptrSpin 0.7s linear infinite;
+      animation:ptrSpin .7s linear infinite;
     }
 
     /* Stage 2: PNG disappears */
     #ptr.spin #ptr-png {
-      opacity: 0;
+      opacity:0;
     }
 
     @keyframes ptrSpin {
-      from { transform: rotate(0deg); }
-      to   { transform: rotate(360deg); }
+      from { transform:rotate(0deg); }
+      to   { transform:rotate(360deg); }
     }
 
-    /* Core Application Layout */
+    /* Card layout */
     .card {
-      background: #fce5cd;
-      max-width: 400px;
-      margin: 0 auto;
-      padding: 6px 20px 30px;
-      border-radius: 12px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.0);
-    }
-    h2 {
-      color: #000;
-      margin-bottom: 42px;
-      font-size: 30px;
-    }
-    p {
-      color: #e07474;
-      font-size: 16px;
-      margin-bottom: 30px;
+      background:#fce5cd;
+      max-width:400px;
+      margin:0 auto;
+      padding:6px 20px 30px;
+      border-radius:12px;
     }
 
-    /* Glass Button Base - glossy gel + perspective angle */
+    h2 { color:#000; margin-bottom:42px; font-size:30px; }
+    p  { color:#e07474; font-size:16px; margin-bottom:30px; }
+
+    /* Buttons */
     .btn {
-      position: relative;
-      display: block;
-      text-decoration: none;
-      padding: 14px;
-      margin: 20px 0;
-      border-radius: 12px;
-      font-weight: bold;
-      font-size: 20px;
-      color: #000;
-      transform: perspective(500px) rotateY(-12deg);
-      box-shadow: 2px 0 0 4px rgba(0,0,0,.2), 0 6px 0 var(--dark), 0 10px 16px rgba(0,0,0,.35);
-      overflow: hidden;
-      border: none;
-      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      position:relative;
+      display:block;
+      text-decoration:none;
+      padding:14px;
+      margin:20px 0;
+      border-radius:12px;
+      font-weight:bold;
+      font-size:20px;
+      color:#000;
+      transform:perspective(500px) rotateY(-12deg);
+      box-shadow:2px 0 0 4px rgba(0,0,0,.2),0 6px 0 var(--dark),0 10px 16px rgba(0,0,0,.35);
+      overflow:hidden;
+      border:none;
+      transition:.4s;
     }
+
     .btn::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 45%;
-      background: linear-gradient(180deg, rgba(255,255,255,.7) 0%, rgba(255,255,255,.15) 100%);
-      border-radius: 8px 8px 50% 50%;
-      pointer-events: none;
+      content:'';
+      position:absolute;
+      top:0; left:0; right:0;
+      height:45%;
+      background:linear-gradient(180deg,rgba(255,255,255,.7),rgba(255,255,255,.15));
+      border-radius:8px 8px 50% 50%;
     }
+
     .btn::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(to right, transparent, rgba(255,255,255,.3), transparent);
-      transition: 0.5s;
-      z-index: 1;
-      pointer-events: none;
+      content:'';
+      position:absolute;
+      top:0; left:-100%;
+      width:100%; height:100%;
+      background:linear-gradient(to right,transparent,rgba(255,255,255,.3),transparent);
+      transition:.5s;
+      z-index:1;
     }
-    .btn:hover::before { left: 100%; }
+
+    .btn:hover::before { left:100%; }
     .btn:hover {
-      transform: perspective(500px) rotateY(0deg);
-      box-shadow: 0 0 0 4px rgba(0,0,0,.1), 0 2px 0 var(--dark), 0 4px 10px rgba(0,0,0,.25);
-    }
-    .btn:active {
-      transform: perspective(500px) rotateY(0deg) translateY(2px);
-      box-shadow: 0 0 0 4px rgba(0,0,0,.1), 0 0 0 var(--dark), 0 2px 6px rgba(0,0,0,.2);
+      transform:perspective(500px) rotateY(0deg);
+      box-shadow:0 0 0 4px rgba(0,0,0,.1),0 2px 0 var(--dark),0 4px 10px rgba(0,0,0,.25);
     }
 
-    /* Glass Colors */
-    .preview {
-      background: linear-gradient(180deg, #6abf6e 0%, #3a9e3e 40%, #288028 100%);
-      --dark: #1c6a1c;
-    }
-    .edit {
-      background: linear-gradient(180deg, #e87070 0%, #c84040 40%, #a02020 100%);
-      --dark: #801818;
-    }
-    .hub {
-      background: linear-gradient(180deg, #3ba8d6 0%, #1a7daa 40%, #0e5f80 100%);
-      --dark: #0a4a60;
-    }
-    .graph {
-      background: linear-gradient(180deg, #a048a0 0%, #883088 40%, #682068 100%);
-      --dark: #501850;
-      padding: 18px 14px;
-    }
-    .graphnew {
-      background: linear-gradient(180deg, #e060a0 0%, #b03070 40%, #902060 100%);
-      --dark: #701850;
-      margin-top: 80px;
-      padding: 18px 14px;
-    }
+    .preview { background:linear-gradient(180deg,#6abf6e,#3a9e3e,#288028); --dark:#1c6a1c; }
+    .edit    { background:linear-gradient(180deg,#e87070,#c84040,#a02020); --dark:#801818; }
+    .hub     { background:linear-gradient(180deg,#3ba8d6,#1a7daa,#0e5f80); --dark:#0a4a60; }
+    .graph   { background:linear-gradient(180deg,#a048a0,#883088,#682068); --dark:#501850; padding:18px 14px; }
+    .graphnew{ background:linear-gradient(180deg,#e060a0,#b03070,#902060); --dark:#701850; margin-top:80px; padding:18px 14px; }
 
-    .subtext {
-      display: block;
-      font-size: 12px;
-      font-weight: normal;
-      opacity: 0.8;
-      margin-top: 4px;
-    }
+    .subtext { display:block; font-size:12px; opacity:.8; margin-top:4px; }
 
-    /* Neon overrides — odd days */
-    html.neon .preview {
-      background: linear-gradient(180deg, #00ff00 0%, #00cc00 40%, #009900 100%);
-      --dark: #006600;
-    }
-    html.neon .edit {
-      background: linear-gradient(180deg, #ff0000 0%, #cc0000 40%, #990000 100%);
-      --dark: #660000;
-    }
-    html.neon .hub {
-      background: linear-gradient(180deg, #0bcade 0%, #09a3b5 40%, #077c9c 100%);
-      --dark: #055f7d;
-    }
-    html.neon .graph {
-      background: linear-gradient(180deg, #bf00ff 0%, #9900dd 40%, #7700bb 100%);
-      --dark: #550099;
-    }
-    html.neon .graphnew {
-      background: linear-gradient(180deg, #ff33dd 0%, #dd11bb 40%, #bb0099 100%);
-      --dark: #880077;
-    }
-    html.neon .btn::after {
-      background: linear-gradient(180deg, rgba(255,255,255,.8) 0%, rgba(255,255,255,.15) 100%) !important;
-    }
-    html.neon .preview::after {
-      background: linear-gradient(180deg, rgba(255,255,255,.9) 0%, rgba(255,255,255,.2) 100%) !important;
-    }
-    html.neon body { background: #4e2a05; color-scheme: dark; }
-    html.neon .card { background: #4e2a05; }
-    html.neon h2 { color: #fff; }
-    html.neon p { color: #ffb3b3; }
+    /* Neon mode */
+    html.neon .preview { background:linear-gradient(180deg,#00ff00,#00cc00,#009900); --dark:#006600; }
+    html.neon .edit    { background:linear-gradient(180deg,#ff0000,#cc0000,#990000); --dark:#660000; }
+    html.neon .hub     { background:linear-gradient(180deg,#0bcade,#09a3b5,#077c9c); --dark:#055f7d; }
+    html.neon .graph   { background:linear-gradient(180deg,#bf00ff,#9900dd,#7700bb); --dark:#550099; }
+    html.neon .graphnew{ background:linear-gradient(180deg,#ff33dd,#dd11bb,#bb0099); --dark:#880077; }
+    html.neon body     { background:#4e2a05; color-scheme:dark; }
+    html.neon .card    { background:#4e2a05; }
+    html.neon h2       { color:#fff; }
+    html.neon p        { color:#ffb3b3; }
   </style>
 </head>
+
 <body>
   <div class="card">
-    <!-- Hybrid PTR spinner: Ingun Spinner.svg + arrow.png overlay -->
+
+    <!-- HYBRID PTR SPINNER -->
     <div id="ptr">
       <img id="ptr-svg" src="Ingun Spinner.svg" alt="">
-      <img id="ptr-png" src="arrow.png" alt="">
+      <img id="ptr-png" src="https://raw.githubusercontent.com/ccttcratings/portal2/main/arrow.png" alt="">
     </div>
 
     <h2>View Mode Portal</h2>
+
     <a href="https://docs.google.com/spreadsheets/d/1NdnC1kN831FVfcInOmFBfe-PU5tgKjFh3I-uxPdVGJM/preview" class="btn preview">
       Preview Mode <span class="subtext">(works on most devices)</span>
     </a>
+
     <a href="https://docs.google.com/spreadsheets/d/1NdnC1kN831FVfcInOmFBfe-PU5tgKjFh3I-uxPdVGJM/edit?gid=1967667427#gid=1967667427" class="btn edit">
       Edit Mode <span class="subtext">(annoying banner at top)</span>
     </a>
-    <a href="https://ccttcratings.github.io/graph/" class="btn graphnew" target="_blank" rel="noopener">
+
+    <a href="https://ccttcratings.github.io/graph/" class="btn graphnew" target="_blank">
       Player Ratings Graph
     </a>
-    <a href="https://script.google.com/macros/s/AKfycbyh4XByirwdUrd4OArgiWHokySt_rgBS1gJMtLRyLJOeLZVHAQDFrQXQXbthd_TxHbx/exec" class="btn graph" target="_blank" rel="noopener">
+
+    <a href="https://script.google.com/macros/s/AKfycbyh4XByirwdUrd4OArgiWHokySt_rgBS1gJMtLRyLJOeLZVHAQDFrQXQXbthd_TxHbx/exec"
+       class="btn graph" target="_blank">
       Old Player Ratings Graph
     </a>
+
     <a href="https://ccttcratings.github.io/portalhub/" class="btn hub">
-      Portal Hub of Portals<span class="subtext">(hub of redundant portals)</span>
+      Portal Hub of Portals <span class="subtext">(hub of redundant portals)</span>
     </a>
+
   </div>
 
   <script>
-    // PTR (Pull to Refresh) functionality
     (function() {
-      var drag = { active: false, startY: 0, startScroll: 0, history: [], animating: false };
-      var friction = 0.999;
-      var bounceDecay = 1.0;
-      var ptr = document.getElementById('ptr');
-      var ptrSvg = document.getElementById('ptr-svg');
-      var ptrPng = document.getElementById('ptr-png');
-      var audioCtx = null;
+      var drag={active:false,startY:0,startScroll:0,history:[],animating:false};
+      var friction=0.999, bounceDecay=1.0;
+      var ptr=document.getElementById('ptr');
+      var ptrSvg=document.getElementById('ptr-svg');
+      var ptrPng=document.getElementById('ptr-png');
+      var audioCtx=null;
 
-      function ensureAudio() {
-        if (!audioCtx) {
-          try { audioCtx = new (window.AudioContext || window.webkitAudioContext)(); } catch(e) {}
+      function ensureAudio(){
+        if(!audioCtx){
+          try{audioCtx=new(window.AudioContext||window.webkitAudioContext)();}
+          catch(e){}
         }
-        if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume();
+        if(audioCtx&&audioCtx.state==='suspended') audioCtx.resume();
       }
 
-      function popSound() {
-        ensureAudio();
-        if (!audioCtx) return;
-        var t = audioCtx.currentTime;
-        var o = audioCtx.createOscillator(), g = audioCtx.createGain();
+      function popSound(){
+        ensureAudio(); if(!audioCtx) return;
+        var t=audioCtx.currentTime;
+        var o=audioCtx.createOscillator(), g=audioCtx.createGain();
         o.connect(g); g.connect(audioCtx.destination);
-        o.frequency.setValueAtTime(800, t);
-        o.frequency.exponentialRampToValueAtTime(200, t + 0.05);
-        g.gain.setValueAtTime(0.5, t);
-        g.gain.exponentialRampToValueAtTime(0.001, t + 0.08);
-        o.start(); o.stop(t + 0.08);
+        o.frequency.setValueAtTime(800,t);
+        o.frequency.exponentialRampToValueAtTime(200,t+0.05);
+        g.gain.setValueAtTime(0.5,t);
+        g.gain.exponentialRampToValueAtTime(0.001,t+0.08);
+        o.start(); o.stop(t+0.08);
       }
 
-      function bottomBounce() {
-        ensureAudio();
-        if (!audioCtx) return;
-        var t = audioCtx.currentTime;
-        var o = audioCtx.createOscillator(), g = audioCtx.createGain();
-        o.connect(g); g.connect(audioCtx.destination);
-        o.type = 'sine';
-        o.frequency.setValueAtTime(440, t);
-        var lfo = audioCtx.createOscillator(), lg = audioCtx.createGain();
-        lfo.connect(lg); lg.connect(o.frequency);
-        lfo.frequency.value = 6; lg.gain.value = 200;
-        g.gain.setValueAtTime(0.3, t);
-        g.gain.exponentialRampToValueAtTime(0.001, t + 0.8);
-        o.start(); o.stop(t + 0.8);
-        lfo.start(); lfo.stop(t + 0.8);
-      }
+      document.addEventListener('touchstart',function(e){
+        if(e.touches.length!==1) return;
+        drag.active=true;
+        drag.startY=e.touches[0].clientY;
+        drag.startScroll=window.scrollY;
+        drag.history=[{y:e.touches[0].clientY,t:Date.now()}];
+        drag.animating=false;
+        drag.ptrActive=false;
+        ptr.className='';
+        ptrPng.style.opacity=0;
+        ptrPng.style.transform='';
+        ptrSvg.style.transform='';
+      },{passive:true});
 
-      function topBounce() {
-        ensureAudio();
-        if (!audioCtx) return;
-        var t = audioCtx.currentTime;
-        var o = audioCtx.createOscillator(), g = audioCtx.createGain();
-        o.connect(g); g.connect(audioCtx.destination);
-        o.type = 'sine';
-        o.frequency.setValueAtTime(80, t);
-        o.frequency.exponentialRampToValueAtTime(200, t + 0.05);
-        o.frequency.exponentialRampToValueAtTime(40, t + 0.5);
-        var lfo = audioCtx.createOscillator(), lg = audioCtx.createGain();
-        lfo.connect(lg); lg.connect(o.frequency);
-        lfo.frequency.value = 10; lg.gain.value = 40;
-        g.gain.setValueAtTime(0.5, t);
-        g.gain.exponentialRampToValueAtTime(0.001, t + 0.6);
-        o.start(); o.stop(t + 0.6);
-        lfo.start(); lfo.stop(t + 0.6);
-      }
+      document.addEventListener('touchmove',function(e){
+        if(!drag.active||e.touches.length!==1) return;
+        var dy=drag.startY-e.touches[0].clientY;
 
-      document.addEventListener('click', function(e) {
-        if (e.target.closest('.btn, .tinyurl')) popSound();
-      });
+        if(drag.startScroll<=0 && dy<0){
+          drag.ptrActive=true;
+          var dist=Math.min(-dy,120);
+          var pct=Math.min(dist/80,1);
 
-      document.addEventListener('touchstart', function(e) {
-        if (e.touches.length !== 1) return;
-        drag.active = true;
-        drag.startY = e.touches[0].clientY;
-        drag.startScroll = window.scrollY;
-        drag.history = [{ y: e.touches[0].clientY, t: Date.now() }];
-        drag.animating = false;
-        drag.ptrActive = false;
-        ptr.className = '';
-        ptrPng.style.opacity = 0;
-        ptrPng.style.transform = '';
-        ptrSvg.style.transform = '';
-      }, { passive: true });
+          ptr.style.marginTop=(dist-60)+'px';
+          ptr.style.opacity=pct;
 
-      document.addEventListener('touchmove', function(e) {
-        if (!drag.active || e.touches.length !== 1) return;
-        var dy = drag.startY - e.touches[0].clientY;
+          ptrPng.style.opacity=pct;
+          ptrPng.style.transform='rotate('+(Math.min(dist*3,360))+'deg)';
+          ptrSvg.style.transform='';
 
-        // Stage 1: pull-to-refresh from top, PNG arrow visible, SVG static
-        if (drag.startScroll <= 0 && dy < 0) {
-          drag.ptrActive = true;
-          var dist = Math.min(-dy, 120);
-          var pct = Math.min(dist / 80, 1);
-
-          ptr.style.marginTop = (dist - 60) + 'px';
-          ptr.style.opacity = pct;
-
-          // PNG arrow appears and can spin
-          ptrPng.style.opacity = pct;
-          var rot = Math.min(dist * 3, 360);
-          ptrPng.style.transform = 'rotate(' + rot + 'deg)';
-
-          // SVG stays static during drag
-          ptrSvg.style.transform = '';
-
-          ptr.className = '';
+          ptr.className='';
           return;
         }
 
-        // Normal scroll momentum path
-        drag.ptrActive = false;
-        ptr.className = '';
-        ptr.style.marginTop = '';
-        ptr.style.opacity = '';
-        ptrPng.style.opacity = 0;
-        ptrPng.style.transform = '';
-        ptrSvg.style.transform = '';
+        drag.ptrActive=false;
+        ptr.className='';
+        ptr.style.marginTop='';
+        ptr.style.opacity='';
+        ptrPng.style.opacity=0;
+        ptrPng.style.transform='';
+        ptrSvg.style.transform='';
 
-        window.scrollTo(0, drag.startScroll + dy);
-        var now = Date.now();
-        drag.history.push({ y: e.touches[0].clientY, t: now });
-        if (drag.history.length > 8) drag.history.shift();
-      }, { passive: true });
+        window.scrollTo(0,drag.startScroll+dy);
+        var now=Date.now();
+        drag.history.push({y:e.touches[0].clientY,t:now});
+        if(drag.history.length>8) drag.history.shift();
+      },{passive:true});
 
-      document.addEventListener('touchend', function() {
-        if (!drag.active) return;
-        drag.active = false;
+      document.addEventListener('touchend',function(){
+        if(!drag.active) return;
+        drag.active=false;
 
-        if (drag.ptrActive) {
-          // Threshold reached: Stage 2 (spin SVG, hide PNG)
-          if (parseFloat(ptr.style.opacity) >= 1) {
-            ptrPng.style.opacity = 0;
-            ptrPng.style.transform = '';
-            ptrSvg.style.transform = '';
-            ptr.className = 'spin';
+        if(drag.ptrActive){
+          if(parseFloat(ptr.style.opacity)>=1){
+            ptrPng.style.opacity=0;
+            ptrPng.style.transform='';
+            ptrSvg.style.transform='';
+            ptr.className='spin';
             popSound();
-            setTimeout(function() { location.reload(); }, 750);
+            setTimeout(function(){location.reload();},750);
           } else {
-            // Reset: no refresh
-            ptr.style.marginTop = '';
-            ptr.style.opacity = '';
-            ptr.className = '';
-            ptrPng.style.opacity = 0;
-            ptrPng.style.transform = '';
-            ptrSvg.style.transform = '';
+            ptr.style.marginTop='';
+            ptr.style.opacity='';
+            ptr.className='';
+            ptrPng.style.opacity=0;
+            ptrPng.style.transform='';
+            ptrSvg.style.transform='';
           }
           return;
         }
 
-        // Momentum scroll when not in PTR mode
-        var h = drag.history;
-        if (h.length < 2) return;
-        var last = h[h.length - 1], first = h[0];
-        var dt = last.t - first.t;
-        if (dt <= 0) return;
-        var velocity = (first.y - last.y) / dt;
-        if (Math.abs(velocity) < 0.3) return;
-        startScrollMomentum(velocity);
-      }, { passive: true });
+        var h=drag.history;
+        if(h.length<2) return;
+        var last=h[h.length-1], first=h[0];
+        var dt=last.t-first.t;
+        if(dt<=0) return;
+        var velocity=(first.y-last.y)/dt;
+        if(Math.abs(velocity)<0.3) return;
 
-      function startScrollMomentum(v) {
-        drag.animating = true;
-        var lastTime = Date.now();
-        var vy = v;
-        function step() {
-          if (!drag.animating) return;
-          var now = Date.now();
-          var elapsed = now - lastTime;
-          lastTime = now;
-          vy *= Math.pow(friction, elapsed / 16);
-          if (Math.abs(vy) < 0.01) { drag.animating = false; return; }
-          var maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-          var scroll = window.scrollY;
-          var next = scroll + vy * elapsed;
-          if (next < 0) { next = 0; vy = -vy * bounceDecay; }
-          else if (next > document.documentElement.scrollHeight - window.innerHeight) { next = maxScroll; vy = -vy * bounceDecay; }
-          window.scrollTo(0, next);
+        startScrollMomentum(velocity);
+      },{passive:true});
+
+      function startScrollMomentum(v){
+        drag.animating=true;
+        var lastTime=Date.now();
+        var vy=v;
+
+        function step(){
+          if(!drag.animating) return;
+          var now=Date.now();
+          var elapsed=now-lastTime;
+          lastTime=now;
+
+          vy*=Math.pow(friction,elapsed/16);
+          if(Math.abs(vy)<0.01){drag.animating=false;return;}
+
+          var maxScroll=document.documentElement.scrollHeight-window.innerHeight;
+          var scroll=window.scrollY;
+          var next=scroll+vy*elapsed;
+
+          if(next<0){next=0;vy=-vy*bounceDecay;}
+          else if(next>maxScroll){next=maxScroll;vy=-vy*bounceDecay;}
+
+          window.scrollTo(0,next);
           requestAnimationFrame(step);
         }
+
         requestAnimationFrame(step);
       }
     })();
