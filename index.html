@@ -43,30 +43,35 @@
       background: transparent;
     }
 
-    #ptr-svg,
-    #ptr-png {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 96px;
-      height: 96px;
-    }
-
+    /* SVG stays 64x64, centered in 96x96 box */
     #ptr-svg {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      width: 64px;
+      height: 64px;
       z-index: 1;
     }
 
+    /* PNG arrow overlays SVG, same size, appears during swipe */
     #ptr-png {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      width: 64px;
+      height: 64px;
       z-index: 2;
       opacity: 0;
       pointer-events: none;
-      transform-origin: 48px 48px;
+      transform-origin: 32px 32px;
     }
 
+    /* Stage 2: spin ONLY the SVG */
     #ptr.spin #ptr-svg {
       animation: ptrSpin 0.7s linear infinite;
     }
 
+    /* Stage 2: PNG disappears */
     #ptr.spin #ptr-png {
       opacity: 0;
     }
@@ -336,10 +341,8 @@
           ptr.style.marginTop = (dist - 60) + 'px';
           ptr.style.opacity = pct;
 
-          // PNG arrow fades in and follows finger (position via ptr)
+          // PNG arrow appears and can spin
           ptrPng.style.opacity = pct;
-
-          // OPTIONAL: spin PNG during swipe
           var rot = Math.min(dist * 3, 360);
           ptrPng.style.transform = 'rotate(' + rot + 'deg)';
 
@@ -370,9 +373,8 @@
         drag.active = false;
 
         if (drag.ptrActive) {
-          // Threshold reached: Stage 2 (spin)
+          // Threshold reached: Stage 2 (spin SVG, hide PNG)
           if (parseFloat(ptr.style.opacity) >= 1) {
-            // PNG disappears, SVG spins via CSS
             ptrPng.style.opacity = 0;
             ptrPng.style.transform = '';
             ptrSvg.style.transform = '';
