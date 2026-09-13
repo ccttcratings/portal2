@@ -28,7 +28,7 @@
       touch-action: none;
     }
 
-    /* PTR HYBRID SPINNER — BOX 64×64, SVG 48×48, PNG 64×64 */
+    /* PTR HYBRID SPINNER — BOX 64×64, SVG 48×48, PNG 40×40 */
     #ptr {
       position: fixed;
       top: 0;
@@ -42,7 +42,7 @@
       background: transparent;
     }
 
-    /* SVG 48×48, centered */
+    /* SVG 48×48 centered */
     #ptr-svg {
       position: absolute;
       width: 48px;
@@ -59,17 +59,17 @@
       stroke: inherit !important;
     }
 
-    /* PNG overlay 64×64 */
+    /* PNG arrow now 40×40 (smaller for confirmation) */
     #ptr-png {
       position: absolute;
-      width: 64px;
-      height: 64px;
-      top: 0;
-      left: 0;
+      width: 40px;
+      height: 40px;
+      top: 12px;
+      left: 12px;
       z-index: 2;
       opacity: 0;
       pointer-events: none;
-      transform-origin: 32px 32px;
+      transform-origin: 20px 20px;
     }
 
     /* swipe: hide SVG, show spinning PNG */
@@ -248,7 +248,6 @@
           ptr.style.marginTop=(dist-60)+'px';
           ptr.style.opacity=pct;
 
-          // swipe: show PNG, spin it, hide SVG
           ptr.classList.add('swiping');
           ptrPng.style.opacity=pct;
           ptrPng.style.transform='rotate('+(Math.min(dist*3,360))+'deg)';
@@ -280,7 +279,6 @@
 
         if(drag.ptrActive){
           if(parseFloat(ptr.style.opacity)>=1){
-            // release: hide PNG, spin SVG
             ptrPng.style.opacity=0;
             ptrPng.style.transform='';
             ptrSvg.style.transform='';
