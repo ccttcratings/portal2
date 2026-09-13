@@ -19,9 +19,9 @@
      inkscape:pageopacity="0.0"
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
-     inkscape:zoom="12.828125"
-     inkscape:cx="15.74665"
-     inkscape:cy="7.0548112"
+     inkscape:zoom="9.0708542"
+     inkscape:cx="12.016509"
+     inkscape:cy="18.024763"
      inkscape:window-width="1920"
      inkscape:window-height="1001"
      inkscape:window-x="-7"
@@ -66,57 +66,60 @@
        gradientTransform="scale(1.040833,0.96076892)"
        gradientUnits="userSpaceOnUse" />
   </defs>
-  <circle
-     cx="32"
-     cy="32"
-     r="30"
+  <ellipse
+     cx="28.272429"
+     cy="39.559093"
      fill="#1a1a1a"
-     id="circle2" />
+     id="circle2"
+     style="stroke-width:1"
+     rx="24.022161"
+     ry="24.029142" />
   <rect
-     x="16.155909"
-     y="17.868454"
-     width="32"
-     height="5"
-     rx="1"
+     x="15.58545"
+     y="28.240128"
+     width="25.623638"
+     height="4.0048571"
+     rx="0.80073869"
      fill="#5a3a1a"
-     id="rect2" />
+     id="rect2"
+     style="stroke-width:1" />
   <line
-     x1="23"
-     y1="29"
-     x2="28"
-     y2="31"
+     x1="21.065779"
+     y1="37.156178"
+     x2="25.069471"
+     y2="38.758121"
      stroke="#e05050"
      stroke-width="2"
      stroke-linecap="round"
      id="line2" />
   <line
-     x1="36"
-     y1="31"
-     x2="41"
-     y2="29"
+     x1="31.475382"
+     y1="38.758121"
+     x2="35.479073"
+     y2="37.156178"
      stroke="#e05050"
      stroke-width="2"
      stroke-linecap="round"
      id="line3" />
   <path
-     d="m 39,42.451188 q -7,-5 -14,0"
+     d="m 33.877597,47.930195 q -5.605171,-4.004857 -11.210342,0"
      fill="none"
      stroke="#e05050"
      stroke-width="2"
      stroke-linecap="round"
      id="path3" />
   <polygon
-     points="28,10 38,-4 56,-14 48,0 36,14 30,22 22,22 "
+     points="36,14 30,22 22,22 28,10 38,-4 56,-14 48,0 "
      fill="#2d8a2d"
      stroke="#1a6a1a"
-     stroke-width="0.5"
+     stroke-width="0.624333"
      id="polygon3"
-     transform="translate(14.499391,-2.1047503)" />
+     transform="matrix(0.8007387,0,0,0.80097143,14.259012,12.242162)" />
   <line
-     x1="40.760937"
-     y1="18.181396"
-     x2="60.638577"
-     y2="-6.7782302"
+     x1="35.287647"
+     y1="28.490786"
+     x2="51.204441"
+     y2="8.4988375"
      stroke="#1a6a1a"
      stroke-width="0.8"
      id="line4" />
@@ -124,22 +127,25 @@
      points="18,22 21,19 24,22 27,19 30,22 33,19 36,22 39,19 42,22 45,19 48,22"
      fill="none"
      stroke="#e05050"
-     stroke-width="1.5"
-     id="polyline2" />
+     stroke-width="1.873"
+     id="polyline2"
+     transform="matrix(0.8007387,0,0,0.80097143,2.6487881,13.928006)" />
   <g
      id="g18"
-     sodipodi:insensitive="true">
+     sodipodi:insensitive="true"
+     transform="matrix(0.8007387,0,0,0.80097143,2.6487881,13.928006)"
+     style="stroke-width:1.24867">
     <path
        d="m 14.52687,45.669966 a 22,22 0 1 1 21,8"
        fill="none"
        stroke="url(#grad)"
-       stroke-width="6"
+       stroke-width="7.49199"
        stroke-linecap="round"
        id="path4"
        style="stroke:url(#linearGradient16)" />
     <path
        id="polygon4"
-       style="fill:url(#linearGradient17)"
+       style="fill:url(#linearGradient17);stroke-width:1.24867"
        class="head"
        transform="rotate(-175.11186,33.018807,31.801995)"
        d="M 29,16 V 4 l 13,6 z" />
