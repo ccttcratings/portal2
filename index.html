@@ -35,7 +35,7 @@ body {
   background:transparent;
 }
 
-/* SVG stays full size */
+/* SVG full box */
 #ptr-svg {
   position:absolute;
   width:64px;
@@ -43,44 +43,45 @@ body {
   top:0;
   left:0;
   z-index:1;
+  color-scheme:inherit !important;
 }
 
-/* hide only arrow group */
-#ptr.swiping #ptr-svg g#g18 {
+/* hide only arrow group during swipe */
+#ptr.swiping #ptr-svg #g18 {
   opacity:0;
 }
 
-/* prevent color leaks */
+/* prevent SVG color leaks, including inline attrs */
 #ptr-svg, #ptr-svg * {
-  color:inherit!important;
-  fill:inherit!important;
-  stroke:inherit!important;
+  color:inherit !important;
+  fill:inherit !important;
+  stroke:inherit !important;
 }
-
 #ptr-svg [fill],
-#ptr-svg [stroke] {
-  fill:inherit!important;
-  stroke:inherit!important;
+#ptr-svg [stroke],
+#ptr-svg [style] {
+  fill:inherit !important;
+  stroke:inherit !important;
+  color:inherit !important;
 }
 
-/* PNG arrow 60×60 */
+/* PNG arrow 62×62 centered */
 #ptr-png {
   position:absolute;
-  width:60px;
-  height:60px;
-  top:2px;
-  left:2px;
+  width:62px;
+  height:62px;
+  top:1px;
+  left:1px;
   z-index:2;
   opacity:0;
   pointer-events:none;
-  transform-origin:30px 30px;
+  transform-origin:31px 31px;
 }
 
-/* spin arrow group */
-#ptr.spin #ptr-svg g#g18 {
+/* spin arrow group on release */
+#ptr.spin #ptr-svg #g18 {
   animation:ptrSpin .7s linear infinite;
 }
-
 #ptr.spin #ptr-png {
   opacity:0;
 }
@@ -151,6 +152,17 @@ p  { color:#e07474; font-size:16px; margin-bottom:30px; }
 
 .subtext { display:block; font-size:12px; opacity:.8; margin-top:4px; }
 
+/* NEON MODE OVERRIDES */
+html.neon body     { background:#4e2a05; color-scheme:dark; }
+html.neon .card    { background:#4e2a05; }
+html.neon h2       { color:#fff; }
+html.neon p        { color:#ffb3b3; }
+
+html.neon .preview { background:linear-gradient(180deg,#00ff00,#00cc00,#009900); --dark:#006600; }
+html.neon .edit    { background:linear-gradient(180deg,#ff0000,#cc0000,#990000); --dark:#660000; }
+html.neon .hub     { background:linear-gradient(180deg,#0bcade,#09a3b5,#077c9c); --dark:#055f7d; }
+html.neon .graph   { background:linear-gradient(180deg,#bf00ff,#9900dd,#7700bb); --dark:#550099; }
+html.neon .graphnew{ background:linear-gradient(180deg,#ff33dd,#dd11bb,#bb0099); --dark:#880077; }
 </style>
 </head>
 
