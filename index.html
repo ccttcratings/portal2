@@ -34,32 +34,32 @@
       position: fixed;
       top: 0;
       left: 50%;
-      width: 96px;
-      height: 96px;
-      margin-left: -48px;
-      margin-top: -100px;
+      width: 120px;
+      height: 120px;
+      margin-left: -60px;
+      margin-top: -120px;
       z-index: 9999;
       pointer-events: none;
       background: transparent;
     }
 
-    /* SVG stays 64x64, centered in 96x96 box */
+    /* SVG stays 64x64, centered in 120x120 box */
     #ptr-svg {
       position: absolute;
-      top: 16px;
-      left: 16px;
       width: 64px;
       height: 64px;
+      top: 28px;
+      left: 28px;
       z-index: 1;
     }
 
     /* PNG arrow overlays SVG, same size, appears during swipe */
     #ptr-png {
       position: absolute;
-      top: 16px;
-      left: 16px;
       width: 64px;
       height: 64px;
+      top: 28px;
+      left: 28px;
       z-index: 2;
       opacity: 0;
       pointer-events: none;
