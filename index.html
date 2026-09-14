@@ -21,7 +21,7 @@
     touch-action:none;
   }
 
-  /* PTR BOX */
+  /* PTR BOX 64×64 */
   #ptr {
     position:fixed;
     top:0;
@@ -36,14 +36,14 @@
     transition:opacity .15s;
   }
 
-  /* BIGGER SVG — 96×96 */
+  /* SVG 48×48 centered inside 64×64 */
   #ptr-svg {
     position:absolute;
-    width:96px;
-    height:96px;
-    top:-16px;
-    left:-16px;
-    transform-origin:48px 48px;
+    width:48px;
+    height:48px;
+    top:8px;
+    left:8px;
+    transform-origin:24px 24px;
   }
 
   /* hide arrow group during swipe */
@@ -51,8 +51,8 @@
     opacity:0;
   }
 
-  /* spin whole SVG on release */
-  #ptr.spin #ptr-svg {
+  /* spin arrow group on release */
+  #ptr.spin #ptr-svg #g18 {
     animation:ptrSpin .7s linear infinite;
   }
 
@@ -159,3 +159,66 @@
   <a href="https://script.google.com/macros/s/AKfycbyh4XByirwdUrd4OArgiWHokySt_rgBS1gJMtLRyLJOeLZVHAQDFrQXQXbthd_TxHbx/exec"
      class="btn graph" target="_blank">
     Old Player Ratings Graph
+  </a>
+
+  <a href="https://ccttcratings.github.io/portalhub/" class="btn hub">
+    Portal Hub of Portals <span class="subtext">(hub of redundant portals)</span>
+  </a>
+
+</div>
+
+<script>
+(function(){
+  var drag={active:false,startY:0,startScroll:0,history:[],animating:false};
+  var friction=0.999, bounceDecay=1.0;
+  var ptr=document.getElementById('ptr');
+  var ptrSvg=document.getElementById('ptr-svg');
+
+  document.addEventListener('touchstart',function(e){
+    if(e.touches.length!==1) return;
+    drag.active=true;
+    drag.startY=e.touches[0].clientY;
+    drag.startScroll=window.scrollY;
+    drag.history=[{y:e.touches[0].clientY,t:Date.now()}];
+    drag.ptrActive=false;
+
+    ptr.className='';
+    ptr.style.marginTop='-68px';
+    ptr.style.opacity=0;
+    ptrSvg.style.transform='';
+  },{passive:true});
+
+  document.addEventListener('touchmove',function(e){
+    if(!drag.active||e.touches.length!==1) return;
+    var dy=drag.startY-e.touches[0].clientY;
+
+    if(!(drag.startScroll<=0 && dy<0)){
+      drag.ptrActive=false;
+      ptr.classList.remove('swiping');
+      ptr.className='';
+      ptr.style.marginTop='-68px';
+      ptr.style.opacity=0;
+      ptrSvg.style.transform='';
+      window.scrollTo(0,drag.startScroll+dy);
+    } else {
+      drag.ptrActive=true;
+      var dist=Math.min(-dy,120);
+      var pct=Math.min(dist/80,1);
+
+      ptr.style.marginTop=(dist-60)+'px';
+      ptr.style.opacity=pct;
+
+      ptr.classList.add('swiping');
+      ptrSvg.style.transform='';
+    }
+
+    var now=Date.now();
+    drag.history.push({y:e.touches[0].clientY,t:now});
+    if(drag.history.length>8) drag.history.shift();
+  },{passive:true});
+
+  document.addEventListener('touchend',function(){
+    if(!drag.active) return;
+    drag.active=false;
+
+    ptr.class
