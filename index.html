@@ -36,7 +36,7 @@
     transition:opacity .15s;
   }
 
-  /* SVG 48×48 centered inside 64×64 */
+  /* SVG 48×48 centered */
   #ptr-svg {
     position:absolute;
     width:48px;
@@ -51,7 +51,7 @@
     opacity:0;
   }
 
-  /* spin arrow group on release */
+  /* ONLY CHANGE: spin arrow group on release */
   #ptr.spin #ptr-svg #g18 {
     animation:ptrSpin .7s linear infinite;
   }
@@ -170,55 +170,4 @@
 <script>
 (function(){
   var drag={active:false,startY:0,startScroll:0,history:[],animating:false};
-  var friction=0.999, bounceDecay=1.0;
-  var ptr=document.getElementById('ptr');
-  var ptrSvg=document.getElementById('ptr-svg');
-
-  document.addEventListener('touchstart',function(e){
-    if(e.touches.length!==1) return;
-    drag.active=true;
-    drag.startY=e.touches[0].clientY;
-    drag.startScroll=window.scrollY;
-    drag.history=[{y:e.touches[0].clientY,t:Date.now()}];
-    drag.ptrActive=false;
-
-    ptr.className='';
-    ptr.style.marginTop='-68px';
-    ptr.style.opacity=0;
-    ptrSvg.style.transform='';
-  },{passive:true});
-
-  document.addEventListener('touchmove',function(e){
-    if(!drag.active||e.touches.length!==1) return;
-    var dy=drag.startY-e.touches[0].clientY;
-
-    if(!(drag.startScroll<=0 && dy<0)){
-      drag.ptrActive=false;
-      ptr.classList.remove('swiping');
-      ptr.className='';
-      ptr.style.marginTop='-68px';
-      ptr.style.opacity=0;
-      ptrSvg.style.transform='';
-      window.scrollTo(0,drag.startScroll+dy);
-    } else {
-      drag.ptrActive=true;
-      var dist=Math.min(-dy,120);
-      var pct=Math.min(dist/80,1);
-
-      ptr.style.marginTop=(dist-60)+'px';
-      ptr.style.opacity=pct;
-
-      ptr.classList.add('swiping');
-      ptrSvg.style.transform='';
-    }
-
-    var now=Date.now();
-    drag.history.push({y:e.touches[0].clientY,t:now});
-    if(drag.history.length>8) drag.history.shift();
-  },{passive:true});
-
-  document.addEventListener('touchend',function(){
-    if(!drag.active) return;
-    drag.active=false;
-
-    ptr.class
+  var friction=0.999,
