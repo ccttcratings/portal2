@@ -21,7 +21,6 @@
     touch-action:none;
   }
 
-  /* PTR BOX 64×64 */
   #ptr {
     position:fixed;
     top:0;
@@ -36,7 +35,6 @@
     transition:opacity .15s;
   }
 
-  /* Spinner stays 48×48 but is scaled up */
   #ptr-svg {
     position:absolute;
     width:48px;
@@ -44,20 +42,17 @@
     top:8px;
     left:8px;
     transform-origin:24px 24px;
-    transform:scale(2.0);   /* bigger spinner */
+    transform:scale(2.0);
   }
 
-  /* harmless */
   #ptr.swiping #ptr-svg #g18 {
     opacity:0;
   }
 
-  /* spin whole image */
   #ptr.spin #ptr-svg {
     animation:ptrSpin .7s linear infinite;
   }
 
-  /* FIX: remove scale from animation so JS scale stays applied */
   @keyframes ptrSpin {
     from { transform:rotate(0deg); }
     to   { transform:rotate(360deg); }
