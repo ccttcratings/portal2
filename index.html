@@ -80,7 +80,6 @@ body {
 h2 { color:#000; margin-bottom:42px; font-size:30px; }
 p  { color:#e07474; font-size:16px; margin-bottom:30px; }
 
-/* ORIGINAL BUTTON CSS — will be replaced by your new Chrome‑proof version */
 .btn {
     position:relative;
     display:block;
@@ -91,6 +90,7 @@ p  { color:#e07474; font-size:16px; margin-bottom:30px; }
     font-weight:bold;
     font-size:20px;
     color:#000;
+    line-height:1.35;
     transform:perspective(500px) rotateY(-6deg);
     box-shadow:2px 0 0 4px rgba(0,0,0,.2),0 6px 0 var(--dark),0 10px 16px rgba(0,0,0,.35);
     overflow:hidden;
@@ -329,97 +329,27 @@ html.neon p        { color:#ffb3b3; }
     </svg>
 </div>
 
-<style>
-/* CHROME‑PROOF BUTTONS */
-.btn {
-    position:relative;
-    display:block;
-    text-decoration:none;
-    padding:14px;
-    margin:20px 0;
-    border-radius:12px;
-    font-weight:bold;
-    font-size:20px;
-    color:#000;
-
-    /* layout only */
-    box-shadow:2px 0 0 4px rgba(0,0,0,.2),
-               0 6px 0 var(--dark),
-               0 10px 16px rgba(0,0,0,.35);
-    overflow:hidden;
-    border:none;
-    transition:.4s;
-}
-
-.btn-inner {
-    display:block;
-    transform:perspective(500px) rotateY(-6deg);
-    transform-style:preserve-3d;
-    transition:transform .4s;
-    will-change:transform;
-}
-
-.btn::after {
-    content:'';
-    position:absolute;
-    top:0; left:0; right:0;
-    height:45%;
-    background:linear-gradient(180deg,rgba(255,255,255,.7),rgba(255,255,255,.15));
-    border-radius:8px 8px 50% 50%;
-}
-
-.btn::before {
-    content:'';
-    position:absolute;
-    top:0; left:-100%;
-    width:100%; height:100%;
-    background:linear-gradient(to right,transparent,rgba(255,255,255,.3),transparent);
-    transition:.5s;
-    z-index:1;
-}
-
-.btn:hover::before { left:100%; }
-
-.btn:hover .btn-inner {
-    transform:perspective(500px) rotateY(0deg);
-}
-
-.btn:active .btn-inner {
-    transform:perspective(500px) rotateY(0deg) scale(0.97);
-}
-</style>
-
 <h2>View Mode Portal</h2>
 
 <a href="https://docs.google.com/spreadsheets/d/1NdnC1kN831FVfcInOmFBfe-PU5tgKjFh3I-uxPdVGJM/preview" class="btn preview">
-    <span class="btn-inner">
-        Preview Mode <span class="subtext">(works on most devices)</span>
-    </span>
+Preview Mode <span class="subtext">(works on most devices)</span>
 </a>
 
 <a href="https://docs.google.com/spreadsheets/d/1NdnC1kN831FVfcInOmFBfe-PU5tgKjFh3I-uxPdVGJM/edit?gid=1967667427#gid=1967667427" class="btn edit">
-    <span class="btn-inner">
-        Edit Mode <span class="subtext">(annoying banner at top)</span>
-    </span>
+Edit Mode <span class="subtext">(annoying banner at top)</span>
 </a>
 
 <a href="https://ccttcratings.github.io/graph/" class="btn graphnew" target="_blank">
-    <span class="btn-inner">
-        Player Ratings Graph
-    </span>
+Player Ratings Graph
 </a>
 
 <a href="https://script.google.com/macros/s/AKfycbyh4XByirwdUrd4OArgiWHokySt_rgBS1gJMtLRyLJOeLZVHAQDFrQXQXbthd_TxHbx/exec"
-   class="btn graph" target="_blank">
-    <span class="btn-inner">
-        Old Player Ratings Graph
-    </span>
+class="btn graph" target="_blank">
+Old Player Ratings Graph
 </a>
 
 <a href="https://ccttcratings.github.io/portalhub/" class="btn hub">
-    <span class="btn-inner">
-        Portal Hub of Portals <span class="subtext">(hub of redundant portals)</span>
-    </span>
+Portal Hub of Portals <span class="subtext">(hub of redundant portals)</span>
 </a>
 
 </div>
