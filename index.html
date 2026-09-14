@@ -13,6 +13,13 @@ if (p.has('neon') || (!p.has('normal') && new Date().getDate() % 2)) {
 </script>
 
 <style>
+@supports (-webkit-touch-callout: none) {
+    html {
+        transform: scale(1.122);
+        transform-origin: top left;
+    }
+}
+ 
 html {
     transform: scale(1);
     transform-origin: top left;
