@@ -358,6 +358,7 @@ var drag={active:false,startY:0,startScroll:0,history:[],animating:false};
 var friction=0.999, bounceDecay=1.0;
 var ptr=document.getElementById('ptr');
 var ptrSvg=document.getElementById('ptr-svg');
+var g1=document.querySelector('#g1');   /* ⭐ NEW: arrow group for rotation */
 
 document.addEventListener('touchstart',function(e){
     if(e.touches.length!==1) return;
@@ -370,6 +371,7 @@ document.addEventListener('touchstart',function(e){
     ptr.className='';
     ptr.style.marginTop='-68px';
     ptrSvg.style.transform='scale(2.0)';
+    g1.style.transform='';              /* ⭐ NEW: reset arrow rotation */
 },{passive:true});
 
 document.addEventListener('touchmove',function(e){
@@ -382,6 +384,7 @@ document.addEventListener('touchmove',function(e){
         ptr.className='';
         ptr.style.marginTop='-68px';
         ptrSvg.style.transform='scale(2.0)';
+        g1.style.transform='';          /* ⭐ NEW: reset arrow rotation */
         window.scrollTo(0,drag.startScroll+dy);
     } else {
         drag.ptrActive=true;
@@ -393,6 +396,11 @@ document.addEventListener('touchmove',function(e){
 
         ptr.classList.add('swiping');
         ptrSvg.style.transform='scale(2.0)';
+
+        /* ⭐ NEW: ARROW ROTATION DURING SWIPE */
+        var angle = dist * 2.5;         /* adjust multiplier to taste */
+        g1.style.transformOrigin='32px 32px';
+        g1.style.transform='rotate('+angle+'deg)';
     }
 
     var now=Date.now();
@@ -410,6 +418,8 @@ document.addEventListener('touchend',function(){
             ptrSvg.style.transform='scale(2.0)';
             ptr.classList.add('spin');
 
+            g1.style.transform='';      /* ⭐ NEW: reset arrow rotation */
+
             setTimeout(function(){location.reload();},750);
 
         } else {
@@ -417,6 +427,7 @@ document.addEventListener('touchend',function(){
             ptr.style.opacity=1;
             ptr.className='';
             ptrSvg.style.transform='scale(2.0)';
+            g1.style.transform='';      /* ⭐ NEW: reset arrow rotation */
         }
         return;
     }
@@ -461,6 +472,7 @@ function startScrollMomentum(v){
 }
 })();
 </script>
+
 
 </body>
 </html>
