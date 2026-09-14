@@ -36,7 +36,7 @@
     transition:opacity .15s;
   }
 
-  /* BACK TO 48×48, CENTERED — BUT SCALED UP */
+  /* Spinner stays 48×48 but is scaled up */
   #ptr-svg {
     position:absolute;
     width:48px;
@@ -44,22 +44,22 @@
     top:8px;
     left:8px;
     transform-origin:24px 24px;
-    transform:scale(1.5);  /* <-- ONLY CHANGE: bigger without touching layout */
+    transform:scale(2.0);   /* <-- ONLY CHANGE: bigger spinner */
   }
 
-  /* harmless, cannot see inside <img> */
+  /* harmless */
   #ptr.swiping #ptr-svg #g18 {
     opacity:0;
   }
 
-  /* spin whole image on release */
+  /* spin whole image */
   #ptr.spin #ptr-svg {
     animation:ptrSpin .7s linear infinite;
   }
 
   @keyframes ptrSpin {
-    from { transform:scale(1.5) rotate(0deg); }
-    to   { transform:scale(1.5) rotate(360deg); }
+    from { transform:scale(2.0) rotate(0deg); }
+    to   { transform:scale(2.0) rotate(360deg); }
   }
 
   .card {
@@ -185,7 +185,7 @@
 
     ptr.className='';
     ptr.style.marginTop='-68px';
-    ptrSvg.style.transform='scale(1.5)';
+    ptrSvg.style.transform='scale(2.0)';
   },{passive:true});
 
   document.addEventListener('touchmove',function(e){
@@ -197,7 +197,7 @@
       ptr.classList.remove('swiping');
       ptr.className='';
       ptr.style.marginTop='-68px';
-      ptrSvg.style.transform='scale(1.5)';
+      ptrSvg.style.transform='scale(2.0)';
       window.scrollTo(0,drag.startScroll+dy);
     } else {
       drag.ptrActive=true;
@@ -208,7 +208,7 @@
       ptr.style.opacity=pct;
 
       ptr.classList.add('swiping');
-      ptrSvg.style.transform='scale(1.5)';
+      ptrSvg.style.transform='scale(2.0)';
     }
 
     var now=Date.now();
@@ -224,14 +224,14 @@
 
     if(drag.ptrActive){
       if(parseFloat(ptr.style.opacity)>=1){
-        ptrSvg.style.transform='scale(1.5)';
+        ptrSvg.style.transform='scale(2.0)';
         ptr.className='spin';
         setTimeout(function(){location.reload();},750);
       } else {
         ptr.style.marginTop='-68px';
         ptr.style.opacity=1;
         ptr.className='';
-        ptrSvg.style.transform='scale(1.5)';
+        ptrSvg.style.transform='scale(2.0)';
       }
       return;
     }
@@ -266,16 +266,4 @@
       var next=scroll+vy*elapsed;
 
       if(next<0){next=0;vy=-vy*bounceDecay;}
-      else if(next>maxScroll){next=maxScroll;vy=-vy*bounceDecay;}
-
-      window.scrollTo(0,next);
-      requestAnimationFrame(step);
-    }
-
-    requestAnimationFrame(step);
-  }
-})();
-</script>
-
-</body>
-</html>
+      else if(next>maxScroll){next=maxScroll;vy=-vy
