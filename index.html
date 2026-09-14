@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <script>
 var p = new URLSearchParams(location.search);
@@ -13,6 +13,10 @@ if (p.has('neon') || (!p.has('normal') && new Date().getDate() % 2)) {
 </script>
 
 <style>
+
+html {
+    -moz-text-size-adjust: 100%;
+}
 
 body {
     font-size: 16px;
@@ -75,14 +79,12 @@ body {
 
 .card {
     background:#fce5cd;
-    width:100%;
     max-width:400px;
-    min-width:0;
     margin:0 auto;
     padding:6px 20px 30px;
     border-radius:12px;
 }
-    
+
 h2 { color:#000; margin-bottom:42px; font-size:30px; }
 p  { color:#e07474; font-size:16px; margin-bottom:30px; }
 
@@ -146,6 +148,7 @@ html.neon body     { background:#4e2a05; color-scheme:dark; }
 html.neon .card    { background:#4e2a05; }
 html.neon h2       { color:#fff; }
 html.neon p        { color:#ffb3b3; }
+
 </style>
 </head>
 
