@@ -11,328 +11,154 @@
   </script>
   <style>
     html[data-darkreader-scheme="dark"] .hub {
-      background: linear-gradient(180deg, #4080d0 0%, #1850a0 50%, #0840a0 100%) !important;
-      color: #fff !important;
+      background:linear-gradient(180deg,#4080d0 0%,#1850a0 50%,#0840a0 100%)!important;
+      color:#fff!important;
     }
     html[data-darkreader-scheme="dark"] .graph {
-      background: linear-gradient(180deg, #8050c0 0%, #5028a0 50%, #3a1878 100%) !important;
-      color: #fff !important;
+      background:linear-gradient(180deg,#8050c0 0%,#5028a0 50%,#3a1878 100%)!important;
+      color:#fff!important;
     }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      background-color: #fce5cd;
-      text-align: center;
-      padding: 8px 24px;
-      margin: 0;
-      touch-action: none;
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+      background:#fce5cd;
+      text-align:center;
+      padding:8px 24px;
+      margin:0;
+      touch-action:none;
     }
 
-    /* PTR HYBRID SPINNER — BOX 64×64, SVG 48×48, PNG 40×40 */
+    /* PTR PURE SVG SPINNER */
     #ptr {
-      position: fixed;
-      top: 0;
-      left: 50%;
-      width: 64px;
-      height: 64px;
-      margin-left: -32px;
-      margin-top: -68px;
-      z-index: 9999;
-      pointer-events: none;
-      background: transparent;
+      position:fixed;
+      top:0;
+      left:50%;
+      width:64px;
+      height:64px;
+      margin-left:-32px;
+      margin-top:-68px;
+      z-index:9999;
+      pointer-events:none;
+      background:transparent;
+      opacity:0;
+      transition:opacity .15s;
     }
 
-    /* SVG 48×48 centered */
     #ptr-svg {
-      position: absolute;
-      width: 48px;
-      height: 48px;
-      top: 8px;
-      left: 8px;
-      z-index: 1;
+      position:absolute;
+      width:64px;
+      height:64px;
+      top:0;
+      left:0;
+      z-index:1;
+      transform-origin:32px 32px;
     }
 
-    /* prevent SVG from leaking colors */
+    /* hide arrow group during swipe */
+    #ptr.swiping #ptr-svg #g18 {
+      opacity:0;
+    }
+
+    /* prevent SVG color leaks */
     #ptr-svg, #ptr-svg * {
-      color: inherit !important;
-      fill: inherit !important;
-      stroke: inherit !important;
+      color:inherit!important;
+      fill:inherit!important;
+      stroke:inherit!important;
     }
 
-    /* PNG arrow now 40×40 (smaller for confirmation) */
-    #ptr-png {
-      position: absolute;
-      width: 40px;
-      height: 40px;
-      top: 12px;
-      left: 12px;
-      z-index: 2;
-      opacity: 0;
-      pointer-events: none;
-      transform-origin: 20px 20px;
-    }
-
-    /* swipe: hide SVG, show spinning PNG */
-    #ptr.swiping #ptr-svg {
-      opacity: 0;
-    }
-
-    /* release: spin SVG, hide PNG */
-    #ptr.spin #ptr-svg {
-      animation: ptrSpin 0.7s linear infinite;
-    }
-
-    #ptr.spin #ptr-png {
-      opacity: 0;
+    /* release spin */
+    #ptr.spin #ptr-svg #g18 {
+      animation:ptrSpin .7s linear infinite;
     }
 
     @keyframes ptrSpin {
-      from { transform: rotate(0deg); }
-      to   { transform: rotate(360deg); }
+      from { transform:rotate(0deg); }
+      to   { transform:rotate(360deg); }
     }
 
     .card {
-      background: #fce5cd;
-      max-width: 400px;
-      margin: 0 auto;
-      padding: 6px 20px 30px;
-      border-radius: 12px;
+      background:#fce5cd;
+      max-width:400px;
+      margin:0 auto;
+      padding:6px 20px 30px;
+      border-radius:12px;
     }
 
-    h2 {
-      color: #000;
-      margin-bottom: 42px;
-      font-size: 30px;
-    }
-
-    p {
-      color: #e07474;
-      font-size: 16px;
-      margin-bottom: 30px;
-    }
+    h2 { color:#000; margin-bottom:42px; font-size:30px; }
+    p  { color:#e07474; font-size:16px; margin-bottom:30px; }
 
     .btn {
-      position: relative;
-      display: block;
-      text-decoration: none;
-      padding: 14px;
-      margin: 20px 0;
-      border-radius: 12px;
-      font-weight: bold;
-      font-size: 20px;
-      color: #000;
-      transform: perspective(500px) rotateY(-12deg);
-      box-shadow: 2px 0 0 4px rgba(0,0,0,.2), 0 6px 0 var(--dark), 0 10px 16px rgba(0,0,0,.35);
-      overflow: hidden;
-      border: none;
-      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      position:relative;
+      display:block;
+      text-decoration:none;
+      padding:14px;
+      margin:20px 0;
+      border-radius:12px;
+      font-weight:bold;
+      font-size:20px;
+      color:#000;
+      transform:perspective(500px) rotateY(-12deg);
+      box-shadow:2px 0 0 4px rgba(0,0,0,.2),0 6px 0 var(--dark),0 10px 16px rgba(0,0,0,.35);
+      overflow:hidden;
+      border:none;
+      transition:transform .4s ease,box-shadow .4s ease;
     }
 
     .btn::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 45%;
-      background: linear-gradient(180deg, rgba(255,255,255,.7), rgba(255,255,255,.15));
-      border-radius: 8px 8px 50% 50%;
+      content:'';
+      position:absolute;
+      top:0; left:0; right:0;
+      height:45%;
+      background:linear-gradient(180deg,rgba(255,255,255,.7),rgba(255,255,255,.15));
+      border-radius:8px 8px 50% 50%;
     }
 
     .btn::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(to right, transparent, rgba(255,255,255,.3), transparent);
-      transition: 0.5s;
-      z-index: 1;
+      content:'';
+      position:absolute;
+      top:0; left:-100%;
+      width:100%; height:100%;
+      background:linear-gradient(to right,transparent,rgba(255,255,255,.3),transparent);
+      transition:.5s;
+      z-index:1;
     }
 
-    .btn:hover::before { left: 100%; }
+    .btn:hover::before { left:100%; }
     .btn:hover {
-      transform: perspective(500px) rotateY(0deg);
-      box-shadow: 0 0 0 4px rgba(0,0,0,.1), 0 2px 0 var(--dark), 0 4px 10px rgba(0,0,0,.25);
+      transform:perspective(500px) rotateY(0deg);
+      box-shadow:0 0 0 4px rgba(0,0,0,.1),0 2px 0 var(--dark),0 4px 10px rgba(0,0,0,.25);
     }
 
     .btn:active {
-      transform: perspective(500px) rotateY(0deg) translateY(2px);
-      box-shadow: 0 0 0 4px rgba(0,0,0,.1), 0 0 0 var(--dark), 0 2px 6px rgba(0,0,0,.2);
+      transform:perspective(500px) rotateY(0deg) translateY(2px);
+      box-shadow:0 0 0 4px rgba(0,0,0,.1),0 0 0 var(--dark),0 2px 6px rgba(0,0,0,.2);
     }
 
-    .preview { background: linear-gradient(180deg,#6abf6e,#3a9e3e,#288028); --dark:#1c6a1c; }
-    .edit    { background: linear-gradient(180deg,#e87070,#c84040,#a02020); --dark:#801818; }
-    .hub     { background: linear-gradient(180deg,#3ba8d6,#1a7daa,#0e5f80); --dark:#0a4a60; }
-    .graph   { background: linear-gradient(180deg,#a048a0,#883088,#682068); --dark:#501850; padding:18px 14px; }
-    .graphnew{ background: linear-gradient(180deg,#e060a0,#b03070,#902060); --dark:#701850; margin-top:80px; padding:18px 14px; }
+    .preview { background:linear-gradient(180deg,#6abf6e,#3a9e3e,#288028); --dark:#1c6a1c; }
+    .edit    { background:linear-gradient(180deg,#e87070,#c84040,#a02020); --dark:#801818; }
+    .hub     { background:linear-gradient(180deg,#3ba8d6,#1a7daa,#0e5f80); --dark:#0a4a60; }
+    .graph   { background:linear-gradient(180deg,#a048a0,#883088,#682068); --dark:#501850; padding:18px 14px; }
+    .graphnew{ background:linear-gradient(180deg,#e060a0,#b03070,#902060); --dark:#701850; margin-top:80px; padding:18px 14px; }
 
     .subtext { display:block; font-size:12px; opacity:.8; margin-top:4px; }
 
-    html.neon .preview { background: linear-gradient(180deg,#00ff00,#00cc00,#009900); --dark:#006600; }
-    html.neon .edit    { background: linear-gradient(180deg,#ff0000,#cc0000,#990000); --dark:#660000; }
-    html.neon .hub     { background: linear-gradient(180deg,#0bcade,#09a3b5,#077c9c); --dark:#055f7d; }
-    html.neon .graph   { background: linear-gradient(180deg,#bf00ff,#9900dd,#7700bb); --dark:#550099; }
-    html.neon .graphnew{ background: linear-gradient(180deg,#ff33dd,#dd11bb,#bb0099); --dark:#880077; }
+    html.neon .preview { background:linear-gradient(180deg,#00ff00,#00cc00,#009900); --dark:#006600; }
+    html.neon .edit    { background:linear-gradient(180deg,#ff0000,#cc0000,#990000); --dark:#660000; }
+    html.neon .hub     { background:linear-gradient(180deg,#0bcade,#09a3b5,#077c9c); --dark:#055f7d; }
+    html.neon .graph   { background:linear-gradient(180deg,#bf00ff,#9900dd,#7700bb); --dark:#550099; }
+    html.neon .graphnew{ background:linear-gradient(180deg,#ff33dd,#dd11bb,#bb0099); --dark:#880077; }
     html.neon body     { background:#4e2a05; color-scheme:dark; }
     html.neon .card    { background:#4e2a05; }
     html.neon h2       { color:#fff; }
     html.neon p        { color:#ffb3b3; }
   </style>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<script>
-var p = new URLSearchParams(location.search);
-if (p.has('neon') || (!p.has('normal') && new Date().getDate() % 2)) {
-  document.documentElement.classList.add('neon');
-  document.documentElement.setAttribute('data-darkreader-scheme', 'dark');
-}
-</script>
-
-<style>
-body {
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
-  background:#fce5cd;
-  text-align:center;
-  padding:8px 24px;
-  margin:0;
-  touch-action:none;
-}
-
-/* PTR BOX 64×64 */
-#ptr {
-  position:fixed;
-  top:0;
-  left:50%;
-  width:64px;
-  height:64px;
-  margin-left:-32px;
-  margin-top:-68px;
-  z-index:9999;
-  pointer-events:none;
-  background:transparent;
-}
-
-/* SVG stays full size, arrow group inside is scaled */
-#ptr-svg {
-  position:absolute;
-  width:64px;
-  height:64px;
-  top:0;
-  left:0;
-  z-index:1;
-}
-
-/* Hide ONLY the arrow group during swipe */
-#ptr.swiping #ptr-svg #g18 {
-  opacity:0;
-}
-
-/* Prevent SVG color leaks */
-#ptr-svg, #ptr-svg * {
-  color:inherit!important;
-  fill:inherit!important;
-  stroke:inherit!important;
-}
-
-/* PNG arrow 56×56 centered */
-#ptr-png {
-  position:absolute;
-  width:56px;
-  height:56px;
-  top:4px;
-  left:4px;
-  z-index:2;
-  opacity:0;
-  pointer-events:none;
-  transform-origin:28px 28px;
-}
-
-/* Release spin */
-#ptr.spin #ptr-svg #g18 {
-  animation:ptrSpin .7s linear infinite;
-}
-
-#ptr.spin #ptr-png {
-  opacity:0;
-}
-
-@keyframes ptrSpin {
-  from { transform:rotate(0deg); }
-  to   { transform:rotate(360deg); }
-}
-
-.card {
-  background:#fce5cd;
-  max-width:400px;
-  margin:0 auto;
-  padding:6px 20px 30px;
-  border-radius:12px;
-}
-
-h2 { color:#000; margin-bottom:42px; font-size:30px; }
-p  { color:#e07474; font-size:16px; margin-bottom:30px; }
-
-.btn {
-  position:relative;
-  display:block;
-  text-decoration:none;
-  padding:14px;
-  margin:20px 0;
-  border-radius:12px;
-  font-weight:bold;
-  font-size:20px;
-  color:#000;
-  transform:perspective(500px) rotateY(-12deg);
-  box-shadow:2px 0 0 4px rgba(0,0,0,.2),0 6px 0 var(--dark),0 10px 16px rgba(0,0,0,.35);
-  overflow:hidden;
-  border:none;
-  transition:.4s;
-}
-
-.btn::after {
-  content:'';
-  position:absolute;
-  top:0; left:0; right:0;
-  height:45%;
-  background:linear-gradient(180deg,rgba(255,255,255,.7),rgba(255,255,255,.15));
-  border-radius:8px 8px 50% 50%;
-}
-
-.btn::before {
-  content:'';
-  position:absolute;
-  top:0; left:-100%;
-  width:100%; height:100%;
-  background:linear-gradient(to right,transparent,rgba(255,255,255,.3),transparent);
-  transition:.5s;
-  z-index:1;
-}
-
-.btn:hover::before { left:100%; }
-.btn:hover {
-  transform:perspective(500px) rotateY(0deg);
-  box-shadow:0 0 0 4px rgba(0,0,0,.1),0 2px 0 var(--dark),0 4px 10px rgba(0,0,0,.25);
-}
-
-.preview { background:linear-gradient(180deg,#6abf6e,#3a9e3e,#288028); --dark:#1c6a1c; }
-.edit    { background:linear-gradient(180deg,#e87070,#c84040,#a02020); --dark:#801818; }
-.hub     { background:linear-gradient(180deg,#3ba8d6,#1a7daa,#0e5f80); --dark:#0a4a60; }
-.graph   { background:linear-gradient(180deg,#a048a0,#883088,#682068); --dark:#501850; padding:18px 14px; }
-.graphnew{ background:linear-gradient(180deg,#e060a0,#b03070,#902060); --dark:#701850; margin-top:80px; padding:18px 14px; }
-
-.subtext { display:block; font-size:12px; opacity:.8; margin-top:4px; }
-
-</style>
 </head>
 
 <body>
   <div class="card">
 
     <div id="ptr">
-      <img id="ptr-svg" src="Ingun Spinner.svg" alt="">
-      <img id="ptr-png" src="https://raw.githubusercontent.com/ccttcratings/portal2/main/arrow.png" alt="">
+      <img id="ptr-svg" src="https://raw.githubusercontent.com/ccttcratings/portal2/main/Ingun%20Spinner%202.svg" alt="">
     </div>
 
     <h2>View Mode Portal</h2>
@@ -357,20 +183,14 @@ p  { color:#e07474; font-size:16px; margin-bottom:30px; }
     <a href="https://ccttcratings.github.io/portalhub/" class="btn hub">
       Portal Hub of Portals <span class="subtext">(hub of redundant portals)</span>
     </a>
-<div class="card">
-
-  <div id="ptr">
-    <img id="ptr-svg" src="Ingun Spinner.svg" alt="">
-    <img id="ptr-png" src="https://raw.githubusercontent.com/ccttcratings/portal2/main/arrow.png" alt="">
-</div>
+  </div>
 
   <script>
-    (function() {
+    (function(){
       var drag={active:false,startY:0,startScroll:0,history:[],animating:false};
       var friction=0.999, bounceDecay=1.0;
       var ptr=document.getElementById('ptr');
       var ptrSvg=document.getElementById('ptr-svg');
-      var ptrPng=document.getElementById('ptr-png');
 
       document.addEventListener('touchstart',function(e){
         if(e.touches.length!==1) return;
@@ -379,177 +199,41 @@ p  { color:#e07474; font-size:16px; margin-bottom:30px; }
         drag.startScroll=window.scrollY;
         drag.history=[{y:e.touches[0].clientY,t:Date.now()}];
         drag.ptrActive=false;
-  <h2>View Mode Portal</h2>
+        drag.animating=false;
 
-  <a href="https://docs.google.com/spreadsheets/d/1NdnC1kN831FVfcInOmFBfe-PU5tgKjFh3I-uxPdVGJM/preview" class="btn preview">
-    Preview Mode <span class="subtext">(works on most devices)</span>
-  </a>
-
-  <a href="https://docs.google.com/spreadsheets/d/1NdnC1kN831FVfcInOmFBfe-PU5tgKjFh3I-uxPdVGJM/edit?gid=1967667427#gid=1967667427" class="btn edit">
-    Edit Mode <span class="subtext">(annoying banner at top)</span>
-  </a>
-
-  <a href="https://ccttcratings.github.io/graph/" class="btn graphnew" target="_blank">
-    Player Ratings Graph
-  </a>
-
-  <a href="https://script.google.com/macros/s/AKfycbyh4XByirwdUrd4OArgiWHokySt_rgBS1gJMtLRyLJOeLZVHAQDFrQXQXbthd_TxHbx/exec"
-     class="btn graph" target="_blank">
-    Old Player Ratings Graph
-  </a>
-
-  <a href="https://ccttcratings.github.io/portalhub/" class="btn hub">
-    Portal Hub of Portals <span class="subtext">(hub of redundant portals)</span>
-  </a>
-
-</div>
-
-<script>
-(function() {
-  var drag={active:false,startY:0,startScroll:0,history:[],animating:false};
-  var friction=0.999, bounceDecay=1.0;
-  var ptr=document.getElementById('ptr');
-  var ptrSvg=document.getElementById('ptr-svg');
-  var ptrPng=document.getElementById('ptr-png');
-
-  document.addEventListener('touchstart',function(e){
-    if(e.touches.length!==1) return;
-    drag.active=true;
-    drag.startY=e.touches[0].clientY;
-    drag.startScroll=window.scrollY;
-    drag.history=[{y:e.touches[0].clientY,t:Date.now()}];
-    drag.ptrActive=false;
-    ptr.className='';
-    ptrPng.style.opacity=0;
-    ptrPng.style.transform='';
-    ptrSvg.style.transform='';
-  },{passive:true});
-
-  document.addEventListener('touchmove',function(e){
-    if(!drag.active||e.touches.length!==1) return;
-    var dy=drag.startY-e.touches[0].clientY;
-
-    if(drag.startScroll<=0 && dy<0){
-      drag.ptrActive=true;
-      var dist=Math.min(-dy,120);
-      var pct=Math.min(dist/80,1);
-
-      ptr.style.marginTop=(dist-60)+'px';
-      ptr.style.opacity=pct;
-
-      ptr.classList.add('swiping');
-      ptrPng.style.opacity=pct;
-      ptrPng.style.transform='rotate('+(Math.min(dist*3,360))+'deg)';
-      ptrSvg.style.transform='';
-
-      return;
-    }
-
-    drag.ptrActive=false;
-    ptr.classList.remove('swiping');
-    ptr.className='';
-    ptr.style.marginTop='';
-    ptr.style.opacity='';
-    ptrPng.style.opacity=0;
-    ptrPng.style.transform='';
-    ptrSvg.style.transform='';
-
-    window.scrollTo(0,drag.startScroll+dy);
-    var now=Date.now();
-    drag.history.push({y:e.touches[0].clientY,t:now});
-    if(drag.history.length>8) drag.history.shift();
-  },{passive:true});
-
-  document.addEventListener('touchend',function(){
-    if(!drag.active) return;
-    drag.active=false;
-
-    ptr.classList.remove('swiping');
-
-    if(drag.ptrActive){
-      if(parseFloat(ptr.style.opacity)>=1){
-        ptrPng.style.opacity=0;
-        ptrPng.style.transform='';
+        ptr.className='';
+        ptr.style.marginTop='-68px';
+        ptr.style.opacity=0;
         ptrSvg.style.transform='';
-        ptr.className='spin';
-        setTimeout(function(){location.reload();},750);
-      } else {
-        ptr.style.marginTop='';
-        ptr.style.opacity='';
-ptr.className='';
-ptrPng.style.opacity=0;
-ptrPng.style.transform='';
-ptrSvg.style.transform='';
       },{passive:true});
-      }
-      return;
-    }
 
       document.addEventListener('touchmove',function(e){
         if(!drag.active||e.touches.length!==1) return;
         var dy=drag.startY-e.touches[0].clientY;
-    var h=drag.history;
-    if(h.length<2) return;
-    var last=h[h.length-1], first=h[0];
-    var dt=last.t-first.t;
-    if(dt<=0) return;
-    var velocity=(first.y-last.y)/dt;
-    if(Math.abs(velocity)<0.3) return;
 
-        if(drag.startScroll<=0 && dy<0){
+        // normal scroll if not at top or dragging down
+        if(!(drag.startScroll<=0 && dy<0)){
+          drag.ptrActive=false;
+          ptr.classList.remove('swiping');
+          ptr.className='';
+          ptr.style.marginTop='-68px';
+          ptr.style.opacity=0;
+          ptrSvg.style.transform='';
+          window.scrollTo(0,drag.startScroll+dy);
+        } else {
+          // pull-to-refresh region
           drag.ptrActive=true;
           var dist=Math.min(-dy,120);
           var pct=Math.min(dist/80,1);
-    startScrollMomentum(velocity);
-  },{passive:true});
 
           ptr.style.marginTop=(dist-60)+'px';
           ptr.style.opacity=pct;
-  function startScrollMomentum(v){
-    drag.animating=true;
-    var lastTime=Date.now();
-    var vy=v;
 
           ptr.classList.add('swiping');
-          ptrPng.style.opacity=pct;
-          ptrPng.style.transform='rotate('+(Math.min(dist*3,360))+'deg)';
           ptrSvg.style.transform='';
-    function step(){
-      if(!drag.animating) return;
-      var now=Date.now();
-      var elapsed=now-lastTime;
-      lastTime=now;
 
-          return;
         }
-      vy*=Math.pow(friction,elapsed/16);
-      if(Math.abs(vy)<0.01){drag.animating=false;return;}
 
-        drag.ptrActive=false;
-        ptr.classList.remove('swiping');
-        ptr.className='';
-        ptr.style.marginTop='';
-        ptr.style.opacity='';
-        ptrPng.style.opacity=0;
-        ptrPng.style.transform='';
-        ptrSvg.style.transform='';
-      var maxScroll=document.documentElement.scrollHeight-window.innerHeight;
-      var scroll=window.scrollY;
-      var next=scroll+vy*elapsed;
-
-      if(next<0){next=0;vy=-vy*bounceDecay;}
-      else if(next>maxScroll){next=maxScroll;vy=-vy*bounceDecay;}
-
-      window.scrollTo(0,next);
-      requestAnimationFrame(step);
-    }
-
-    requestAnimationFrame(step);
-  }
-})();
-</script>
-
-        window.scrollTo(0,drag.startScroll+dy);
         var now=Date.now();
         drag.history.push({y:e.touches[0].clientY,t:now});
         if(drag.history.length>8) drag.history.shift();
@@ -562,23 +246,22 @@ ptrSvg.style.transform='';
         ptr.classList.remove('swiping');
 
         if(drag.ptrActive){
+          // fully pulled: reload
           if(parseFloat(ptr.style.opacity)>=1){
-            ptrPng.style.opacity=0;
-            ptrPng.style.transform='';
             ptrSvg.style.transform='';
             ptr.className='spin';
             setTimeout(function(){location.reload();},750);
           } else {
-            ptr.style.marginTop='';
-            ptr.style.opacity='';
+            // not enough pull: reset
+            ptr.style.marginTop='-68px';
+            ptr.style.opacity=0;
             ptr.className='';
-            ptrPng.style.opacity=0;
-            ptrPng.style.transform='';
             ptrSvg.style.transform='';
           }
           return;
         }
 
+        // velocity-based scroll momentum
         var h=drag.history;
         if(h.length<2) return;
         var last=h[h.length-1], first=h[0];
