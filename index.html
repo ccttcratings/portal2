@@ -153,6 +153,15 @@ html.neon p        { color:#ffb3b3; }
 
 <body>
 
+<div id="dpr" style="position:fixed;top:0;left:0;background:#fff;padding:4px;z-index:99999;font-size:12px;">
+<script>
+document.getElementById('dpr').innerText =
+    'DPR=' + window.devicePixelRatio +
+    ' | innerWidth=' + window.innerWidth +
+    ' | innerHeight=' + window.innerHeight;
+</script>
+</div>
+
 <div class="card">
 
 <div id="ptr">
