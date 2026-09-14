@@ -36,17 +36,18 @@
     transition:opacity .15s;
   }
 
-  /* ONE CHANGE: SVG is now 64×64 instead of 48×48 */
+  /* BACK TO 48×48, CENTERED — BUT SCALED UP */
   #ptr-svg {
     position:absolute;
-    width:64px;
-    height:64px;
-    top:0;
-    left:0;
-    transform-origin:32px 32px;
+    width:48px;
+    height:48px;
+    top:8px;
+    left:8px;
+    transform-origin:24px 24px;
+    transform:scale(1.5);  /* <-- ONLY CHANGE: bigger without touching layout */
   }
 
-  /* hide arrow group during swipe (still harmless) */
+  /* harmless, cannot see inside <img> */
   #ptr.swiping #ptr-svg #g18 {
     opacity:0;
   }
@@ -57,8 +58,8 @@
   }
 
   @keyframes ptrSpin {
-    from { transform:rotate(0deg); }
-    to   { transform:rotate(360deg); }
+    from { transform:scale(1.5) rotate(0deg); }
+    to   { transform:scale(1.5) rotate(360deg); }
   }
 
   .card {
@@ -184,7 +185,7 @@
 
     ptr.className='';
     ptr.style.marginTop='-68px';
-    ptrSvg.style.transform='';
+    ptrSvg.style.transform='scale(1.5)';
   },{passive:true});
 
   document.addEventListener('touchmove',function(e){
@@ -196,7 +197,7 @@
       ptr.classList.remove('swiping');
       ptr.className='';
       ptr.style.marginTop='-68px';
-      ptrSvg.style.transform='';
+      ptrSvg.style.transform='scale(1.5)';
       window.scrollTo(0,drag.startScroll+dy);
     } else {
       drag.ptrActive=true;
@@ -207,7 +208,7 @@
       ptr.style.opacity=pct;
 
       ptr.classList.add('swiping');
-      ptrSvg.style.transform='';
+      ptrSvg.style.transform='scale(1.5)';
     }
 
     var now=Date.now();
@@ -223,14 +224,14 @@
 
     if(drag.ptrActive){
       if(parseFloat(ptr.style.opacity)>=1){
-        ptrSvg.style.transform='';
+        ptrSvg.style.transform='scale(1.5)';
         ptr.className='spin';
         setTimeout(function(){location.reload();},750);
       } else {
         ptr.style.marginTop='-68px';
         ptr.style.opacity=1;
         ptr.className='';
-        ptrSvg.style.transform='';
+        ptrSvg.style.transform='scale(1.5)';
       }
       return;
     }
@@ -265,4 +266,16 @@
       var next=scroll+vy*elapsed;
 
       if(next<0){next=0;vy=-vy*bounceDecay;}
-      else if(next>maxScroll){next
+      else if(next>maxScroll){next=maxScroll;vy=-vy*bounceDecay;}
+
+      window.scrollTo(0,next);
+      requestAnimationFrame(step);
+    }
+
+    requestAnimationFrame(step);
+  }
+})();
+</script>
+
+</body>
+</html>
