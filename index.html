@@ -6,114 +6,115 @@
 <script>
 var p = new URLSearchParams(location.search);
 if (p.has('neon') || (!p.has('normal') && new Date().getDate() % 2)) {
-document.documentElement.classList.add('neon');
-document.documentElement.setAttribute('data-darkreader-scheme', 'dark');
+    document.documentElement.classList.add('neon');
+    document.documentElement.setAttribute('data-darkreader-scheme', 'dark');
 }
 </script>
 
 <style>
 body {
-font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
-background:#fce5cd;
-text-align:center;
-padding:8px 24px;
-margin:0;
-touch-action:none;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    background:#fce5cd;
+    text-align:center;
+    padding:8px 24px;
+    margin:0;
+    touch-action:none;
 }
 
 /* PTR BOX 64×64 */
 #ptr {
-position:fixed;
-top:0;
-left:50%;
-width:64px;
-height:64px;
-margin-left:-32px;
-margin-top:-68px;
-z-index:9999;
-pointer-events:none;
-opacity:1;
-transition:opacity .15s;
+    position:fixed;
+    top:0;
+    left:50%;
+    width:64px;
+    height:64px;
+    margin-left:-32px;
+    margin-top:-68px;
+    z-index:9999;
+    pointer-events:none;
+    opacity:1;
+    transition:opacity .15s;
 }
 
 /* Spinner stays 48×48 but is scaled up */
 #ptr-svg {
-position:absolute;
-width:48px;
-height:48px;
-top:8px;
-left:8px;
-transform-origin:24px 24px;
-transform:scale(2.0);
+    position:absolute;
+    width:48px;
+    height:48px;
+    top:8px;
+    left:8px;
+    transform-origin:24px 24px;
+    transform:scale(2.0);
 }
 
 /* harmless */
 #ptr.swiping #ptr-svg #g18 {
-opacity:0;
+    opacity:0;
 }
 
-/* spin whole image */
+/* spin whole image — FIXED TO PRESERVE SCALE */
 #ptr.spin #ptr-svg {
-animation:ptrSpin .7s linear infinite;
+    animation:ptrSpin .7s linear infinite;
+    transform:scale(2.0) rotate(0deg);
 }
 
-/* FIX: remove scale from animation so JS scale stays applied */
+/* FIXED KEYFRAMES — preserves scale */
 @keyframes ptrSpin {
-from { transform:rotate(0deg); }
-to   { transform:rotate(360deg); }
+    from { transform:scale(2.0) rotate(0deg); }
+    to   { transform:scale(2.0) rotate(360deg); }
 }
 
 .card {
-background:#fce5cd;
-max-width:400px;
-margin:0 auto;
-padding:6px 20px 30px;
-border-radius:12px;
+    background:#fce5cd;
+    max-width:400px;
+    margin:0 auto;
+    padding:6px 20px 30px;
+    border-radius:12px;
 }
 
 h2 { color:#000; margin-bottom:42px; font-size:30px; }
 p  { color:#e07474; font-size:16px; margin-bottom:30px; }
 
 .btn {
-position:relative;
-display:block;
-text-decoration:none;
-padding:14px;
-margin:20px 0;
-border-radius:12px;
-font-weight:bold;
-font-size:20px;
-color:#000;
-transform:perspective(500px) rotateY(-12deg);
-box-shadow:2px 0 0 4px rgba(0,0,0,.2),0 6px 0 var(--dark),0 10px 16px rgba(0,0,0,.35);
-overflow:hidden;
-border:none;
-transition:.4s;
+    position:relative;
+    display:block;
+    text-decoration:none;
+    padding:14px;
+    margin:20px 0;
+    border-radius:12px;
+    font-weight:bold;
+    font-size:20px;
+    color:#000;
+    transform:perspective(500px) rotateY(-12deg);
+    box-shadow:2px 0 0 4px rgba(0,0,0,.2),0 6px 0 var(--dark),0 10px 16px rgba(0,0,0,.35);
+    overflow:hidden;
+    border:none;
+    transition:.4s;
 }
 
 .btn::after {
-content:'';
-position:absolute;
-top:0; left:0; right:0;
-height:45%;
-background:linear-gradient(180deg,rgba(255,255,255,.7),rgba(255,255,255,.15));
-border-radius:8px 8px 50% 50%;
+    content:'';
+    position:absolute;
+    top:0; left:0; right:0;
+    height:45%;
+    background:linear-gradient(180deg,rgba(255,255,255,.7),rgba(255,255,255,.15));
+    border-radius:8px 8px 50% 50%;
 }
 
 .btn::before {
-content:'';
-position:absolute;
-top:0; left:-100%;
-width:100%; height:100%;
-background:linear-gradient(to right,transparent,rgba(255,255,255,.3),transparent);
-transition:.5s;
-z-index:1;
+    content:'';
+    position:absolute;
+    top:0; left:-100%;
+    width:100%; height:100%;
+    background:linear-gradient(to right,transparent,rgba(255,255,255,.3),transparent);
+    transition:.5s;
+    z-index:1;
 }
 
 .btn:hover::before { left:100%; }
 .btn:hover {
-transform:perspective(500px) rotateY(0deg);
-box-shadow:0 0 0 4px rgba(0,0,0,.1),0 2px 0 var(--dark),0 4px 10px rgba(0,0,0,.25);
+    transform:perspective(500px) rotateY(0deg);
+    box-shadow:0 0 0 4px rgba(0,0,0,.1),0 2px 0 var(--dark),0 4px 10px rgba(0,0,0,.25);
 }
 
 .preview { background:linear-gradient(180deg,#6abf6e,#3a9e3e,#288028); --dark:#1c6a1c; }
@@ -141,7 +142,7 @@ html.neon p        { color:#ffb3b3; }
 <div class="card">
 
 <div id="ptr">
-<img id="ptr-svg" src="https://raw.githubusercontent.com/ccttcratings/portal2/main/Ingun%20Spinner%202.svg">
+    <img id="ptr-svg" src="https://raw.githubusercontent.com/ccttcratings/portal2/main/Ingun%20Spinner%202.svg">
 </div>
 
 <h2>View Mode Portal</h2>
@@ -177,108 +178,104 @@ var ptr=document.getElementById('ptr');
 var ptrSvg=document.getElementById('ptr-svg');
 
 document.addEventListener('touchstart',function(e){
-if(e.touches.length!==1) return;
-drag.active=true;
-drag.startY=e.touches[0].clientY;
-drag.startScroll=window.scrollY;
-drag.history=[{y:e.touches[0].clientY,t:Date.now()}];
-drag.ptrActive=false;
+    if(e.touches.length!==1) return;
+    drag.active=true;
+    drag.startY=e.touches[0].clientY;
+    drag.startScroll=window.scrollY;
+    drag.history=[{y:e.touches[0].clientY,t:Date.now()}];
+    drag.ptrActive=false;
 
-ptr.className='';
-ptr.style.marginTop='-68px';
-ptrSvg.style.transform='scale(2.0)';
+    ptr.className='';
+    ptr.style.marginTop='-68px';
+    ptrSvg.style.transform='scale(2.0)';
 },{passive:true});
 
 document.addEventListener('touchmove',function(e){
-if(!drag.active||e.touches.length!==1) return;
-var dy=drag.startY-e.touches[0].clientY;
+    if(!drag.active||e.touches.length!==1) return;
+    var dy=drag.startY-e.touches[0].clientY;
 
-if(!(drag.startScroll<=0 && dy<0)){
-drag.ptrActive=false;
-ptr.classList.remove('swiping');
-ptr.className='';
-ptr.style.marginTop='-68px';
-ptrSvg.style.transform='scale(2.0)';
-window.scrollTo(0,drag.startScroll+dy);
-} else {
-drag.ptrActive=true;
-var dist=Math.min(-dy,120);
-var pct=Math.min(dist/80,1);
+    if(!(drag.startScroll<=0 && dy<0)){
+        drag.ptrActive=false;
+        ptr.classList.remove('swiping');
+        ptr.className='';
+        ptr.style.marginTop='-68px';
+        ptrSvg.style.transform='scale(2.0)';
+        window.scrollTo(0,drag.startScroll+dy);
+    } else {
+        drag.ptrActive=true;
+        var dist=Math.min(-dy,120);
+        var pct=Math.min(dist/80,1);
 
-ptr.style.marginTop=(dist-60)+'px';
-ptr.style.opacity=pct;
+        ptr.style.marginTop=(dist-60)+'px';
+        ptr.style.opacity=pct;
 
-ptr.classList.add('swiping');
-ptrSvg.style.transform='scale(2.0)';
-}
+        ptr.classList.add('swiping');
+        ptrSvg.style.transform='scale(2.0)';
+    }
 
-var now=Date.now();
-drag.history.push({y:e.touches[0].clientY,t:now});
-if(drag.history.length>8) drag.history.shift();
+    var now=Date.now();
+    drag.history.push({y:e.touches[0].clientY,t:now});
+    if(drag.history.length>8) drag.history.shift();
 },{passive:true});
 
 document.addEventListener('touchend',function(){
-if(!drag.active) return;
-drag.active=false;
+    if(!drag.active) return;
+    drag.active=false;
 
-/* FIX: DO NOT remove swiping class on release */
-/* FIX: DO NOT reset className */
-/* Release should ONLY trigger spin — never size changes */
+    if(drag.ptrActive){
+        if(parseFloat(ptr.style.opacity)>=1){
 
-if(drag.ptrActive){
-if(parseFloat(ptr.style.opacity)>=1){
+            ptrSvg.style.transform='scale(2.0)';
+            ptr.classList.add('spin');
 
-ptrSvg.style.transform='scale(2.0)';   // stays large
-ptr.classList.add('spin');             // ONLY spin on release
+            setTimeout(function(){location.reload();},750);
 
-setTimeout(function(){location.reload();},750);
+        } else {
+            ptr.style.marginTop='-68px';
+            ptr.style.opacity=1;
+            ptr.className='';
+            ptrSvg.style.transform='scale(2.0)';
+        }
+        return;
+    }
 
-} else {
-ptr.style.marginTop='-68px';
-ptr.style.opacity=1;
-ptr.className='';
-ptrSvg.style.transform='scale(2.0)';
-}
-return;
-}
+    var h=drag.history;
+    if(h.length<2) return;
+    var last=h[h.length-1], first=h[0];
+    var dt=last.t-first.t;
+    if(dt<=0) return;
+    var velocity=(first.y-last.y)/dt;
+    if(Math.abs(velocity)<0.3) return;
 
-var h=drag.history;
-if(h.length<2) return;
-var last=h[h.length-1], first=h[0];
-var dt=last.t-first.t;
-if(dt<=0) return;
-var velocity=(first.y-last.y)/dt;
-if(Math.abs(velocity)<0.3) return;
-
-startScrollMomentum(velocity);
+    startScrollMomentum(velocity);
 },{passive:true});
 
 function startScrollMomentum(v){
-drag.animating=true;
-var lastTime=Date.now();
-var vy=v;
+    drag.animating=true;
+    var lastTime=Date.now();
+    var vy=v;
 
-function step(){
-if(!drag.animating) return;
-var now=Date.now();
-var elapsed=now-lastTime;
-lastTime=now;
+    function step(){
+        if(!drag.animating) return;
+        var now=Date.now();
+        var elapsed=now-lastTime;
+        lastTime=now;
 
-vy*=Math.pow(friction,elapsed/16);
-if(Math.abs(vy)<0.01){drag.animating=false;return;}
+        vy*=Math.pow(friction,elapsed/16);
+        if(Math.abs(vy)<0.01){drag.animating=false;return;}
 
-var maxScroll=document.documentElement.scrollHeight-window.innerHeight;
-var scroll=window.scrollY;
-var next=scroll+vy*elapsed;
+        var maxScroll=document.documentElement.scrollHeight-window.innerHeight;
+        var scroll=window.scrollY;
+        var next=scroll+vy*elapsed;
 
-if(next<0){next=0;vy=-vy*bounceDecay;}
-else if(next>maxScroll){next=maxScroll;vy=-vy*bounceDecay;}
+        if(next<0){next=0;vy=-vy*bounceDecay;}
+        else if(next>maxScroll){next=maxScroll;vy=-vy*bounceDecay;}
 
-window.scrollTo(0,next);
-requestAnimationFrame(step);
-}
+        window.scrollTo(0,next);
+        requestAnimationFrame(step);
+    }
 
-requestAnimationFrame(step);
+    requestAnimationFrame(step);
 }
 })();
 </script>
