@@ -21,7 +21,7 @@ margin:0;
 touch-action:none;
 }
 
-  /* PTR BOX 64×64 */
+/* PTR BOX 64×64 */
 #ptr {
 position:fixed;
 top:0;
@@ -36,7 +36,7 @@ opacity:1;
 transition:opacity .15s;
 }
 
-  /* Spinner stays 48×48 but is scaled up */
+/* Spinner stays 48×48 but is scaled up */
 #ptr-svg {
 position:absolute;
 width:48px;
@@ -44,21 +44,20 @@ height:48px;
 top:8px;
 left:8px;
 transform-origin:24px 24px;
-    transform:scale(2.0);   /* bigger spinner */
-    transform:scale(2.0);
+transform:scale(2.0);
 }
 
-  /* harmless */
+/* harmless */
 #ptr.swiping #ptr-svg #g18 {
 opacity:0;
 }
 
-  /* spin whole image */
+/* spin whole image */
 #ptr.spin #ptr-svg {
 animation:ptrSpin .7s linear infinite;
 }
 
-  /* FIX: remove scale from animation so JS scale stays applied */
+/* FIX: remove scale from animation so JS scale stays applied */
 @keyframes ptrSpin {
 from { transform:rotate(0deg); }
 to   { transform:rotate(360deg); }
@@ -222,13 +221,18 @@ document.addEventListener('touchend',function(){
 if(!drag.active) return;
 drag.active=false;
 
-ptr.classList.remove('swiping');
+/* FIX: DO NOT remove swiping class on release */
+/* FIX: DO NOT reset className */
+/* Release should ONLY trigger spin — never size changes */
 
 if(drag.ptrActive){
 if(parseFloat(ptr.style.opacity)>=1){
-ptrSvg.style.transform='scale(2.0)';
-ptr.className='spin';
+
+ptrSvg.style.transform='scale(2.0)';   // stays large
+ptr.classList.add('spin');             // ONLY spin on release
+
 setTimeout(function(){location.reload();},750);
+
 } else {
 ptr.style.marginTop='-68px';
 ptr.style.opacity=1;
