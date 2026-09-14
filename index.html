@@ -389,6 +389,7 @@ document.addEventListener('touchmove',function(e){
     } else {
         drag.ptrActive=true;
         var dist=Math.min(-dy,120);
+        var rawDist = -dy;   // unlimited rotation distance
         var pct=Math.min(dist/80,1);
 
         ptr.style.marginTop=(dist-60)+'px';
@@ -398,7 +399,7 @@ document.addEventListener('touchmove',function(e){
         ptrSvg.style.transform='scale(2.0)';
 
         /* ⭐ NEW: ARROW ROTATION DURING SWIPE */
-        var angle = dist * 6;         /* adjust multiplier to taste */
+        var angle = rawDist * 4; /* adjust speed to taste */
         g1.style.transformOrigin='32px 32px';
         g1.style.transform='rotate('+angle+'deg)';
     }
