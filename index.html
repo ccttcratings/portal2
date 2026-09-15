@@ -100,23 +100,22 @@ p {
     position:relative;
     display:block;
     text-decoration:none;
-    padding:18px 16px;   /* ← bigger buttons */
-    margin:20px 0;
+    padding:18px 16px;
+    margin:20px auto;        /* ← centers the button */
     border-radius:12px;
     font-weight:bold;
-    font-size:24px;      /* ← bigger button text */
+    font-size:24px;
     color:#000;
     transform:none;
     box-shadow:2px 0 0 4px rgba(0,0,0,.2),0 6px 0 var(--dark),0 10px 16px rgba(0,0,0,.35);
     overflow:hidden;
     border:none;
     transition:.4s;
-    width:100%;
-    max-width:420px;
-    white-space:nowrap;
-    text-overflow:ellipsis;
+    white-space: nowrap;
+    text-overflow: ellipsis; /* ← clip overflow */
+    max-width: 420px;        /* ← wider button, still centered */
 }
-
+    
 .btn:hover {
     transform:none;
     transform-style:flat;
