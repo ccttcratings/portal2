@@ -43,7 +43,7 @@ body {
     transition:opacity .15s;
 }
 
-/* Spinner stays 48×48 but is scaled up */
+/* Spinner stays 48×48 but scaled up */
 #ptr-svg {
     position:absolute;
     width:48px;
@@ -51,7 +51,7 @@ body {
     top:8px;
     left:8px;
     transform-origin:24px 24px;
-    transform:scale(2.3);   /* ← bigger spinner */
+    transform:scale(2.3);
 }
 
 /* Fletchings visible normally */
@@ -64,13 +64,12 @@ body {
     opacity:0;
 }
 
-/* spin whole image — FIXED TO PRESERVE SCALE */
+/* spin whole image — preserves scale */
 #ptr.spin #ptr-svg {
     animation:ptrSpin .7s linear infinite;
     transform:scale(2.3) rotate(0deg);
 }
 
-/* FIXED KEYFRAMES — preserves scale */
 @keyframes ptrSpin {
     from { transform:scale(2.3) rotate(0deg); }
     to   { transform:scale(2.3) rotate(360deg); }
@@ -78,7 +77,7 @@ body {
 
 .card {
     background:#fce5cd;
-    max-width:400px;
+    max-width:460px;     /* ← widened container so buttons can widen */
     margin:0 auto;
     padding:6px 20px 30px;
     border-radius:12px;
@@ -87,12 +86,12 @@ body {
 h2 {
     color:#000;
     margin-bottom:42px;
-    font-size:32px;   /* ← header */
+    font-size:32px;      /* ← dialed back from 34px */
 }
 
 p {
     color:#e07474;
-    font-size:18px;   /* ← bigger paragraph text */
+    font-size:18px;      /* ← enlarged */
     margin-bottom:30px;
 }
 
@@ -101,22 +100,24 @@ p {
     display:block;
     text-decoration:none;
     padding:18px 16px;
+    margin:20px auto;    /* ← centered */
     border-radius:12px;
     font-weight:bold;
-    font-size:24px;
+    font-size:24px;      /* ← enlarged */
     color:#000;
     transform:none;
     box-shadow:2px 0 0 4px rgba(0,0,0,.2),0 6px 0 var(--dark),0 10px 16px rgba(0,0,0,.35);
     overflow:hidden;
     border:none;
     transition:.4s;
-    white-space: nowrap;
+
+    white-space: nowrap;     /* ← no wrapping */
     text-overflow: ellipsis; /* ← clip overflow */
-    max-width: 420px;        /* ← wider button, still centered */
-    min-width: 360px;
-    margin: 20px auto;
+
+    min-width:360px;         /* ← wider buttons */
+    max-width:420px;         /* ← controlled width */
 }
-    
+
 .btn:hover {
     transform:none;
     transform-style:flat;
@@ -152,22 +153,10 @@ p {
 
 .subtext {
     display:block;
-    font-size:14px;   /* ← bigger fine print */
+    font-size:14px;      /* ← enlarged */
     opacity:.8;
-    margin-top:4px;
-}
-
-html.neon .preview { background:linear-gradient(180deg,#00ff00,#00cc00,#009900); --dark:#006600; }
-html.neon .edit    { background:linear-gradient(180deg,#ff0000,#cc0000,#990000); --dark:#660000; }
-html.neon .hub     { background:linear-gradient(180deg,#0bcade,#09a3b5,#077c9c); --dark:#055f7d; }
-html.neon .graph   { background:linear-gradient(180deg,#bf00ff,#9900dd,#7700bb); --dark:#550099; }
-html.neon .graphnew{ background:linear-gradient(180deg,#ff33dd,#dd11bb,#bb0099); --dark:#880077; }
-html.neon body     { background:#4e2a05; color-scheme:dark; }
-html.neon .card    { background:#4e2a05; }
-html.neon h2       { color:#fff; }
-html.neon p        { color:#ffb3b3; }
-
-</style>
+    margin-top:4
+    </style>
 </head>
 
 <body>
