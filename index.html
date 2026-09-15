@@ -98,7 +98,7 @@ p {
     font-weight:bold;
     font-size:24px;
     color:#000;
-    transform:none;
+    transform:perspective(500px) rotateY(-8deg);
     box-shadow:2px 0 0 4px rgba(0,0,0,.2),0 6px 0 var(--dark),0 10px 16px rgba(0,0,0,.35);
     overflow:hidden;
     border:none;
@@ -136,6 +136,11 @@ p {
 }
 
 .btn:hover::before { left:100%; }
+.btn:hover {
+    transform:perspective(500px) rotateY(0deg);
+    transform-style: preserve-3d;
+    box-shadow:0 0 0 4px rgba(0,0,0,.1),0 2px 0 var(--dark),0 4px 10px rgba(0,0,0,.25);
+}
 
 .preview { background:linear-gradient(180deg,#6abf6e,#3a9e3e,#288028); --dark:#1c6a1c; }
 .edit    { background:linear-gradient(180deg,#e87070,#c84040,#a02020); --dark:#801818; }
