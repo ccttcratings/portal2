@@ -44,7 +44,7 @@ body {
     top:8px;
     left:8px;
     transform-origin:24px 24px;
-    transform:scale(2.3);
+    transform:scale(2.4);
 }
 
 /* Fletchings visible normally */
@@ -60,12 +60,12 @@ body {
 /* spin whole image — preserves scale */
 #ptr.spin #ptr-svg {
     animation:ptrSpin .7s linear infinite;
-    transform:scale(2.3) rotate(0deg);
+    transform:scale(2.4) rotate(0deg);
 }
 
 @keyframes ptrSpin {
-    from { transform:scale(2.3) rotate(0deg); }
-    to   { transform:scale(2.3) rotate(360deg); }
+    from { transform:scale(2.4) rotate(0deg); }
+    to   { transform:scale(2.4) rotate(360deg); }
 }
 
 .card {
@@ -401,7 +401,7 @@ document.addEventListener('touchstart',function(e){
 
     ptr.className='';
     ptr.style.marginTop='-68px';
-    ptrSvg.style.transform='scale(2.0)';
+    ptrSvg.style.transform='scale(2.4)';
     g1.style.transform='';
 },{passive:true});
 
@@ -414,7 +414,7 @@ document.addEventListener('touchmove',function(e){
         ptr.classList.remove('swiping');
         ptr.className='';
         ptr.style.marginTop='-68px';
-        ptrSvg.style.transform='scale(2.0)';
+        ptrSvg.style.transform='scale(2.4)';
         g1.style.transform='';
         window.scrollTo(0,drag.startScroll+dy);
     } else {
@@ -427,7 +427,7 @@ document.addEventListener('touchmove',function(e){
         ptr.style.opacity=pct;
 
         ptr.classList.add('swiping');
-        ptrSvg.style.transform='scale(2.0)';
+        ptrSvg.style.transform='scale(2.4)';
 
         var angle = rawDist * 1.25;
         g1.style.transformOrigin='32px 32px';
@@ -446,7 +446,7 @@ document.addEventListener('touchend',function(){
     if(drag.ptrActive){
         if(parseFloat(ptr.style.opacity)>=1){
 
-            ptrSvg.style.transform='scale(2.0)';
+            ptrSvg.style.transform='scale(2.4)';
             ptr.classList.add('spin');
 
             g1.style.transform='';
@@ -457,7 +457,7 @@ document.addEventListener('touchend',function(){
             ptr.style.marginTop='-68px';
             ptr.style.opacity=1;
             ptr.className='';
-            ptrSvg.style.transform='scale(2.0)';
+            ptrSvg.style.transform='scale(2.4)';
             g1.style.transform='';
         }
         return;
