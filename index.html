@@ -397,8 +397,7 @@ document.addEventListener('touchstart',function(e){
     ptr.className='';
     ptr.style.marginTop='-68px';
     ptrSvg.style.transform='scale(2.0)';
-    g1.style.transform = 'rotate(' + angle + 'deg)';
-
+    g1.style.transform='';
 },{passive:true});
 
 document.addEventListener('touchmove',function(e){
@@ -488,8 +487,17 @@ function startScrollMomentum(v){
         var scroll=window.scrollY;
         var next=scroll+vy*elapsed;
 
-        if(next<0){next=0;drag.animating = false;}
-        else if(next>maxScroll){next=maxScroll;vy=-vy*bounceDecay;}
+        if(next<0){
+            next=0;
+            drag.animating=false;
+            window.scrollTo(0,next);
+            return;
+        } else if(next>maxScroll){
+            next=maxScroll;
+            drag.animating=false;
+            window.scrollTo(0,next);
+            return;
+        }
 
         window.scrollTo(0,next);
         requestAnimationFrame(step);
@@ -502,3 +510,4 @@ function startScrollMomentum(v){
 
 </body>
 </html>
+
