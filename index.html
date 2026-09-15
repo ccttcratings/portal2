@@ -103,10 +103,8 @@ p {
     overflow:hidden;
     border:none;
     transition:.4s;
-
     white-space: nowrap;
     text-overflow: ellipsis;
-
     width:100%;
     box-sizing:border-box;
 }
@@ -379,6 +377,13 @@ Portal Hub of Portals <span class="subtext">(hub of redundant portals)</span>
 </div>
 
 <script>
+(function(){
+    var params = new URLSearchParams(location.search);
+    if (params.has('neon')) {
+        document.documentElement.classList.add('neon');
+    }
+})();
+    
 (function(){
 var drag={active:false,startY:0,startScroll:0,history:[],animating:false};
 var friction=0.999, bounceDecay=1.0;
