@@ -10,12 +10,12 @@
 
   <!-- Row 2 (middle): y=16.67 to 33.33 -->
   <rect x="0" y="16.67" width="52.33" height="16.66" fill="#d9d2e9"/>    <!-- Middle-left -->
-  <rect x="52.33" y="0" width="52.34" height="16.66" fill="#7b7191"/>  <!-- Center (purple) -->
+  <rect x="52.33" y="0" width="52.34" height="16.66" fill="#e9e5f2"/>  <!-- Center (no purple) -->
   <rect x="104.67" y="0" width="52.33" height="16.66" fill="#d9d2e9"/>  <!-- Middle-right -->
 
   <!-- Row 3 (bottom): y=33.33 to 50 -->
   <rect x="0" y="33.33" width="52.33" height="16.67" fill="#e9e5f2"/>   <!-- Bottom-left -->
-  <rect x="52.33" y="33.33" width="52.34" height="16.67" fill="#7b7191"/>  <!-- Bottom-middle (purple) -->
+  <rect x="52.33" y="33.33" width="52.34" height="16.67" fill="#e9e5f2"/>  <!-- Bottom-middle (no purple) -->
   <rect x="104.67" y="33.33" width="52.33" height="16.67" fill="#e9e5f2"/>  <!-- Bottom-right -->
 
   <!-- Inner rectangles (medium and small) - black stroke only, NO FILL -->
