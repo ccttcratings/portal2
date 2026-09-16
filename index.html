@@ -1,22 +1,22 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<script>
-var p = new URLSearchParams(location.search);
-if (p.has('neon') || (!p.has('normal') && new Date().getDate() % 2)) {
-    document.documentElement.classList.add('neon');
-    document.documentElement.setAttribute('data-darkreader-scheme', 'dark');
-}
-</script>
-
 <style>
+
+html {
+    -moz-text-size-adjust: 100%;
+}
+
 body {
+    font-size: 16px;
+    -webkit-text-size-adjust: 100%;
     font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
     background:#fce5cd;
     text-align:center;
-    padding:8px 24px;
+    padding:8px 16px;
     margin:0;
     touch-action:none;
 }
@@ -36,7 +36,7 @@ body {
     transition:opacity .15s;
 }
 
-/* Spinner stays 48×48 but is scaled up */
+/* Spinner stays 48×48 but scaled up */
 #ptr-svg {
     position:absolute;
     width:48px;
@@ -44,7 +44,7 @@ body {
     top:8px;
     left:8px;
     transform-origin:24px 24px;
-    transform:scale(2.0);
+    transform:scale(2.4);
 }
 
 /* Fletchings visible normally */
@@ -57,44 +57,61 @@ body {
     opacity:0;
 }
 
-/* spin whole image — FIXED TO PRESERVE SCALE */
+/* spin whole image — preserves scale */
 #ptr.spin #ptr-svg {
     animation:ptrSpin .7s linear infinite;
-    transform:scale(2.0) rotate(0deg);
+    transform:scale(2.4) rotate(0deg);
 }
 
-/* FIXED KEYFRAMES — preserves scale */
 @keyframes ptrSpin {
-    from { transform:scale(2.0) rotate(0deg); }
-    to   { transform:scale(2.0) rotate(360deg); }
+    from { transform:scale(2.4) rotate(0deg); }
+    to   { transform:scale(2.4) rotate(360deg); }
 }
 
 .card {
     background:#fce5cd;
-    max-width:400px;
+    max-width:460px;
     margin:0 auto;
     padding:6px 20px 30px;
     border-radius:12px;
 }
 
-h2 { color:#000; margin-bottom:42px; font-size:30px; }
-p  { color:#e07474; font-size:16px; margin-bottom:30px; }
+h2 {
+    color:#000;
+    margin-bottom:42px;
+    font-size:32px;
+}
+
+p {
+    color:#e07474;
+    font-size:18px;
+    margin-bottom:30px;
+}
 
 .btn {
     position:relative;
     display:block;
     text-decoration:none;
-    padding:14px;
+    padding:18px 16px;
     margin:20px 0;
     border-radius:12px;
     font-weight:bold;
-    font-size:20px;
+    font-size:24px;
     color:#000;
-    transform:perspective(500px) rotateY(-6deg);
+    transform:perspective(500px) rotateY(-8deg);
     box-shadow:2px 0 0 4px rgba(0,0,0,.2),0 6px 0 var(--dark),0 10px 16px rgba(0,0,0,.35);
     overflow:hidden;
     border:none;
     transition:.4s;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width:100%;
+    box-sizing:border-box;
+}
+
+.btn:hover {
+    transform: translateY(-8px);
+    box-shadow:0 0 0 4px rgba(0,0,0,.1),0 2px 0 var(--dark),0 4px 10px rgba(0,0,0,.25);
 }
 
 .btn::after {
@@ -120,17 +137,21 @@ p  { color:#e07474; font-size:16px; margin-bottom:30px; }
 .btn:hover {
     transform:perspective(500px) rotateY(0deg);
     transform-style: preserve-3d;
-    min-height: 58px;
     box-shadow:0 0 0 4px rgba(0,0,0,.1),0 2px 0 var(--dark),0 4px 10px rgba(0,0,0,.25);
 }
 
 .preview { background:linear-gradient(180deg,#6abf6e,#3a9e3e,#288028); --dark:#1c6a1c; }
 .edit    { background:linear-gradient(180deg,#e87070,#c84040,#a02020); --dark:#801818; }
 .hub     { background:linear-gradient(180deg,#3ba8d6,#1a7daa,#0e5f80); --dark:#0a4a60; }
-.graph   { background:linear-gradient(180deg,#a048a0,#883088,#682068); --dark:#501850; padding:18px 14px; }
-.graphnew{ background:linear-gradient(180deg,#e060a0,#b03070,#902060); --dark:#701850; margin-top:80px; padding:18px 14px; }
+.graph   { background:linear-gradient(180deg,#a048a0,#883088,#682068); --dark:#501850; padding:20px 16px; }
+.graphnew{ background:linear-gradient(180deg,#e060a0,#b03070,#902060); --dark:#701850; margin-top:80px; padding:20px 16px; }
 
-.subtext { display:block; font-size:12px; opacity:.8; margin-top:4px; }
+.subtext {
+    display:block;
+    font-size:14px;
+    opacity:.8;
+    margin-top:4px;
+}
 
 html.neon .preview { background:linear-gradient(180deg,#00ff00,#00cc00,#009900); --dark:#006600; }
 html.neon .edit    { background:linear-gradient(180deg,#ff0000,#cc0000,#990000); --dark:#660000; }
@@ -141,6 +162,7 @@ html.neon body     { background:#4e2a05; color-scheme:dark; }
 html.neon .card    { background:#4e2a05; }
 html.neon h2       { color:#fff; }
 html.neon p        { color:#ffb3b3; }
+
 </style>
 </head>
 
@@ -356,11 +378,18 @@ Portal Hub of Portals <span class="subtext">(hub of redundant portals)</span>
 
 <script>
 (function(){
+    var params = new URLSearchParams(location.search);
+    if (params.has('neon')) {
+        document.documentElement.classList.add('neon');
+    }
+})();
+    
+(function(){
 var drag={active:false,startY:0,startScroll:0,history:[],animating:false};
 var friction=0.999, bounceDecay=1.0;
 var ptr=document.getElementById('ptr');
 var ptrSvg=document.getElementById('ptr-svg');
-var g1=document.querySelector('#g1');   /* ⭐ NEW: arrow group for rotation */
+var g1=document.querySelector('#g1');
 
 document.addEventListener('touchstart',function(e){
     if(e.touches.length!==1) return;
@@ -372,8 +401,8 @@ document.addEventListener('touchstart',function(e){
 
     ptr.className='';
     ptr.style.marginTop='-68px';
-    ptrSvg.style.transform='scale(2.0)';
-    g1.style.transform='';              /* ⭐ NEW: reset arrow rotation */
+    ptrSvg.style.transform='scale(2.4)';
+    g1.style.transform='';
 },{passive:true});
 
 document.addEventListener('touchmove',function(e){
@@ -385,23 +414,22 @@ document.addEventListener('touchmove',function(e){
         ptr.classList.remove('swiping');
         ptr.className='';
         ptr.style.marginTop='-68px';
-        ptrSvg.style.transform='scale(2.0)';
-        g1.style.transform='';          /* ⭐ NEW: reset arrow rotation */
+        ptrSvg.style.transform='scale(2.4)';
+        g1.style.transform='';
         window.scrollTo(0,drag.startScroll+dy);
     } else {
         drag.ptrActive=true;
         var dist=Math.min(-dy,120);
-        var rawDist = -dy;   // unlimited rotation distance
+        var rawDist = -dy;
         var pct=Math.min(dist/80,1);
 
         ptr.style.marginTop=(dist-60)+'px';
         ptr.style.opacity=pct;
 
         ptr.classList.add('swiping');
-        ptrSvg.style.transform='scale(2.0)';
+        ptrSvg.style.transform='scale(2.4)';
 
-        /* ⭐ NEW: ARROW ROTATION DURING SWIPE */
-        var angle = rawDist * 1.25; /* adjust speed to taste */
+        var angle = rawDist * 1.25;
         g1.style.transformOrigin='32px 32px';
         g1.style.transform='rotate('+angle+'deg)';
     }
@@ -418,10 +446,10 @@ document.addEventListener('touchend',function(){
     if(drag.ptrActive){
         if(parseFloat(ptr.style.opacity)>=1){
 
-            ptrSvg.style.transform='scale(2.0)';
+            ptrSvg.style.transform='scale(2.4)';
             ptr.classList.add('spin');
 
-            g1.style.transform='';      /* ⭐ NEW: reset arrow rotation */
+            g1.style.transform='';
 
             setTimeout(function(){location.reload();},750);
 
@@ -429,8 +457,8 @@ document.addEventListener('touchend',function(){
             ptr.style.marginTop='-68px';
             ptr.style.opacity=1;
             ptr.className='';
-            ptrSvg.style.transform='scale(2.0)';
-            g1.style.transform='';      /* ⭐ NEW: reset arrow rotation */
+            ptrSvg.style.transform='scale(2.4)';
+            g1.style.transform='';
         }
         return;
     }
@@ -464,8 +492,17 @@ function startScrollMomentum(v){
         var scroll=window.scrollY;
         var next=scroll+vy*elapsed;
 
-        if(next<0){next=0;vy=-vy*bounceDecay;}
-        else if(next>maxScroll){next=maxScroll;vy=-vy*bounceDecay;}
+        if(next<0){
+            next=0;
+            drag.animating=false;
+            window.scrollTo(0,next);
+            return;
+        } else if(next>maxScroll){
+            next=maxScroll;
+            drag.animating=false;
+            window.scrollTo(0,next);
+            return;
+        }
 
         window.scrollTo(0,next);
         requestAnimationFrame(step);
@@ -475,7 +512,6 @@ function startScrollMomentum(v){
 }
 })();
 </script>
-
 
 </body>
 </html>
