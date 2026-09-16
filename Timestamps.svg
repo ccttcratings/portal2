@@ -1,37 +1,149 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="157" height="50" viewBox="0 0 157 50" xmlns="http://www.w3.org/2000/svg">
-  <!-- 3x3 Grid: 9 distinct areas, each with exactly ONE fill color -->
-  <!-- Grid: 3 cols (52.33px each), 3 rows (16.67px each) -->
-  
-  <!-- Row 1 (top): y=0 to 16.67 -->
-  <rect x="0" y="0" width="52.33" height="16.67" fill="#e9e5f2"/>      <!-- Top-left -->
-  <rect x="52.33" y="0" width="52.34" height="16.67" fill="#d9d2e9"/>  <!-- Top-middle -->
-  <rect x="104.67" y="0" width="52.33" height="16.67" fill="#e9e5f2"/>  <!-- Top-right -->
-
-  <!-- Row 2 (middle): y=16.67 to 33.33 -->
-  <rect x="0" y="16.67" width="52.33" height="16.66" fill="#d9d2e9"/>    <!-- Middle-left -->
-  <rect x="52.33" y="0" width="52.34" height="16.66" fill="#e9e5f2"/>  <!-- Center (no purple) -->
-  <rect x="104.67" y="0" width="52.33" height="16.66" fill="#d9d2e9"/>  <!-- Middle-right -->
-
-  <!-- Row 3 (bottom): y=33.33 to 50 -->
-  <rect x="0" y="33.33" width="52.33" height="16.67" fill="#e9e5f2"/>   <!-- Bottom-left -->
-  <rect x="52.33" y="33.33" width="52.34" height="16.67" fill="#e9e5f2"/>  <!-- Bottom-middle (no purple) -->
-  <rect x="104.67" y="33.33" width="52.33" height="16.67" fill="#e9e5f2"/>  <!-- Bottom-right -->
-
-  <!-- Inner rectangles (medium and small) - black stroke only, NO FILL -->
-  <g fill="none" stroke="#000000" stroke-width="1">
-    <rect x="10" y="10" width="137" height="30"/>
-    <rect x="15" y="15" width="127" height="20"/>
-  </g>
-
-  <!-- Diagonal lines from corners to inner rect corners -->
-  <g stroke="#000000" stroke-width="1.5" fill="none">
-    <line x1="0" y1="0" x2="12" y2="12" stroke="#000000" stroke-width="1.5"/>
-    <line x1="157" y1="0" x2="145" y2="12" stroke="#000000" stroke-width="1.5"/>
-    <line x1="0" y1="50" x2="12" y2="38" stroke="#000000" stroke-width="1.5"/>
-    <line x1="157" y1="50" x2="145" y2="38" stroke="#000000" stroke-width="1.5"/>
-  </g>
-
-  <!-- Centered text -->
-  <text x="78.5" y="31.25" text-anchor="middle" letter-spacing="1" font-family="Arial, Helvetica, sans-serif" font-size="16.5" font-weight="bold" fill="#000000">Timestamps</text>
-</svg>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="157"
+   height="48"
+   viewBox="0 0 157 48"
+   version="1.1"
+   id="svg10"
+   sodipodi:docname="Timestamps.svg"
+   xml:space="preserve"
+   inkscape:version="1.4.2 (f4327f4, 2025-05-13)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"><defs
+     id="defs10" /><sodipodi:namedview
+     id="namedview10"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="16"
+     inkscape:cx="41.625"
+     inkscape:cy="22.84375"
+     inkscape:window-width="1920"
+     inkscape:window-height="1001"
+     inkscape:window-x="-7"
+     inkscape:window-y="-7"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg10" /><!-- Equal padding: 6.25px outer, 3.75px inner accent, uniform on all 4 sides --><!-- Outer border (6.25px) --><rect
+     x="0"
+     y="0"
+     width="6.25"
+     height="50"
+     fill="#e9e5f2"
+     id="rect3" /><rect
+     x="0"
+     y="0"
+     width="157"
+     height="6.25"
+     fill="#e9e5f2"
+     id="rect1" /><rect
+     x="0"
+     y="43.75"
+     width="157"
+     height="6.25"
+     fill="#e9e5f2"
+     id="rect2"
+     style="fill:#7b7191;stroke:#7b7191;stroke-width:0.3;fill-opacity:1;stroke-opacity:1" /><rect
+     x="150.75"
+     y="0"
+     width="6.25"
+     height="50"
+     fill="#e9e5f2"
+     id="rect4" /><!-- Inner content area (starts at 6.25, ends at 150.75 / 43.75) --><rect
+     x="6.25"
+     y="6.25"
+     width="144.5"
+     height="37.5"
+     fill="#d9d2e9"
+     id="rect5"
+     style="fill:#d9d2e9;stroke:#000000;stroke-width:0.3;fill-opacity:1;stroke-opacity:0;opacity:1" /><!-- Inner rectangles (medium and small) - only black lines INSIDE the medium rect --><g
+     fill="none"
+     stroke="#000000"
+     stroke-width="1"
+     id="g7"><rect
+       x="7"
+       y="7"
+       width="143"
+       height="36"
+       id="rect6"
+       style="fill:none" /><rect
+       x="12"
+       y="12"
+       width="133"
+       height="26"
+       id="rect7" /></g><!-- Diagonal lines from SVG corners to SMALL rectangle corners --><g
+     stroke="#000000"
+     stroke-width="1.5"
+     fill="none"
+     id="g10"><!-- Top-left: outer(0,0) -> small rect corner (12,12) --><line
+       x1="0"
+       y1="0"
+       x2="12"
+       y2="12"
+       stroke="#000000"
+       stroke-width="1.5"
+       id="line7"
+       style="stroke-width:1.1;stroke-dasharray:none;fill:#e9e5f2;fill-opacity:1" /><!-- Top-right: outer(157,0) -> small rect top-right (145,12) --><line
+       x1="157"
+       y1="0"
+       x2="145"
+       y2="12"
+       stroke="#000000"
+       stroke-width="1.5"
+       id="line8"
+       style="stroke-width:1.1;stroke-dasharray:none" /><!-- Bottom-left: outer(0,50) -> small rect bottom-left (12,38) --><line
+       x1="0"
+       y1="50"
+       x2="12"
+       y2="38"
+       stroke="#000000"
+       stroke-width="1.5"
+       id="line9"
+       style="stroke-width:1.1;stroke-dasharray:none" /><!-- Bottom-right: outer(157,50) to small rect bottom-right (145,38) --><line
+       x1="157"
+       y1="50"
+       x2="145"
+       y2="38"
+       stroke="#000000"
+       stroke-width="1.5"
+       id="line10"
+       style="stroke-width:1.1;stroke-dasharray:none" /></g><!-- Centered text --><text
+     x="78.5"
+     y="30.5"
+     text-anchor="middle"
+     letter-spacing="1"
+     font-family="Arial, Helvetica, sans-serif"
+     font-size="18.5"
+     font-weight="bold"
+     fill="#000000"
+     id="text10">Timestamps</text><path
+     style="fill:#d9d3ea;fill-opacity:1;stroke:#d9d3ea;stroke-width:0.3;stroke-opacity:1"
+     d="M 0,24.973255 V 1.1059451 L 3.138232,4.2432432 6.276464,7.3805414 V 24.973255 42.565967 L 3.138232,45.703266 0,48.840564 Z"
+     id="path13" /><path
+     style="fill:#a59bbf;fill-opacity:1;stroke:#a59bbf;stroke-width:0.3;stroke-opacity:1"
+     d="M 7.5140766,24.973255 V 8.6205614 l 1.9890202,1.9875466 1.9890202,1.987547 v 12.3776 12.377599 l -1.9890202,1.987547 -1.9890202,1.987547 z"
+     id="path14"
+     sodipodi:nodetypes="ccccccccc" /><path
+     style="fill:#7b7191;fill-opacity:1;stroke:#7b7191;stroke-width:0.2;stroke-dasharray:none;stroke-opacity:1"
+     d="m 150.77141,47.272614 v -2.671979 l 2.65663,2.656076 c 1.46114,1.460841 2.65662,2.663232 2.65662,2.671978 0,0.0087 -1.19548,0.0159 -2.65662,0.0159 h -2.65663 z"
+     id="path15" /><path
+     style="fill:#a59bbf;fill-opacity:1;stroke:#000000;stroke-width:0.2;stroke-dasharray:none;stroke-opacity:0"
+     d="m 153.84974,45.990671 -3.07833,-3.078796 V 24.971825 7.031775 l 3.09419,-3.0937158 3.09419,-3.0937158 V 24.956906 c 0,13.261909 -0.007,24.112562 -0.0159,24.112562 -0.009,0 -1.40111,-1.385459 -3.09418,-3.078797 z"
+     id="path16" /><path
+     style="fill:#7b7191;fill-opacity:1;stroke:#000000;stroke-width:0.2;stroke-dasharray:none;stroke-opacity:0"
+     d="M 10.313965,9.4700948 8.3456792,7.5010652 H 51.99213 95.638581 V 9.4700948 11.439124 H 53.960416 12.28225 Z"
+     id="path17" /><path
+     style="fill:#7b7191;fill-opacity:1;stroke:#000000;stroke-width:0.2;stroke-dasharray:none;stroke-opacity:0"
+     d="M 95.638581,9.4700948 V 7.5010652 h 26.519019 26.51902 l -1.96829,1.9690296 -1.96828,1.9690292 H 120.18931 95.638581 Z"
+     id="path18" /><path
+     style="fill:#d9d3ea;fill-opacity:1;stroke:#d9d3ea;stroke-width:0.2;stroke-dasharray:none;stroke-opacity:1"
+     d="M 0.18752663,21.581437 V 1.531961 L 3.1566983,4.5006391 6.1258699,7.4693172 V 24.550114 41.630912 H 3.1566983 0.18752663 Z"
+     id="path19" /><path
+     style="fill:#d9d3ea;fill-opacity:1;stroke:#000000;stroke-width:0.2;stroke-dasharray:none;stroke-opacity:0"
+     d="m 147.47369,39.614634 -1.95303,-1.953769 V 24.971558 12.28225 l 1.96903,-1.968285 1.96903,-1.9682858 V 24.957041 c 0,9.136249 -0.007,16.611362 -0.016,16.611362 -0.009,0 -0.89486,-0.879196 -1.96903,-1.953769 z"
+     id="path20" /></svg>
