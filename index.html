@@ -78,6 +78,9 @@ body {
 #ptr-svg, #g1 {
     transform-box: fill-box;
 }
+    
+#g1 {transform-origin: center; transform-box: fill-box;
+}
 
 .card {
     background:#fce5cd;
@@ -437,7 +440,6 @@ document.addEventListener('touchmove',function(e){
         ptrSvg.style.transform='scale(2.4)';
 
         var angle = rawDist * 1.25;
-        g1.style.transformOrigin='32px 32px';
         g1.style.transform='rotate('+angle+'deg)';
     } else {
         drag.ptrActive=false;
