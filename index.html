@@ -430,7 +430,7 @@ document.addEventListener('touchmove',function(e){
     if(!drag.active||e.touches.length!==1) return;
     var dy=drag.startY-e.touches[0].clientY;
     
-    if (window.scrollY <= 2 && dy < 0 && !drag.animating) {
+    if (window.scrollY <= 10 && dy < 0 && !drag.animating) {
         drag.ptrActive=true;
         ptr.classList.add("ptr-fixed");
 
