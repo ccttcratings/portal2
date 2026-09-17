@@ -79,7 +79,7 @@ body {
     transform-box: fill-box;
 }
     
-#g1 {transform-origin: center; transform-box: fill-box;
+#g1, #g10 {transform-origin: center; transform-box: fill-box;
 }
 
 .card {
@@ -425,7 +425,7 @@ document.addEventListener('touchmove',function(e){
     if(!drag.active||e.touches.length!==1) return;
     var dy=drag.startY-e.touches[0].clientY;
     
-    if (window.scrollY <= 2 && dy < 0) {
+    if (window.scrollY <= 2 && dy < 0 && !drag.animating) {
         drag.ptrActive=true;
         ptr.classList.add("ptr-fixed");
 
