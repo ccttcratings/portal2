@@ -8,25 +8,23 @@
 
 html {
     height: 100%;
-    /* Let the natural overflow handle the page height */
 }
 
 body {
     font-size: 16px;
     -webkit-text-size-adjust: 100%;
-    min-height: 100%; 
+    min-height: 100%;
     font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
     background:#fce5cd;
     text-align:center;
     padding:8px 16px;
     margin:0;
-    touch-action:none;
-    overflow-y: auto; /* Ensures the main document is the scroller */
+    touch-action: pan-y;
+    overflow-y: auto;
 }
 
-/* PTR BOX 64×64 */
 #ptr {
-    position:fixed;
+    position:absolute;
     top:0;
     left:50%;
     width:64px;
@@ -39,7 +37,6 @@ body {
     transition:opacity .15s;
 }
 
-/* Spinner stays 48×48 but scaled up */
 #ptr-svg {
     position:absolute;
     width:48px;
@@ -50,17 +47,14 @@ body {
     transform:scale(2.4);
 }
 
-/* Fletchings visible normally */
 #g79 {
     opacity:1;
 }
 
-/* Fletchings hidden during spin */
 #ptr.spin #g79 {
     opacity:0;
 }
 
-/* spin whole image — preserves scale */
 #ptr.spin #ptr-svg {
     animation:ptrSpin .7s linear infinite;
     transform:scale(2.4) rotate(0deg);
@@ -386,132 +380,131 @@ Portal Hub of Portals <span class="subtext">(hub of redundant portals)</span>
         document.documentElement.classList.add('neon');
     }
 })();
-    
+
 (function(){
-var drag={active:false,startY:0,startScroll:0,history:[],animating:false};
-var friction=0.999, bounceDecay=1.0;
-var ptr=document.getElementById('ptr');
-var ptrSvg=document.getElementById('ptr-svg');
-var g1=document.querySelector('#g1');
+    var drag = { active:false, startY:0, startScroll:0, history:[], animating:false };
+    var friction = 0.999, bounceDecay = 1.0;
+    var ptr = document.getElementById('ptr');
+    var ptrSvg = document.getElementById('ptr-svg');
+    var g1 = document.querySelector('#g1');
 
-document.addEventListener('touchstart',function(e){
-    if(e.touches.length!==1) return;
-    drag.active=true;
-    drag.startY=e.touches[0].clientY;
-    drag.startScroll=window.scrollY;
-    drag.history=[{y:e.touches[0].clientY,t:Date.now()}];
-    drag.ptrActive=false;
+    document.addEventListener('touchstart', function(e){
+        if (e.touches.length !== 1) return;
+        drag.active = true;
+        drag.startY = e.touches[0].clientY;
+        drag.startScroll = window.scrollY;
+        drag.history = [{ y:e.touches[0].clientY, t:Date.now() }];
+        drag.ptrActive = false;
 
-    ptr.className='';
-    ptr.style.marginTop='-68px';
-    ptrSvg.style.transform='scale(2.4)';
-    g1.style.transform='';
-},{passive:true});
+        ptr.className = '';
+        ptr.style.marginTop = '-68px';
+        ptrSvg.style.transform = 'scale(2.4)';
+        g1.style.transform = '';
+    }, { passive:true });
 
-document.addEventListener('touchmove',function(e){
-    if(!drag.active||e.touches.length!==1) return;
-    var dy=drag.startY-e.touches[0].clientY;
+    document.addEventListener('touchmove', function(e){
+        if (!drag.active || e.touches.length !== 1) return;
+        var dy = drag.startY - e.touches[0].clientY;
 
-    if(!(drag.startScroll<=0 && dy<0)){
-        drag.ptrActive=false;
-        ptr.classList.remove('swiping');
-        ptr.className='';
-        ptr.style.marginTop='-68px';
-        ptrSvg.style.transform='scale(2.4)';
-        g1.style.transform='';
-    } else {
-        drag.ptrActive=true;
-        var dist=Math.min(-dy,120);
-        var rawDist = -dy;
-        var pct=Math.min(dist/80,1);
+        if (drag.startScroll <= 0 && dy < 0) {
+            drag.ptrActive = true;
 
-        ptr.style.marginTop=(dist-60)+'px';
-        ptr.style.opacity=pct;
+            var dist = Math.min(-dy, 120);
+            var rawDist = -dy;
+            var pct = Math.min(dist / 80, 1);
 
-        ptr.classList.add('swiping');
-        ptrSvg.style.transform='scale(2.4)';
+            ptr.style.marginTop = (dist - 60) + 'px';
+            ptr.style.opacity = pct;
 
-        var angle = rawDist * 1.25;
-        g1.style.transformOrigin='32px 32px';
-        g1.style.transform='rotate('+angle+'deg)';
-    }
+            ptr.classList.add('swiping');
+            ptrSvg.style.transform = 'scale(2.4)';
 
-    var now=Date.now();
-    drag.history.push({y:e.touches[0].clientY,t:now});
-    if(drag.history.length>8) drag.history.shift();
-},{passive:true});
-
-document.addEventListener('touchend',function(){
-    if(!drag.active) return;
-    drag.active=false;
-
-    if(drag.ptrActive){
-        if(parseFloat(ptr.style.opacity)>=1){
-
-            ptrSvg.style.transform='scale(2.4)';
-            ptr.classList.add('spin');
-
-            g1.style.transform='';
-
-            setTimeout(function(){location.reload();},750);
-
+            var angle = rawDist * 1.25;
+            g1.style.transformOrigin = '32px 32px';
+            g1.style.transform = 'rotate(' + angle + 'deg)';
         } else {
-            ptr.style.marginTop='-68px';
-            ptr.style.opacity=1;
-            ptr.className='';
-            ptrSvg.style.transform='scale(2.4)';
-            g1.style.transform='';
+            drag.ptrActive = false;
+            ptr.classList.remove('swiping');
+            ptr.className = '';
+            ptr.style.marginTop = '-68px';
+            ptrSvg.style.transform = 'scale(2.4)';
+            g1.style.transform = '';
         }
-        return;
-    }
 
-    var h=drag.history;
-    if(h.length<2) return;
-    var last=h[h.length-1], first=h[0];
-    var dt=last.t-first.t;
-    if(dt<=0) return;
-    var velocity=(first.y-last.y)/dt;
-    if(Math.abs(velocity)<0.3) return;
+        var now = Date.now();
+        drag.history.push({ y:e.touches[0].clientY, t:now });
+        if (drag.history.length > 8) drag.history.shift();
+    }, { passive:true });
 
-    startScrollMomentum(velocity);
-},{passive:true});
+    document.addEventListener('touchend', function(){
+        if (!drag.active) return;
+        drag.active = false;
 
-function startScrollMomentum(v){
-    drag.animating=true;
-    var lastTime=Date.now();
-    var vy=v;
+        if (drag.ptrActive) {
+            if (parseFloat(ptr.style.opacity) >= 1) {
+                ptrSvg.style.transform = 'scale(2.4)';
+                ptr.classList.add('spin');
 
-    function step(){
-        if(!drag.animating) return;
-        var now=Date.now();
-        var elapsed=now-lastTime;
-        lastTime=now;
+                g1.style.transform = '';
 
-        vy*=Math.pow(friction,elapsed/16);
-        if(Math.abs(vy)<0.01){drag.animating=false;return;}
-
-        var maxScroll=document.documentElement.scrollHeight-window.innerHeight;
-        var scroll=window.scrollY;
-        var next=scroll+vy*elapsed;
-
-        if(next<0){
-            next=0;
-            drag.animating=false;
-            window.scrollTo(0,next);
-            return;
-        } else if(next>maxScroll){
-            next=maxScroll;
-            drag.animating=false;
-            window.scrollTo(0,next);
+                setTimeout(function(){ location.reload(); }, 750);
+            } else {
+                ptr.style.marginTop = '-68px';
+                ptr.style.opacity = 1;
+                ptr.className = '';
+                ptrSvg.style.transform = 'scale(2.4)';
+                g1.style.transform = '';
+            }
             return;
         }
 
-        window.scrollTo(0,next);
+        var h = drag.history;
+        if (h.length < 2) return;
+        var last = h[h.length - 1], first = h[0];
+        var dt = last.t - first.t;
+        if (dt <= 0) return;
+        var velocity = (first.y - last.y) / dt;
+        if (Math.abs(velocity) < 0.3) return;
+
+        startScrollMomentum(velocity);
+    }, { passive:true });
+
+    function startScrollMomentum(v){
+        drag.animating = true;
+        var lastTime = Date.now();
+        var vy = v;
+
+        function step(){
+            if (!drag.animating) return;
+            var now = Date.now();
+            var elapsed = now - lastTime;
+            lastTime = now;
+
+            vy *= Math.pow(friction, elapsed / 16);
+            if (Math.abs(vy) < 0.01) { drag.animating = false; return; }
+
+            var maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+            var scroll = window.scrollY;
+            var next = scroll + vy * elapsed;
+
+            if (next < 0) {
+                next = 0;
+                drag.animating = false;
+                window.scrollTo(0, next);
+                return;
+            } else if (next > maxScroll) {
+                next = maxScroll;
+                drag.animating = false;
+                window.scrollTo(0, next);
+                return;
+            }
+
+            window.scrollTo(0, next);
+            requestAnimationFrame(step);
+        }
+
         requestAnimationFrame(step);
     }
-
-    requestAnimationFrame(step);
-}
 })();
 </script>
 
