@@ -374,36 +374,36 @@ body::after {
 
 <h2>View Mode Portal</h2>
 
-<a href="https://google.com" class="btn btn-published">
+<!-- BUTTON 1: FAT GREEN PUBLISHED MODE BUTTON -->
+<a href="https://google.com" class="btn published" style="padding: 32px 16px;">
     Published Mode
 </a>
-<button class="btn btn-published" data-label="Copy Published Mode URL" id="copy-published-btn" style="padding: 10px 16px; font-size: 16px; margin-top: -10px; margin-bottom: 30px;">
-    Copy Published Mode URL
-</button>
 
-<a href="https://google.com" class="btn btn-preview">
+<!-- BUTTON 2: FAT RED PREVIEW MODE BUTTON -->
+<a href="https://google.com" class="btn preview" style="padding: 32px 16px;">
     Preview Mode
 </a>
-<button class="btn btn-preview" data-label="Copy Preview Mode URL" id="copy-preview-btn" style="padding: 10px 16px; font-size: 16px; margin-top: -10px; margin-bottom: 30px;">
-    Copy Preview Mode URL
-</button>
 
-<!-- GRAPH CONNECTORS -->
-<a href="https://github.io" class="btn btn-graphnew" target="_blank">
+<!-- GRAPH CONNECTORS (STANDARD DEPTH) -->
+<a href="https://github.io" class="btn graphnew" target="_blank">
     Player Ratings Graph
 </a>
 
-<a href="https://google.com" class="btn btn-graph" target="_blank">
+<a href="https://google.com" class="btn graph" target="_blank">
     Old Player Ratings Graph
 </a>
 
-<a href="https://github.io" class="btn btn-hub">
+<!-- PORTAL HUB (SUBTEXT COMPLETELY REMOVED) -->
+<a href="https://github.io" class="btn hub">
     Portal Hub of Portals
 </a>
 
 </div>
 
 <script>
+// =================================================================
+// 1. NEON THEME DETECTOR
+// =================================================================
 (function(){
     var params = new URLSearchParams(location.search);
     if (params.has('neon')) {
@@ -411,6 +411,9 @@ body::after {
     }
 })();
 
+// =================================================================
+// 2. PULL-TO-REFRESH TOUCH GESTURE ENGINE
+// =================================================================
 (function(){
 var drag={active:false,startY:0,startScroll:0,history:[],animating:false};
 var friction=0.999;
@@ -421,9 +424,9 @@ var g1=document.querySelector('#g1');
 document.addEventListener('touchstart',function(e){
     if(e.touches.length!==1) return;
     drag.active=true;
-    drag.startY=e.touches[0].clientY;
+    drag.startY=e.touches.clientY;
     drag.startScroll=window.scrollY;
-    drag.history=[{y:e.touches[0].clientY,t:Date.now()}];
+    drag.history=[{y:e.touches.clientY,t:Date.now()}];
     drag.ptrActive=false;
 
     ptr.classList.remove("ptr-fixed");
@@ -435,7 +438,7 @@ document.addEventListener('touchstart',function(e){
 
 document.addEventListener('touchmove',function(e){
     if(!drag.active||e.touches.length!==1) return;
-    var dy=drag.startY-e.touches[0].clientY;
+    var dy=drag.startY-e.touches.clientY;
     
     if (window.scrollY <= 10 && dy < 0 && !drag.animating) {
         drag.ptrActive=true;
@@ -464,7 +467,7 @@ document.addEventListener('touchmove',function(e){
     }
 
     var now=Date.now();
-    drag.history.push({y:e.touches[0].clientY,t:now});
+    drag.history.push({y:e.touches.clientY,t:now});
     if(drag.history.length>8) drag.history.shift();
 },{passive:true});
 
@@ -476,14 +479,10 @@ document.addEventListener('touchend',function(){
 
     if(drag.ptrActive){
         if(parseFloat(ptr.style.opacity)>=1){
-
             ptrSvg.style.transform='scale(2.4)';
             ptr.classList.add('spin');
-
             g1.style.transform='';
-
             setTimeout(function(){location.reload();},750);
-
         } else {
             ptr.style.marginTop='-68px';
             ptr.style.opacity=1;
@@ -538,7 +537,6 @@ function startScrollMomentum(v){
         window.scrollTo(0,next);
         requestAnimationFrame(step);
     }
-
     requestAnimationFrame(step);
 }
 })();
