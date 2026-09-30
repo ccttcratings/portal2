@@ -155,11 +155,11 @@ p {
 
 .btn:hover::before { left:100%; }
 
-.published { background:linear-gradient(180deg,#6abf6e,#3a9e3e,#288028); --dark:#1c6a1c; }
-.preview   { background:linear-gradient(180deg,#e87070,#c84040,#a02020); --dark:#801818; }
-.hub       { background:linear-gradient(180deg,#3ba8d6,#1a7daa,#0e5f80); --dark:#0a4a60; }
-.graph     { background:linear-gradient(180deg,#a048a0,#883088,#682068); --dark:#501850; padding:20px 16px; }
-.graphnew  { background:linear-gradient(180deg,#e060a0,#b03070,#902060); --dark:#701850; margin-top:80px; padding:20px 16px; }
+.btn-published  { background:linear-gradient(180deg,#6abf6e,#3a9e3e,#288028); --dark:#1c6a1c; }
+.btn-preview    { background:linear-gradient(180deg,#e87070,#c84040,#a02020); --dark:#801818; }
+.btn-hub        { background:linear-gradient(180deg,#3ba8d6,#1a7daa,#0e5f80); --dark:#0a4a60; }
+.btn-graph      { background:linear-gradient(180deg,#a048a0,#883088,#682068); --dark:#501850; padding:20px 16px; }
+.btn-graphnew   { background:linear-gradient(180deg,#e060a0,#b03070,#902060); --dark:#701850; margin-top:80px; padding:20px 16px; }
 
 .subtext {
     display:block;
@@ -168,11 +168,11 @@ p {
     margin-top:4px;
 }
 
-html.neon .preview { background:linear-gradient(180deg,#00ff00,#00cc00,#009900); --dark:#006600; }
-html.neon .edit    { background:linear-gradient(180deg,#ff0000,#cc0000,#990000); --dark:#660000; }
-html.neon .hub     { background:linear-gradient(180deg,#0bcade,#09a3b5,#077c9c); --dark:#055f7d; }
-html.neon .graph   { background:linear-gradient(180deg,#bf00ff,#9900dd,#7700bb); --dark:#550099; }
-html.neon .graphnew{ background:linear-gradient(180deg,#ff33dd,#dd11bb,#bb0099); --dark:#880077; }
+html.neon .btn-published { background:linear-gradient(180deg,#00ff00,#00cc00,#009900); --dark:#006600; }
+html.neon .btn-preview   { background:linear-gradient(180deg,#ff0000,#cc0000,#990000); --dark:#660000; }
+html.neon .btn-hub       { background:linear-gradient(180deg,#0bcade,#09a3b5,#077c9c); --dark:#055f7d; }
+html.neon .btn-graph     { background:linear-gradient(180deg,#bf00ff,#9900dd,#7700bb); --dark:#550099; }
+html.neon .btn-graphnew  { background:linear-gradient(180deg,#ff33dd,#dd11bb,#bb0099); --dark:#880077; }
 html.neon body     { background:#4e2a05; color-scheme:dark; }
 html.neon .card    { background:#4e2a05; }
 html.neon h2       { color:#fff; }
@@ -369,30 +369,36 @@ body::after {
          style="fill:url(#linearGradient17);stroke-width:1"
          class="head"
          d="m 43.823488,45.885162 -8.410165,1.322442 3.781864,-6.768975 z" /></g></g>
-    </svg>
+ </svg>
 </div>
 
 <h2>View Mode Portal</h2>
 
-<a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vQX7guKy-_ONzc6nuCWGLu2UmfLRb5CvD60e8s035PNeGNqz5L2_NtZ00fbmq0eb8HOhgSryIpbVYz-/pubhtml?headers=false&chrome=false">
-Published Mode
+<a href="https://google.com" class="btn btn-published">
+    Published Mode
+</a>
+<button class="btn btn-published" data-label="Copy Published Mode URL" id="copy-published-btn" style="padding: 10px 16px; font-size: 16px; margin-top: -10px; margin-bottom: 30px;">
+    Copy Published Mode URL
+</button>
+
+<a href="https://google.com" class="btn btn-preview">
+    Preview Mode
+</a>
+<button class="btn btn-preview" data-label="Copy Preview Mode URL" id="copy-preview-btn" style="padding: 10px 16px; font-size: 16px; margin-top: -10px; margin-bottom: 30px;">
+    Copy Preview Mode URL
+</button>
+
+<!-- GRAPH CONNECTORS -->
+<a href="https://github.io" class="btn btn-graphnew" target="_blank">
+    Player Ratings Graph
 </a>
 
-<a href="https://docs.google.com/spreadsheets/d/1NdnC1kN831FVfcInOmFBfe-PU5tgKjFh3I-uxPdVGJM/preview">
-Preview Mode
+<a href="https://google.com" class="btn btn-graph" target="_blank">
+    Old Player Ratings Graph
 </a>
 
-<a href="https://ccttcratings.github.io/graph/" class="btn graphnew" target="_blank">
-Player Ratings Graph
-</a>
-
-<a href="https://script.google.com/macros/s/AKfycbyh4XByirwdUrd4OArgiWHokySt_rgBS1gJMtLRyLJOeLZVHAQDFrQXQXbthd_TxHbx/exec"
-class="btn graph" target="_blank">
-Old Player Ratings Graph
-</a>
-
-<a href="https://ccttcratings.github.io/portalhub/" class="btn hub">
-Portal Hub of Portals <span class="subtext">(hub of redundant portals)</span>
+<a href="https://github.io" class="btn btn-hub">
+    Portal Hub of Portals
 </a>
 
 </div>
