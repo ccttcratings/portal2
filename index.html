@@ -369,7 +369,7 @@ body::after {
          style="fill:url(#linearGradient17);stroke-width:1"
          class="head"
          d="m 43.823488,45.885162 -8.410165,1.322442 3.781864,-6.768975 z" /></g></g>
- </svg>
+</svg>
 </div>
 
 <h2>View Mode Portal</h2>
@@ -424,9 +424,9 @@ var g1=document.querySelector('#g1');
 document.addEventListener('touchstart',function(e){
     if(e.touches.length!==1) return;
     drag.active=true;
-    drag.startY=e.touches.clientY;
+    drag.startY=e.touches[0].clientY;
     drag.startScroll=window.scrollY;
-    drag.history=[{y:e.touches.clientY,t:Date.now()}];
+    drag.history=[{y:e.touches[0].clientY,t:Date.now()}];
     drag.ptrActive=false;
 
     ptr.classList.remove("ptr-fixed");
@@ -438,7 +438,7 @@ document.addEventListener('touchstart',function(e){
 
 document.addEventListener('touchmove',function(e){
     if(!drag.active||e.touches.length!==1) return;
-    var dy=drag.startY-e.touches.clientY;
+    var dy=drag.startY-e.touches[0].clientY;
     
     if (window.scrollY <= 10 && dy < 0 && !drag.animating) {
         drag.ptrActive=true;
@@ -467,7 +467,7 @@ document.addEventListener('touchmove',function(e){
     }
 
     var now=Date.now();
-    drag.history.push({y:e.touches.clientY,t:now});
+    drag.history.push({y:e.touches[0].clientY,t:now});
     if(drag.history.length>8) drag.history.shift();
 },{passive:true});
 
@@ -495,6 +495,8 @@ document.addEventListener('touchend',function(){
 
     var h=drag.history;
     if(h.length<2) return;
+    
+    // FIXED COORDINATE MATCH: Targeting explicit 0-index parameter arrays cleanly
     var last=h[h.length-1], first=h[0];
     var dt=last.t-first.t;
     if(dt<=0) return;
