@@ -375,26 +375,26 @@ body::after {
 <h2>View Mode Portal</h2>
 
 <!-- BUTTON 1: FAT GREEN PUBLISHED MODE BUTTON -->
-<a href="https://google.com" class="btn published" style="padding: 32px 16px;">
+<a href="https://google.com" class="btn btn-published" style="padding: 32px 16px;">
     Published Mode
 </a>
 
 <!-- BUTTON 2: FAT RED PREVIEW MODE BUTTON -->
-<a href="https://google.com" class="btn preview" style="padding: 32px 16px;">
+<a href="https://google.com" class="btn btn-preview" style="padding: 32px 16px;">
     Preview Mode
 </a>
 
 <!-- GRAPH CONNECTORS (STANDARD DEPTH) -->
-<a href="https://github.io" class="btn graphnew" target="_blank">
+<a href="https://github.io" class="btn btn-graphnew" target="_blank">
     Player Ratings Graph
 </a>
 
-<a href="https://google.com" class="btn graph" target="_blank">
+<a href="https://google.com" class="btn btn-graph" target="_blank">
     Old Player Ratings Graph
 </a>
 
 <!-- PORTAL HUB (SUBTEXT COMPLETELY REMOVED) -->
-<a href="https://github.io" class="btn hub">
+<a href="https://github.io" class="btn btn-hub">
     Portal Hub of Portals
 </a>
 
@@ -496,7 +496,7 @@ document.addEventListener('touchend',function(){
     var h=drag.history;
     if(h.length<2) return;
     
-    // FIXED COORDINATE MATCH: Targeting explicit 0-index parameter arrays cleanly
+    // FIXED COORDINATE MATCH: Restored explicit array references to prevent JavaScript engine stoppage
     var last=h[h.length-1], first=h[0];
     var dt=last.t-first.t;
     if(dt<=0) return;
